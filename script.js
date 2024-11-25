@@ -4,18 +4,18 @@
             // Conteúdo da tela de cadastro de Clientes 
             const telaCadastro = `
             <h2>Cadastro de Clientes</h2>
-        <form>
+        <form action="cadastro_cliente.php" method="POST">
             <!-- Nome do Cliente -->
         <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
-                <input type="text" class="form-control" id="nomeCliente" placeholder="Digite o nome do cliente">
+                <input type="text" class="form-control" id="nomeCliente" required placeholder="Digite o nome do cliente">
             </div>
 
             <!-- CPF e Senha Gov.Br -->
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" placeholder="Digite o CPF">
+                    <input type="text" class="form-control" id="cpf" required placeholder="Digite o CPF">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="senhaGovBr" class="form-label">Senha Gov.Br</label>
@@ -44,11 +44,11 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="telefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" placeholder="Digite o telefone">
+                    <input type="text" class="form-control" id="telefone" required placeholder="Digite o telefone">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Digite o email">
+                    <input type="email" class="form-control" id="email" required placeholder="Digite o email">
                 </div>
             </div>
 
@@ -91,21 +91,38 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
 
+        //Lista de Clientes Cadastrados
+                function mostrarListaClientes() {
+            const listaClientes = `
+            <h2>Clientes Cadastrados</h2>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Usuário 1 - email1@exemplo.com
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente('Usuário 1')">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="excluirCliente('Usuário 1')">Excluir</button>
+                        </div>
+                    </li>
+                </ul>
+            `;
+            document.getElementById('conteudoPrincipal').innerHTML = listaClientes;
+        }
 
+    
         //USUARIO DO SISTEMA
         function mostrarTelaCadastroUsuario() {
 
             // Conteúdo da tela de cadastro de usuarios 
             const telaCadastro = `
                 <h2>Cadastro de Usuário</h2>
-                <form>
+                <form action="cadastro_usuario.php" method="POST">
                     <div class="mb-3">
                         <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
-                        <input type="text" class="form-control" id="nomeUsuario" placeholder="Digite o nome">
+                        <input type="text" class="form-control" id="nomeUsuario" name="nome" required placeholder="Digite o nome">
                     </div>
                     <div class="mb-3">
                         <label for="emailUsuario" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="emailUsuario" placeholder="Digite o e-mail">
+                        <input type="email" class="form-control" id="emailUsuario" name="email" required placeholder="Digite o e-mail">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inputEstado">Nivel Acesso</label>
@@ -117,7 +134,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="senhaUsuario" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senhaUsuario" placeholder="Digite a senha">
+                        <input type="password" class="form-control" id="senhaUsuario" name="senha" required placeholder="Digite a senha">
                     </div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
