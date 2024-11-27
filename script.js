@@ -4,7 +4,7 @@
             // Conteúdo da tela de cadastro de Clientes 
             const telaCadastro = `
             <h2>Cadastro de Clientes</h2>
-        <form action="cadastro_cliente.php" method="POST">
+        <form action="cad_cliente.php" method="POST">
             <!-- Nome do Cliente -->
         <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
@@ -110,12 +110,12 @@
 
     
         //USUARIO DO SISTEMA
-        function mostrarTelaCadastroUsuario() {
+        function mostrarTelaCadastroUsuarios() {
 
             // Conteúdo da tela de cadastro de usuarios 
             const telaCadastro = `
-                <h2>Cadastro de Usuário</h2>
-                <form action="cadastro_usuario.php" method="POST">
+                <h2>Cadastro de Usuários</h2>
+                <form action="cad_usuario.php" method="POST">
                     <div class="mb-3">
                         <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
                         <input type="text" class="form-control" id="nomeUsuario" name="nome" required placeholder="Digite o nome">

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); // Hasheia a senha para segurança
 
-    $sql = "INSERT INTO usuario (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+    $sql = "INSERT INTO cad_usuario (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Usuário cadastrado com sucesso!";

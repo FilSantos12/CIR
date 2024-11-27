@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $selecao = $_POST['selecao'];
     $data = $_POST['data_solicitacao'];
 
-    $sql = "INSERT INTO clientes (nome_cliente, cpf, senha_govbr, procuracao, data_vencimento, telefone, email, prioridade, servico_solicitado, ano, selecao, data_solicitacao)
+    $sql = "INSERT INTO cad_cliente (nome_cliente, cpf, senha_govbr, procuracao, data_vencimento, telefone, email, prioridade, servico_solicitado, ano, selecao, data_solicitacao)
             VALUES ('$nome', '$cpf', '$senha', '$procuracao', '$data_vencimento', '$telefone', '$email', '$prioridade', '$servico', $ano, '$selecao', '$data')";
 
     if ($conn->query($sql) === TRUE) {
