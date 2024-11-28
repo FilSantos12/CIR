@@ -2,10 +2,10 @@
 $servername = "127.0.0.1:3306";
 $username = "root"; // usuário padrão do XAMPP
 $password = "admin";     // senha padrão (geralmente vazia)
-$dbname = "web_service_db"; // substitua pelo nome do banco
+$database = 'web_service_db'; // Nome do banco de dados
 
 // Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Verificar conexão
 if ($conn->connect_error) {

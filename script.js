@@ -140,6 +140,10 @@
                 </form>
             `;
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
+
+            
+
+            
         }
             //Lista de Usuarios Cadastrados
                 function mostrarListaUsuarios() {
