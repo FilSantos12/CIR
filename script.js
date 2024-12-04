@@ -104,6 +104,24 @@
                         </div>
                     </li>
                 </ul>
+    
+            `;
+            document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
+        }
+
+        //Lista de Clientes Cadastrados
+                function mostrarListaClientes() {
+            const listaClientes = `
+            <h2>Clientes Cadastrados</h2>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Usuário 1 - email1@exemplo.com
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente('Usuário 1')">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="excluirCliente('Usuário 1')">Excluir</button>
+                        </div>
+                    </li>
+                </ul>
             `;
             document.getElementById('conteudoPrincipal').innerHTML = listaClientes;
         }
@@ -138,12 +156,10 @@
                     </div>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
+                
             `;
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
 
-            
-
-            
         }
             //Lista de Usuarios Cadastrados
                 function mostrarListaUsuarios() {
@@ -183,3 +199,6 @@
             `;
             document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
         }
+
+
+        
