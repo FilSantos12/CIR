@@ -1,7 +1,7 @@
-        //CLIENTE DO SISTEMA
+//CLIENTE DO SISTEMA
             function mostrarTelaCadastroClientes() {
 
-            // Conteúdo da tela de cadastro de Clientes 
+// Conteúdo da tela de cadastro de Clientes 
             const telaCadastro = `
             <h2>Cadastro de Clientes</h2>
         <form action="cad_cliente.php" method="POST">
@@ -91,7 +91,7 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
 
-        //Lista de Clientes Cadastrados
+//Lista de Clientes Cadastrados
                 function mostrarListaClientes() {
             const listaClientes = `
             <h2>Clientes Cadastrados</h2>
@@ -109,7 +109,7 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
 
-        //Lista de Clientes Cadastrados
+//Lista de Clientes Cadastrados
                 function mostrarListaClientes() {
             const listaClientes = `
             <h2>Clientes Cadastrados</h2>
@@ -127,10 +127,10 @@
         }
 
     
-        //USUARIO DO SISTEMA
+//USUARIO DO SISTEMA
         function mostrarTelaCadastroUsuarios() {
 
-            // Conteúdo da tela de cadastro de usuarios 
+// Conteúdo da tela de cadastro de usuarios 
             const telaCadastro = `
                 <h2>Cadastro de Usuários</h2>
                 <form action="cad_usuario.php" method="POST">
@@ -142,14 +142,7 @@
                         <label for="emailUsuario" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="emailUsuario" name="email" required placeholder="Digite o e-mail">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputEstado">Nivel Acesso</label>
-                            <select id="inputEstado" class="form-control">
-                                <option selected>Escolha o nivel do cadastro</option>
-                                <option>Administrador</option>
-                                <option>Usuario</option>
-                            </select>
-                    </div>
+
                     <div class="mb-3">
                         <label for="senhaUsuario" class="form-label">Senha</label>
                         <input type="password" class="form-control" id="senhaUsuario" name="senha" required placeholder="Digite a senha">
@@ -161,27 +154,27 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
 
         }
-            //Lista de Usuarios Cadastrados
+//Lista de Usuarios Cadastrados
                 function mostrarListaUsuarios() {
             const listaUsuarios = `
                 <h2>Lista de Usuários</h2>
-                <ul class="list-group">
+                <ul id="listaUsuarios" class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Usuário 1 - email1@exemplo.com
+                        Id - Usuario 1 - email1@exemplo.com
                         <div>
                             <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 1')">Editar</button>
                             <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 1')">Excluir</button>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Usuário 2 - email2@exemplo.com
+                        Id - Usuario 2 - email2@exemplo.com
                         <div>
                             <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 2')">Editar</button>
                             <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 2')">Excluir</button>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Usuário 3 - email3@exemplo.com
+                        Id - Usuario 3 - email3@exemplo.com
                         <div>
                             <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 3')">Editar</button>
                             <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 3')">Excluir</button>
@@ -191,7 +184,7 @@
             `;
             document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
         }
-        //Voltar ao conteudo principal
+//Voltar ao conteudo principal
         function mostrarTelaInicio() {
             const conteudoInicio = `
                 <h1>Bem-vindo ao Web Service</h1>
@@ -199,6 +192,39 @@
             `;
             document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
         }
+//Buscar dados de usuarios 
+function mostrarListaUsuarios() {
+    // Faz requisição para o backend
+    fetch("buscar_dados.php")
+        .then(response => response.json())
+        .then(data => {
+            // Cria a estrutura da lista
+            const listaUsuariosHTML = `
+                <h2>Lista de Usuários</h2>
+                <ul id="listaUsuarios" class="list-group"></ul>
+            `;
+
+// Renderiza a estrutura na página
+            document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
+
+// Adiciona os itens retornados do backend
+            const listaUsuarios = document.getElementById("listaUsuarios");
+            data.forEach(usuario => {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.innerHTML = `
+                    ${usuario.id} - ${usuario.nome} (${usuario.email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('${usuario.nome}')">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario('${usuario.nome}')">Excluir</button>
+                    </div>
+                `;
+                listaUsuarios.appendChild(li);
+            });
+        })
+        .catch(error => console.error("Erro ao buscar dados:", error));
+}
+
 
 
         
