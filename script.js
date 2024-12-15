@@ -160,25 +160,25 @@
                 <h2>Lista de Usuários</h2>
                 <ul id="listaUsuarios" class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Id - Usuario 1 - email1@exemplo.com
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 1')">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 1')">Excluir</button>
-                        </div>
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Id - Usuario 2 - email2@exemplo.com
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 2')">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 2')">Excluir</button>
-                        </div>
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Id - Usuario 3 - email3@exemplo.com
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('Usuário 3')">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirUsuario('Usuário 3')">Excluir</button>
-                        </div>
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
                     </li>
                 </ul>
             `;
@@ -204,10 +204,10 @@ function mostrarListaUsuarios() {
                 <ul id="listaUsuarios" class="list-group"></ul>
             `;
 
-// Renderiza a estrutura na página
+            // Renderiza a estrutura na página
             document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
 
-// Adiciona os itens retornados do backend
+            // Adiciona os itens retornados do backend
             const listaUsuarios = document.getElementById("listaUsuarios");
             data.forEach(usuario => {
                 const li = document.createElement("li");
@@ -215,8 +215,8 @@ function mostrarListaUsuarios() {
                 li.innerHTML = `
                     ${usuario.id} - ${usuario.nome} (${usuario.email})
                     <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario('${usuario.nome}')">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario('${usuario.nome}')">Excluir</button>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id})">Excluir</button>
                     </div>
                 `;
                 listaUsuarios.appendChild(li);
@@ -225,6 +225,60 @@ function mostrarListaUsuarios() {
         .catch(error => console.error("Erro ao buscar dados:", error));
 }
 
+
+// Função para editar usuário
+        function editarUsuario(id) {
+            const nome = prompt("Digite o novo nome:");
+            const email = prompt("Digite o novo email:");
+
+            if (nome && email) {
+                const payload = { id, nome, email };
+                console.log("Dados enviados para edição:", payload); // DEBUG
+
+                fetch("editar_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário editado com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao editar usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
+
+// Função para excluir usuário
+        function excluirUsuario(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                const payload = { id };
+                console.log("Dados enviados para exclusão:", payload); // DEBUG
+
+                fetch("excluir_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário excluído com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao excluir usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
 
 
         
