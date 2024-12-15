@@ -29,6 +29,7 @@
                     <label class="form-label">Procuração</label>
                     <div>
                         <select class="form-select" id="procuracao">
+                            <option value="" disabled selected hidden>Selecione</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
                         </select>
@@ -58,6 +59,7 @@
             <div class="col-md-4 mb-3">
                 <label class="form-label">Prioridade</label>
                 <select class="form-select" id="prioridade">
+                    <option value="" disabled selected hidden>Selecione</option>
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
                     <option value="alta">Alta</option>
@@ -71,6 +73,7 @@
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Serviço Solicitado</label>
                     <select class="form-select" id="selecaoServico">
+                        <option value="" disabled selected hidden>Selecione</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
                     </select>
@@ -107,23 +110,6 @@
     
             `;
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
-        }
-
-//Lista de Clientes Cadastrados
-                function mostrarListaClientes() {
-            const listaClientes = `
-            <h2>Clientes Cadastrados</h2>
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Usuário 1 - email1@exemplo.com
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente('Usuário 1')">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirCliente('Usuário 1')">Excluir</button>
-                        </div>
-                    </li>
-                </ul>
-            `;
-            document.getElementById('conteudoPrincipal').innerHTML = listaClientes;
         }
 
     

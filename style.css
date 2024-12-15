@@ -6,3 +6,10 @@ html {
   font-size: 16px;
 }
 
+/*text dos campos em cinza para diferenciar as opções*/
+select.form-select {
+    color: #6c757d; /* Cinza claro para o texto inicial */
+}
+
+  
+
