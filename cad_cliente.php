@@ -6,11 +6,11 @@ $modalType = ""; // Define o tipo de mensagem do modal
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Captura os valores do formulário, permitindo campos vazios
-    $nome = isset($_POST['nome']) && !empty($_POST['nome']) ? $_POST['nome'] : 'Sem Nome';
+    $nomeCliente = isset($_POST['nomeCliente']) && !empty($_POST['nomeCliente']) ? $_POST['nomeCliente'] : 'Sem Nome';
     $cpf = isset($_POST['cpf']) && !empty($_POST['cpf']) ? $_POST['cpf'] : 'Não informado';
-    $senha_gov = isset($_POST['senha_gov']) && !empty($_POST['senha_gov']) ? password_hash($_POST['senha_gov'], PASSWORD_DEFAULT) : null;
+    $senhaGovBr = isset($_POST['senhaGovBr']) && !empty($_POST['senhaGovBr']) ? password_hash($_POST['senhaGovBr'], PASSWORD_DEFAULT) : null;
     $procuracao = isset($_POST['procuracao']) ? $_POST['procuracao'] : null;
-    $data_vencimento = isset($_POST['data_vencimento']) ? $_POST['data_vencimento'] : null;
+    $dataVencimento = isset($_POST['dataVencimento']) ? $_POST['dataVencimento'] : null;
     $telefone = isset($_POST['telefone']) && !empty($_POST['telefone']) ? $_POST['telefone'] : 'Não informado';
     $email = isset($_POST['email']) && !empty($_POST['email']) ? $_POST['email'] : null;
     $prioridade = isset($_POST['prioridade']) ? $_POST['prioridade'] : 'Baixa';
@@ -19,17 +19,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status_servico = isset($_POST['status_servico']) ? $_POST['status_servico'] : 'Não';
 
 // Prepara a consulta SQL
-$sql = "INSERT INTO cliente (nome, cpf, senha_gov, procuracao, data_vencimento, telefone, email, prioridade, servico_solicitado, ano, status_servico) 
+$sql = "INSERT INTO cliente (nomeCliente, cpf, senhaGovBr, procuracao, dataVencimento, telefone, email, prioridade, servico_solicitado, ano, status_servico) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
 $stmt->bind_param(
     "sssssssssis",
-    $nome,
+    $nomeCliente,
     $cpf,
-    $senha_gov,
+    $senhaGovBr,
     $procuracao,
-    $data_vencimento,
+    $dataVencimento,
     $telefone,
     $email,
     $prioridade,
@@ -49,6 +49,11 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
+
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
+exit;
 
 }
 ?>
@@ -104,6 +109,5 @@ $conn->close();
     </script>
 </body>
 </html>
-
 
 

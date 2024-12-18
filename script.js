@@ -18,7 +18,7 @@
                     <input type="text" class="form-control" id="cpf" required placeholder="Digite o CPF">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="senhaGovBr" class="form-label">Senha Gov.Br</label>
+                    <label for="senhaGovBr" class="form-label">senhaGovBr</label>
                     <input type="password" class="form-control" id="senhaGovBr" placeholder="Digite a senha Gov.Br">
                 </div>
             </div>
