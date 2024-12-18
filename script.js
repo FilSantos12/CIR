@@ -8,18 +8,18 @@
             <!-- Nome do Cliente -->
         <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
-                <input type="text" class="form-control" id="nomeCliente" required placeholder="Digite o nome do cliente">
+                <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required placeholder="Digite o nome do cliente">
             </div>
 
             <!-- CPF e Senha Gov.Br -->
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" required placeholder="Digite o CPF">
+                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="senhaGovBr" class="form-label">senhaGovBr</label>
-                    <input type="password" class="form-control" id="senhaGovBr" placeholder="Digite a senha Gov.Br">
+                    <input type="password" class="form-control" id="senhaGovBr" name="senhaGovBr" placeholder="Digite a senha Gov.Br">
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Procuração</label>
                     <div>
-                        <select class="form-select" id="procuracao">
+                        <select class="form-select" id="procuracao" name="procuracao">
                             <option value="" disabled selected hidden>Selecione</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="dataVencimento" class="form-label">Data de Vencimento</label>
-                    <input type="date" class="form-control" id="dataVencimento">
+                    <input type="date" class="form-control" id="dataVencimento" name="dataVencimento">
                 </div>
             </div>
 
@@ -45,11 +45,11 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="telefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" required placeholder="Digite o telefone">
+                    <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="Digite o telefone">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" required placeholder="Digite o email">
+                    <input type="email" class="form-control" id="email" name="email" required placeholder="Digite o email">
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
         <!--Prioridade-->
             <div class="col-md-4 mb-3">
                 <label class="form-label">Prioridade</label>
-                <select class="form-select" id="prioridade">
+                <select class="form-select" id="prioridade" name="prioridade">
                     <option value="" disabled selected hidden>Selecione</option>
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
@@ -67,12 +67,12 @@
             </div>
                 <div class="col-md-4 mb-3">
                     <label for="ano" class="form-label">Ano</label>
-                    <input type="number" class="form-control" id="ano" placeholder="Digite o ano">
+                    <input type="number" class="form-control" id="ano" name="ano" placeholder="Digite o ano">
                 </div>
         <!--Serviço solicitado -->
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Serviço Solicitado</label>
-                    <select class="form-select" id="selecaoServico">
+                    <select class="form-select" id="servico_solicitado" name="servico_solicitado">
                         <option value="" disabled selected hidden>Selecione</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
@@ -81,7 +81,7 @@
         <!-- Data -->
             <div class="col-md-4 mb-3">
                 <label for="dataSolicitacao" class="form-label">Data</label>
-                <input type="date" class="form-control" id="dataSolicitacao">
+                <input type="date" class="form-control" id="dataSolicitacao" name="dataSolicitacao">
             </div>
 
         <form>
