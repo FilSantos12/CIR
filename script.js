@@ -101,8 +101,9 @@
         }
 
 //Lista de Clientes Cadastrados
-                function mostrarListaClientes() {
-            const listaClientes = `
+        function mostrarListaClientes() {
+
+            const mostrarListaClientes = `
             <h2>Clientes Cadastrados</h2>
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -115,8 +116,8 @@
                 </ul>
     
             `;
-            document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
-        }
+    document.getElementById('conteudoPrincipal').innerHTML = mostrarListaClientes;
+}
 
     
 //USUARIO DO SISTEMA
