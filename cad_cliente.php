@@ -50,10 +50,6 @@ if ($stmt->execute()) {
 $stmt->close();
 $conn->close();
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-exit;
 
 }
 ?>

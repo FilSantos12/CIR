@@ -65,14 +65,20 @@
                     <option value="alta">Alta</option>
                 </select>
             </div>
-                <div class="col-md-4 mb-3">
-                    <label for="ano" class="form-label">Ano</label>
-                    <input type="number" class="form-control" id="ano" name="ano" placeholder="Digite o ano">
-                </div>
+            <div class="col-md-4 mb-3">
+                <label for="ano" class="form-label">Ano</label>
+                <select class="form-select" id="ano" name="ano">
+                    <option value="" disabled selected hidden>Selecione o ano</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+            </div>
         <!--Serviço solicitado -->
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Serviço Solicitado</label>
-                    <select class="form-select" id="servico_solicitado" name="servico_solicitado">
+                    <select class="form-select" id="status_servico" name="status_servico">
                         <option value="" disabled selected hidden>Selecione</option>
                         <option value="sim">Sim</option>
                         <option value="nao">Não</option>
@@ -80,8 +86,8 @@
                 </div>
         <!-- Data -->
             <div class="col-md-4 mb-3">
-                <label for="dataSolicitacao" class="form-label">Data</label>
-                <input type="date" class="form-control" id="dataSolicitacao" name="dataSolicitacao">
+                <label for="servico_solicitado" class="form-label">Data</label>
+                <input type="date" class="form-control" id="servico_solicitado" name="servico_solicitado">
             </div>
 
         <form>
