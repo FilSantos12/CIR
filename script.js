@@ -101,23 +101,38 @@
         }
 
 //Lista de Clientes Cadastrados
-        function mostrarListaClientes() {
-
-            const mostrarListaClientes = `
-            <h2>Clientes Cadastrados</h2>
-                <ul class="list-group">
+                function mostrarListaClientes() {
+            const listaCliente = `
+                <h2>Lista de Usuários</h2>
+                <ul id="listaCliente" class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Usuário 1 - email1@exemplo.com
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente('Usuário 1')">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirCliente('Usuário 1')">Excluir</button>
-                        </div>
+                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
+                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
+                    <div> 
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
+                    </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
+                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
+                    </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
+                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
+                    </div>
                     </li>
                 </ul>
-    
             `;
-    document.getElementById('conteudoPrincipal').innerHTML = mostrarListaClientes;
-}
+            document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
+        }
 
     
 //USUARIO DO SISTEMA
@@ -272,6 +287,39 @@ function mostrarListaUsuarios() {
                 .catch(error => console.error("Erro:", error));
             }
         }
+        
+//*******************Mostrar Lista de Clientes Cadastrados***************** */
+      function mostrarListaClientes() {
+    // Faz a requisição para o PHP
+    fetch('buscar_dados_cliente.php')
+        .then(response => response.json()) // Converte a resposta em JSON
+        .then(cliente => {
+            let listaCliente = `
+                <h2>Lista de Clientes</h2>
+                <ul id="listaCliente" class="list-group">
+            `;
 
+            // Percorre a lista de clientes retornada
+            cliente.forEach(cliente => {
+                listaCliente += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${cliente.id} ${cliente.nomeCliente} ${cliente.cpf} ${cliente.senhaGovBr} 
+                        ${cliente.procuracao} ${cliente.dataVencimento} ${cliente.telefone} (${cliente.email}) 
+                        ${cliente.prioridade} ${cliente.servico_solicitado} ${cliente.ano} ${cliente.status_servico}
+                        <div>
+                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
+                        </div>
+                    </li>
+                `;
+            });
+
+            listaCliente += `</ul>`;
+
+            // Exibe os dados na página
+            document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
+        })
+        .catch(error => console.error('Erro ao buscar cliente:', error));
+}
 
         
