@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Captura os valores do formulário, permitindo campos vazios
     $nomeCliente = isset($_POST['nomeCliente']) && !empty($_POST['nomeCliente']) ? $_POST['nomeCliente'] : 'Sem Nome';
     $cpf = isset($_POST['cpf']) && !empty($_POST['cpf']) ? $_POST['cpf'] : 'Não informado';
-    $senhaGovBr = isset($_POST['senhaGovBr']) && !empty($_POST['senhaGovBr']) ? password_hash($_POST['senhaGovBr'], PASSWORD_DEFAULT) : null;
+    $senhaGovBr = isset($_POST['senhaGovBr']) && !empty($_POST['senhaGovBr']) ? $_POST['senhaGovBr'] : null;
     $procuracao = isset($_POST['procuracao']) ? $_POST['procuracao'] : null;
     $dataVencimento = isset($_POST['dataVencimento']) ? $_POST['dataVencimento'] : null;
     $telefone = isset($_POST['telefone']) && !empty($_POST['telefone']) ? $_POST['telefone'] : 'Não informado';

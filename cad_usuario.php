@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <!-- Modal -->
+
     <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -66,7 +67,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Exibe o modal automaticamente se houver uma mensagem definida
+
+//*********************************** Exibe o modal automaticamente se houver uma mensagem definida
+
         <?php if (!empty($modalMessage)): ?>
         var responseModal = new bootstrap.Modal(document.getElementById('responseModal'));
         responseModal.show();

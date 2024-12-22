@@ -6,7 +6,8 @@ error_reporting(E_ALL);
 
 include 'db_connection.php';
 
-// Recebe os dados do frontend
+//********************************* Recebe os dados do frontend ****************************************/
+
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (isset($data['id'], $data['nome'], $data['email'])) {

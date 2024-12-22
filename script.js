@@ -1,7 +1,9 @@
-//CLIENTE DO SISTEMA
+//************************************* CLIENTE DO SISTEMA ********************************************/
+
             function mostrarTelaCadastroClientes() {
 
-// Conteúdo da tela de cadastro de Clientes 
+//***************************** Conteúdo da tela de cadastro de Clientes *******************************/
+
             const telaCadastro = `
             <h2>Cadastro de Clientes</h2>
         <form action="cad_cliente.php" method="POST">
@@ -100,7 +102,8 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
 
-//Lista de Clientes Cadastrados
+//************************************** Lista de Clientes Cadastrados *******************************/
+
                 function mostrarListaClientes() {
             const listaCliente = `
                 <h2>Lista de Usuários</h2>
@@ -135,10 +138,11 @@
         }
 
     
-//USUARIO DO SISTEMA
+//**************************************** USUARIO DO SISTEMA ***************************************/
+
         function mostrarTelaCadastroUsuarios() {
 
-// Conteúdo da tela de cadastro de usuarios 
+//*************************************** Conteúdo da tela de cadastro de usuarios ******************/
             const telaCadastro = `
                 <h2>Cadastro de Usuários</h2>
                 <form action="cad_usuario.php" method="POST">
@@ -162,7 +166,8 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
 
         }
-//Lista de Usuarios Cadastrados
+//**************************************** Lista de Usuarios Cadastrados ***************************/
+
                 function mostrarListaUsuarios() {
             const listaUsuarios = `
                 <h2>Lista de Usuários</h2>
@@ -192,7 +197,8 @@
             `;
             document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
         }
-//Voltar ao conteudo principal
+//*****************************************Voltar ao conteudo principal ***********************/
+
         function mostrarTelaInicio() {
             const conteudoInicio = `
                 <h1>Bem-vindo ao Web Service</h1>
@@ -200,7 +206,8 @@
             `;
             document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
         }
-//Buscar dados de usuarios 
+//************************************* Buscar dados de usuarios ************************/
+
 function mostrarListaUsuarios() {
     // Faz requisição para o backend
     fetch("buscar_dados.php")
@@ -234,7 +241,8 @@ function mostrarListaUsuarios() {
 }
 
 
-// Função para editar usuário
+//***************************************** Função para editar usuário ****************************/
+
         function editarUsuario(id) {
             const nome = prompt("Digite o novo nome:");
             const email = prompt("Digite o novo email:");
@@ -263,7 +271,8 @@ function mostrarListaUsuarios() {
         }
 
 
-// Função para excluir usuário
+//**************************************** Função para excluir usuário ************************/
+
         function excluirUsuario(id) {
             if (confirm("Tem certeza que deseja excluir este usuário?")) {
                 const payload = { id };
@@ -288,7 +297,8 @@ function mostrarListaUsuarios() {
             }
         }
         
-//*******************Mostrar Lista de Clientes Cadastrados***************** */
+//******************* Mostrar Lista de Clientes Cadastrados******************/
+
       function mostrarListaClientes() {
     // Faz a requisição para o PHP
     fetch('buscar_dados_cliente.php')
