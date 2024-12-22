@@ -11,5 +11,63 @@ select.form-select {
     color: #6c757d; /* Cinza claro para o texto inicial */
 }
 
-  
 
+/* Estilos gerais para a lista de clientes */
+#listaCliente {
+    list-style-type: none;  /* Remove o marcador padrão da lista */
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para cada item da lista */
+#listaCliente .list-group-item {
+    display: flex;  /* Usa o Flexbox para alinhar os elementos */
+    justify-content: space-between;  /* Espalha os itens para as extremidades */
+    align-items: center;  /* Centraliza verticalmente os itens */
+    background-color: #f8f9fa;  /* Cor de fundo clara */
+    border: 1px solid #ddd;  /* Borda suave para separar os itens */
+    margin-bottom: 10px;  /* Espaçamento entre os itens */
+    border-radius: 8px;  /* Cantos arredondados */
+    padding: 15px;  /* Espaçamento interno */
+}
+
+/* Estilo para o cabeçalho */
+#listaCliente .header {
+    font-weight: bold;  /* Negrito para os títulos */
+    background-color: #007bff;  /* Cor de fundo azul */
+    color: white;  /* Cor do texto branca */
+    text-align: center;  /* Centraliza os títulos */
+    border-radius: 8px;  /* Bordas arredondadas */
+    margin-bottom: 10px;  /* Espaço entre o cabeçalho e os itens */
+    padding: 10px;
+}
+
+/* Estilo para os itens do cabeçalho e dos dados (usando span) */
+#listaCliente .list-group-item span {
+    flex: 1;  /* Faz com que os elementos de dados ocupem o mesmo espaço */
+    padding: 0 10px;  /* Espaçamento horizontal */
+}
+
+/* Estilo para os botões */
+#listaCliente .btn {
+    margin-left: 10px;  /* Espaçamento entre os botões */
+    border-radius: 5px;  /* Bordas arredondadas nos botões */
+    padding: 8px 15px;  /* Tamanho adequado para os botões */
+}
+
+/* Ajuste nos botões de ação */
+#listaCliente .btn-warning {
+    background-color: #f0ad4e;  /* Cor personalizada para o botão de editar */
+    border-color: #eea236;  /* Cor de borda */
+}
+
+#listaCliente .btn-danger {
+    background-color: #d9534f;  /* Cor personalizada para o botão de excluir */
+    border-color: #d43f00;  /* Cor de borda */
+}
+
+/* Ajuste de hover para os botões */
+#listaCliente .btn:hover {
+    opacity: 0.9;  /* Efeito de hover para um leve escurecimento */
+    cursor: pointer;  /* Mostra um cursor de pointer ao passar por cima */
+}

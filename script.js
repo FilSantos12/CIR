@@ -332,4 +332,28 @@ function mostrarListaUsuarios() {
         .catch(error => console.error('Erro ao buscar cliente:', error));
 }
 
-        
+//********************************************Excluir Cliente******************************************/
+
+                function excluirCliente(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                const payload = { id };
+                console.log("Dados enviados para exclusão:", payload); // DEBUG
+
+                fetch("excluir_cliente.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Cliente excluído com sucesso!");
+                        mostrarListaClientes(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao excluir usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
