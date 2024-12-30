@@ -7,6 +7,7 @@
             const telaCadastro = `
             <h2>Cadastro de Clientes</h2>
         <form action="cad_cliente.php" method="POST">
+        <input type="hidden" id="clienteId" name="clienteId">
             <!-- Nome do Cliente -->
         <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
@@ -297,40 +298,40 @@ function mostrarListaUsuarios() {
             }
         }
         
-//******************* Mostrar Lista de Clientes Cadastrados******************/
+    //******************* Mostrar Lista de Clientes Cadastrados******************/
 
-      function mostrarListaClientes() {
-    // Faz a requisição para o PHP
-    fetch('buscar_dados_cliente.php')
-        .then(response => response.json()) // Converte a resposta em JSON
-        .then(cliente => {
-            let listaCliente = `
-                <h2>Lista de Clientes</h2>
-                <ul id="listaCliente" class="list-group">
-            `;
-
-            // Percorre a lista de clientes retornada
-            cliente.forEach(cliente => {
-                listaCliente += `
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        ${cliente.id} ${cliente.nomeCliente} ${cliente.cpf} ${cliente.senhaGovBr} 
-                        ${cliente.procuracao} ${cliente.dataVencimento} ${cliente.telefone} (${cliente.email}) 
-                        ${cliente.prioridade} ${cliente.servico_solicitado} ${cliente.ano} ${cliente.status_servico}
-                        <div>
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
-                        </div>
-                    </li>
+        function mostrarListaClientes() {
+        // Faz a requisição para o PHP
+        fetch('buscar_dados_cliente.php')
+            .then(response => response.json()) // Converte a resposta em JSON
+            .then(cliente => {
+                let listaCliente = `
+                    <h2>Lista de Clientes</h2>
+                    <ul id="listaCliente" class="list-group">
                 `;
-            });
 
-            listaCliente += `</ul>`;
+                // Percorre a lista de clientes retornada
+                cliente.forEach(cliente => {
+                    listaCliente += `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            ${cliente.id} ${cliente.nomeCliente} ${cliente.cpf} ${cliente.senhaGovBr} 
+                            ${cliente.procuracao} ${cliente.dataVencimento} ${cliente.telefone} (${cliente.email}) 
+                            ${cliente.prioridade} ${cliente.servico_solicitado} ${cliente.ano} ${cliente.status_servico}
+                            <div>
+                                <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
+                                <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
+                            </div>
+                        </li>
+                    `;
+                });
 
-            // Exibe os dados na página
-            document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
-        })
-        .catch(error => console.error('Erro ao buscar cliente:', error));
-}
+                listaCliente += `</ul>`;
+
+                // Exibe os dados na página
+                document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
+            })
+            .catch(error => console.error('Erro ao buscar cliente:', error));
+    }
 
 //********************************************Excluir Cliente******************************************/
 
@@ -357,3 +358,34 @@ function mostrarListaUsuarios() {
                 .catch(error => console.error("Erro:", error));
             }
         }
+
+//*******************************Editar Cliente*********************************************************/ 
+
+
+        function editarCliente(id) {
+    // Faz uma requisição ao servidor para buscar os dados do cliente
+    fetch(`buscar_dados_cliente.php?id=${id}`)
+        .then(response => response.json())
+        .then(cliente => {
+            // Preenche o formulário com os dados do cliente retornado
+            document.getElementById("nomeCliente").value = cliente.nomeCliente;
+            document.getElementById("cpf").value = cliente.cpf;
+            document.getElementById("senhaGovBr").value = cliente.senhaGovBr;
+            document.getElementById("procuracao").value = cliente.procuracao;
+            document.getElementById("dataVencimento").value = cliente.dataVencimento;
+            document.getElementById("telefone").value = cliente.telefone;
+            document.getElementById("email").value = cliente.email;
+            document.getElementById("prioridade").value = cliente.prioridade;
+            document.getElementById("status_servico").value = cliente.status_servico;
+            document.getElementById("ano").value = cliente.ano;
+            document.getElementById("servico_solicitado").value = cliente.servico_solicitado;
+
+            // Insere o ID do cliente no campo oculto
+            document.getElementById("clienteId").value = cliente.id;
+
+            // Altera o botão para refletir a edição
+            document.getElementById("btnSalvar").textContent = "Atualizar Cliente";
+        })
+        .catch(error => console.error("Erro ao buscar os dados do cliente:", error));
+}
+
