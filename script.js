@@ -107,7 +107,7 @@
 
                 function mostrarListaClientes() {
             const listaCliente = `
-                <h2>Lista de Usuários</h2>
+                <h2>Lista de Clientes</h2>
                 <ul id="listaCliente" class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                     ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
@@ -322,6 +322,8 @@ function mostrarListaUsuarios() {
                                 <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
                             </div>
                         </li>
+
+                        
                     `;
                 });
 
@@ -361,31 +363,95 @@ function mostrarListaUsuarios() {
 
 //*******************************Editar Cliente*********************************************************/ 
 
-
-        function editarCliente(id) {
-    // Faz uma requisição ao servidor para buscar os dados do cliente
-    fetch(`buscar_dados_cliente.php?id=${id}`)
+function editarCliente(id) {
+    // Faz a requisição para buscar os dados do cliente específico
+    console.log('ID do cliente:', id); // Debug
+    fetch(`buscar_cliente_por_id.php?id=${id}`)
         .then(response => response.json())
         .then(cliente => {
-            // Preenche o formulário com os dados do cliente retornado
-            document.getElementById("nomeCliente").value = cliente.nomeCliente;
-            document.getElementById("cpf").value = cliente.cpf;
-            document.getElementById("senhaGovBr").value = cliente.senhaGovBr;
-            document.getElementById("procuracao").value = cliente.procuracao;
-            document.getElementById("dataVencimento").value = cliente.dataVencimento;
-            document.getElementById("telefone").value = cliente.telefone;
-            document.getElementById("email").value = cliente.email;
-            document.getElementById("prioridade").value = cliente.prioridade;
-            document.getElementById("status_servico").value = cliente.status_servico;
-            document.getElementById("ano").value = cliente.ano;
-            document.getElementById("servico_solicitado").value = cliente.servico_solicitado;
+            // Verifica se os dados do cliente são válidos antes de preencher o formulário
+            if (cliente && cliente.id) {
+                // Cria o formulário de edição
+                let formularioEdicao = `
+                    <h3>Editar Cliente</h3>
+                    <form id="formEdicaoCliente">
+                        <input type="hidden" id="editarId" name="id" value="${cliente.id}">
+                        <div>
+                            <label>Nome:</label>
+                            <input type="text" id="editarNome" name="nomeCliente" value="${cliente.nomeCliente}" required>
+                        </div>
+                        <div>
+                            <label>CPF:</label>
+                            <input type="text" id="editarCPF" name="cpf" value="${cliente.cpf}" required>
+                        </div>
+                        <div>
+                            <label>Email:</label>
+                            <input type="email" id="editarEmail" name="email" value="${cliente.email}" required>
+                        </div>
+                        <div>
+                            <label>Telefone:</label>
+                            <input type="text" id="editarTelefone" name="telefone" value="${cliente.telefone}" required>
+                        </div>
+                        <div>
+                            <label>Senha Gov.Br:</label>
+                            <input type="text" id="editarSenhaGovBr" name="senhaGovBr" value="${cliente.senhaGovBr}">
+                        </div>
+                        <div>
+                            <label>Procuracao:</label>
+                            <select id="editarProcuracao" name="procuracao">
+                                <option value="Sim" ${cliente.procuracao === "Sim" ? "selected" : ""}>Sim</option>
+                                <option value="Não" ${cliente.procuracao === "Não" ? "selected" : ""}>Não</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Data de Vencimento:</label>
+                            <input type="date" id="editarDataVencimento" name="dataVencimento" value="${cliente.dataVencimento}" required>
+                        </div>
+                        <button type="button" onclick="salvarEdicaoCliente()">Salvar</button>
+                        <button type="button" onclick="mostrarListaClientes()">Cancelar</button>
+                    </form>
+                `;
 
-            // Insere o ID do cliente no campo oculto
-            document.getElementById("clienteId").value = cliente.id;
-
-            // Altera o botão para refletir a edição
-            document.getElementById("btnSalvar").textContent = "Atualizar Cliente";
+                // Substitui o conteúdo principal pelo formulário de edição
+                document.getElementById('conteudoPrincipal').innerHTML = formularioEdicao;
+            } else {
+                console.error('Cliente não encontrado ou dados inválidos');
+            }
         })
-        .catch(error => console.error("Erro ao buscar os dados do cliente:", error));
+        .catch(error => console.error('Erro ao buscar cliente para edição:', error));
 }
 
+function salvarEdicaoCliente() {
+    const clienteEditado = {
+        id: document.getElementById('editarId').value,
+        nomeCliente: document.getElementById('editarNome').value,
+        cpf: document.getElementById('editarCPF').value,
+        email: document.getElementById('editarEmail').value,
+        telefone: document.getElementById('editarTelefone').value,
+        senhaGovBr: document.getElementById('editarSenhaGovBr').value,
+        procuracao: document.getElementById('editarProcuracao').value,
+        dataVencimento: document.getElementById('editarDataVencimento').value,
+    };
+
+    fetch('editar_cliente.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(clienteEditado),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                alert('Cliente atualizado com sucesso!');
+                document.getElementById('conteudoPrincipal').innerHTML = ''; // Limpar o conteúdo de edição
+                mostrarListaClientes(); // Atualiza a lista de clientes
+            } else {
+                alert('Erro ao atualizar cliente: ' + data.mensagem);
+            }
+        })
+        .catch(error => console.error('Erro ao salvar edição:', error));
+}
+
+function cancelarEdicao() {
+    document.getElementById('conteudoPrincipal').innerHTML = ''; // Limpar o conteúdo de edição
+    mostrarListaClientes(); // Exibir a lista de clientes novamente
+}
