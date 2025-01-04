@@ -102,7 +102,25 @@
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
 
-//************************Mascara pata CPF*********************************************************/
+//*******************************Tratar duplicidade de CPF**********************************************/
+
+$("#cpf").on("blur", function() {
+    var cpf = $(this).val();
+    $.ajax({
+        url: "verificar_cpf.php",
+        type: "POST",
+        data: { cpf: cpf },
+        success: function(response) {
+            if (response === "duplicado") {
+                alert("Este CPF já está cadastrado.");
+                $("#cpf").focus();
+            }
+        }
+    });
+});
+
+
+//************************Mascara para CPF*********************************************************/
 
             function mascaraCPF(input) {
                     let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
@@ -124,21 +142,21 @@
 
 //***********************Mascara do telefone******************************************************/
             function mascaraTelefone(input) {
-        let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+                    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
 
-                // Limita o número de caracteres a 11
-        if (value.length > 11) {
-            value = value.slice(0, 11);
-        }
+                            // Limita o número de caracteres a 11
+                    if (value.length > 11) {
+                        value = value.slice(0, 11);
+                    }
 
-        // Aplica a máscara (XX) XXXXX-XXXX
-        if (value.length <= 10) {
-            value = value.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
-        } else {
-            value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-        }
+                    // Aplica a máscara (XX) XXXXX-XXXX
+                    if (value.length <= 10) {
+                        value = value.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+                    } else {
+                        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                    }
 
-        input.value = value; // Atualiza o campo de input com a máscara
+                    input.value = value; // Atualiza o campo de input com a máscara
     }
 
 //************************************** Lista de Clientes Cadastrados *******************************/
@@ -472,12 +490,13 @@ function editarCliente(id) {
                                         name="cpf" 
                                         required 
                                         value="${cliente.cpf}" 
-                                        placeholder="Digite o CPF">
+                                        placeholder="Digite o CPF"
+                                        oninput="mascaraCPF(this)">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="editarSenhaGovBr" class="form-label">Senha Gov.Br</label>
                                     <input 
-                                        type="password" 
+                                        type="text" 
                                         class="form-control" 
                                         id="editarSenhaGovBr" 
                                         name="senhaGovBr" 
@@ -518,7 +537,8 @@ function editarCliente(id) {
                                         name="telefone" 
                                         required 
                                         value="${cliente.telefone}" 
-                                        placeholder="Digite o telefone">
+                                        placeholder="Digite o telefone"
+                                        oninput="mascaraTelefone(this)">
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="editarEmail" class="form-label">Email</label>

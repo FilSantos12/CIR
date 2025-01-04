@@ -18,6 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $ano = isset($_POST['ano']) && !empty($_POST['ano']) ? $_POST['ano'] : date('Y');
     $status_servico = isset($_POST['status_servico']) ? $_POST['status_servico'] : 'Não';
 
+     // Verifica se o CPF já está cadastrado
+    $sqlCheck = "SELECT cpf FROM cliente WHERE cpf = ?";
+    $stmtCheck = $conn->prepare($sqlCheck);
+    $stmtCheck->bind_param("s", $cpf);
+    $stmtCheck->execute();
+    $resultCheck = $stmtCheck->get_result();
+
+    if ($resultCheck->num_rows > 0) {
+        // CPF já cadastrado
+        $modalMessage = "Erro: Este CPF já está cadastrado no sistema.";
+        $modalType = "danger";
+    } else {
+
 // Prepara a consulta SQL
 $sql = "INSERT INTO cliente (nomeCliente, cpf, senhaGovBr, procuracao, dataVencimento, telefone, email, prioridade, servico_solicitado, ano, status_servico) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -51,7 +64,7 @@ $stmt->close();
 $conn->close();
 
 
-}
+}}
 ?>
 
 <!DOCTYPE html>
@@ -105,5 +118,7 @@ $conn->close();
     </script>
 </body>
 </html>
+ 
+
 
 
