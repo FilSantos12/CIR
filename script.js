@@ -406,59 +406,133 @@ function editarCliente(id) {
             if (cliente && cliente.id) {
                 // Cria o formulário de edição
                 let formularioEdicao = `
-                    <h3>Editar Cliente</h3>
-                    <form id="formEdicaoCliente">
-                        <input type="hidden" id="editarId" name="id" value="${cliente.id}">
-                        <div>
-                            <label>Nome:</label>
-                            <input type="text" id="editarNome" name="nomeCliente" value="${cliente.nomeCliente}" required>
-                        </div>
-                        <div>
-                            <label>CPF:</label>
-                            <input type="text" id="editarCPF" name="cpf" value="${cliente.cpf}" required>
-                        </div>
-                        <div>
-                            <label>Email:</label>
-                            <input type="email" id="editarEmail" name="email" value="${cliente.email}" required>
-                        </div>
-                        <div>
-                            <label>Telefone:</label>
-                            <input type="text" id="editarTelefone" name="telefone" value="${cliente.telefone}" required>
-                        </div>
-                        <div>
-                            <label>Senha Gov.Br:</label>
-                            <input type="text" id="editarSenhaGovBr" name="senhaGovBr" value="${cliente.senhaGovBr}">
-                        </div>
-                        <div>
-                            <label>Procuracao:</label>
-                            <select id="editarProcuracao" name="procuracao">
-                                <option value="Sim" ${cliente.procuracao === "Sim" ? "selected" : ""}>Sim</option>
-                                <option value="Não" ${cliente.procuracao === "Não" ? "selected" : ""}>Não</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>Data de Vencimento:</label>
-                            <input type="date" id="editarDataVencimento" name="dataVencimento" value="${cliente.dataVencimento}" required>
-                        </div>
-                        <div>
-                            <label>Prioridade:</label>
-                            <select id="editarPrioridade" name="prioridade">
-                                <option value="Baixa" ${cliente.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
-                                <option value="Média" ${cliente.prioridade === "Média" ? "selected" : ""}>Média</option>
-                                <option value="Alta" ${cliente.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>Ano:</label>
-                            <input type="number" id="editarAno" name="ano" value="${cliente.ano}" required>
-                        </div>
-                        <div>
-                            <label>Serviço Solicitado:</label>
-                            <input type="date" id="editarServicoSolicitado" name="servicoSolicitado" value="${cliente.servicoSolicitado}" required>
-                        </div>
-                        <button type="button" onclick="salvarEdicaoCliente()">Salvar</button>
-                        <button type="button" onclick="mostrarListaClientes()">Cancelar</button>
-                    </form>
+                    <h2>Editar Cliente</h2>
+                        <form method="POST" action="editar_cliente.php">
+                            <input type="hidden" id="editarId" name="id" value="${cliente.id}">
+                            
+                            <!-- Nome do Cliente -->
+                            <div class="mb-3">
+                                <label for="editarNome" class="form-label">Nome do Cliente</label>
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    id="editarNome" 
+                                    name="nomeCliente" 
+                                    required 
+                                    value="${cliente.nomeCliente}" 
+                                    placeholder="Digite o nome do cliente">
+                            </div>
+
+                            <!-- CPF e Senha Gov.Br -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarCPF" class="form-label">CPF</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="editarCPF" 
+                                        name="cpf" 
+                                        required 
+                                        value="${cliente.cpf}" 
+                                        placeholder="Digite o CPF">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarSenhaGovBr" class="form-label">Senha Gov.Br</label>
+                                    <input 
+                                        type="password" 
+                                        class="form-control" 
+                                        id="editarSenhaGovBr" 
+                                        name="senhaGovBr" 
+                                        value="${cliente.senhaGovBr}" 
+                                        placeholder="Digite a senha Gov.Br">
+                                </div>
+                            </div>
+
+                            <!-- Procuração e Data de Vencimento -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarProcuracao" class="form-label">Procuração</label>
+                                    <select class="form-select" id="editarProcuracao" name="procuracao">
+                                        <option value="Sim" ${cliente.procuracao === "Sim" ? "selected" : ""}>Sim</option>
+                                        <option value="Não" ${cliente.procuracao === "Não" ? "selected" : ""}>Não</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarDataVencimento" class="form-label">Data de Vencimento</label>
+                                    <input 
+                                        type="date" 
+                                        class="form-control" 
+                                        id="editarDataVencimento" 
+                                        name="dataVencimento" 
+                                        value="${cliente.dataVencimento}" 
+                                        required>
+                                </div>
+                            </div>
+
+                            <!-- Telefone e Email -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarTelefone" class="form-label">Telefone</label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="editarTelefone" 
+                                        name="telefone" 
+                                        required 
+                                        value="${cliente.telefone}" 
+                                        placeholder="Digite o telefone">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="editarEmail" class="form-label">Email</label>
+                                    <input 
+                                        type="email" 
+                                        class="form-control" 
+                                        id="editarEmail" 
+                                        name="email" 
+                                        required 
+                                        value="${cliente.email}" 
+                                        placeholder="Digite o email">
+                                </div>
+                            </div>
+
+                            <!-- Prioridade, Ano e Serviço Solicitado -->
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="editarPrioridade" class="form-label">Prioridade</label>
+                                    <select class="form-select" id="editarPrioridade" name="prioridade">
+                                        <option value="Baixa" ${cliente.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+                                        <option value="Média" ${cliente.prioridade === "Média" ? "selected" : ""}>Média</option>
+                                        <option value="Alta" ${cliente.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="editarAno" class="form-label">Ano</label>
+                                    <select class="form-select" id="editarAno" name="ano">
+                                        <option value="2025" ${cliente.ano === "2025" ? "selected" : ""}>2025</option>
+                                        <option value="2024" ${cliente.ano === "2024" ? "selected" : ""}>2024</option>
+                                        <option value="2023" ${cliente.ano === "2023" ? "selected" : ""}>2023</option>
+                                        <option value="2022" ${cliente.ano === "2022" ? "selected" : ""}>2022</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="editarServicoSolicitado" class="form-label">Serviço Solicitado</label>
+                                    <input 
+                                        type="date" 
+                                        class="form-control" 
+                                        id="editarServicoSolicitado" 
+                                        name="servico_solicitado" 
+                                        value="${cliente.servico_solicitado}" 
+                                        required>
+                                </div>
+                            </div>
+
+                            <!-- Botões -->
+                            <div class="d-flex justify-content-between mt-4">
+                                <button type="button" class="btn btn-primary" onclick="salvarEdicaoCliente()">Salvar</button>
+                                <button type="button" class="btn btn-secondary" onclick="mostrarListaClientes()">Cancelar</button>
+                            </div>
+                        </form>
+
                 `;
 
                 // Substitui o conteúdo principal pelo formulário de edição
@@ -473,38 +547,45 @@ function editarCliente(id) {
 function salvarEdicaoCliente() {
     const clienteEditado = {
         id: document.getElementById('editarId').value,
-        nomeCliente: document.getElementById('editarNome').value,
-        cpf: document.getElementById('editarCPF').value,
-        email: document.getElementById('editarEmail').value,
-        telefone: document.getElementById('editarTelefone').value,
-        senhaGovBr: document.getElementById('editarSenhaGovBr').value,
+        nomeCliente: document.getElementById('editarNome').value.trim(),
+        cpf: document.getElementById('editarCPF').value.trim(),
+        email: document.getElementById('editarEmail').value.trim(),
+        telefone: document.getElementById('editarTelefone').value.trim(),
+        senhaGovBr: document.getElementById('editarSenhaGovBr').value.trim(),
         procuracao: document.getElementById('editarProcuracao').value,
         prioridade: document.getElementById('editarPrioridade').value,
         ano: document.getElementById('editarAno').value,
         servico_solicitado: document.getElementById('editarServicoSolicitado').value,
         dataVencimento: document.getElementById('editarDataVencimento').value,
-
     };
+
+    // Verificar se todos os campos obrigatórios estão preenchidos
+    if (!clienteEditado.nomeCliente || !clienteEditado.cpf || !clienteEditado.email || !clienteEditado.id || !clienteEditado.dataVencimento) {
+        alert('Preencha todos os campos obrigatórios.');
+        return;
+    }
+
+    // Verificar se a dataVencimento está no formato correto (YYYY-MM-DD)
+    const dataVencimentoValida = /^(\d{4})-(\d{2})-(\d{2})$/.test(clienteEditado.dataVencimento);
+    if (!dataVencimentoValida) {
+        alert('A data de vencimento deve estar no formato YYYY-MM-DD.');
+        return;
+    }
 
     fetch('editar_cliente.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(clienteEditado),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.sucesso) {
-                alert('Cliente atualizado com sucesso!');
-                document.getElementById('conteudoPrincipal').innerHTML = ''; // Limpar o conteúdo de edição
-                mostrarListaClientes(); // Atualiza a lista de clientes
-            } else {
-                alert('Erro ao atualizar cliente: ' + data.mensagem);
-            }
-        })
-        .catch(error => console.error('Erro ao salvar edição:', error));
+    .then(response => response.json())
+    .then(data => {
+        if (data.sucesso) {
+            alert('Cliente atualizado com sucesso!');
+        } else {
+            alert('Erro: ' + data.mensagem);
+        }
+    })
+    .catch(error => console.error('Erro ao salvar edição:', error));
 }
 
-function cancelarEdicao() {
-    document.getElementById('conteudoPrincipal').innerHTML = ''; // Limpar o conteúdo de edição
-    mostrarListaClientes(); // Exibir a lista de clientes novamente
-}
+
