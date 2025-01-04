@@ -300,40 +300,73 @@ function mostrarListaUsuarios() {
         
     //******************* Mostrar Lista de Clientes Cadastrados******************/
 
-        function mostrarListaClientes() {
-        // Faz a requisição para o PHP
-        fetch('buscar_dados_cliente.php')
-            .then(response => response.json()) // Converte a resposta em JSON
-            .then(cliente => {
-                let listaCliente = `
-                    <h2>Lista de Clientes</h2>
-                    <ul id="listaCliente" class="list-group">
-                `;
+function mostrarListaClientes() {
+    // Faz a requisição para o PHP
+    fetch('buscar_dados_cliente.php')
+        .then(response => response.json()) // Converte a resposta em JSON
+        .then(clientes => {
+            let tabelaClientes = `
+                <h2>Lista de Clientes</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Senha Gov.Br</th>
+                                <th>Procuração</th>
+                                <th>Data Vencimento</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Prioridade</th>
+                                <th>Serviço</th>
+                                <th>Ano</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
 
-                // Percorre a lista de clientes retornada
-                cliente.forEach(cliente => {
-                    listaCliente += `
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            ${cliente.id} ${cliente.nomeCliente} ${cliente.cpf} ${cliente.senhaGovBr} 
-                            ${cliente.procuracao} ${cliente.dataVencimento} ${cliente.telefone} (${cliente.email}) 
-                            ${cliente.prioridade} ${cliente.servico_solicitado} ${cliente.ano} ${cliente.status_servico}
-                            <div>
+            // Adiciona cada cliente como uma linha na tabela
+            clientes.forEach(cliente => {
+                tabelaClientes += `
+                    <tr>
+                        <td>${cliente.id}</td>
+                        <td>${cliente.nomeCliente}</td>
+                        <td>${cliente.cpf}</td>
+                        <td>${cliente.senhaGovBr}</td>
+                        <td>${cliente.procuracao}</td>
+                        <td>${cliente.dataVencimento}</td>
+                        <td>${cliente.telefone}</td>
+                        <td>${cliente.email}</td>
+                        <td>${cliente.prioridade}</td>
+                        <td>${cliente.servico_solicitado}</td>
+                        <td>${cliente.ano}</td>
+                        <td>${cliente.status_servico}</td>
+                        <td>
+                            <div class="d-flex">
                                 <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
                                 <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
                             </div>
-                        </li>
+                        </td>
+                    </tr>
+                `;
+            });
 
-                        
-                    `;
-                });
+            tabelaClientes += `
+                        </tbody>
+                    </table>
+                </div>
+            `;
 
-                listaCliente += `</ul>`;
+            // Exibe a tabela na página
+            document.getElementById('conteudoPrincipal').innerHTML = tabelaClientes;
+        })
+        .catch(error => console.error('Erro ao buscar cliente:', error));
+}
 
-                // Exibe os dados na página
-                document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
-            })
-            .catch(error => console.error('Erro ao buscar cliente:', error));
-    }
 
 //********************************************Excluir Cliente******************************************/
 
@@ -407,6 +440,22 @@ function editarCliente(id) {
                             <label>Data de Vencimento:</label>
                             <input type="date" id="editarDataVencimento" name="dataVencimento" value="${cliente.dataVencimento}" required>
                         </div>
+                        <div>
+                            <label>Prioridade:</label>
+                            <select id="editarPrioridade" name="prioridade">
+                                <option value="Baixa" ${cliente.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+                                <option value="Média" ${cliente.prioridade === "Média" ? "selected" : ""}>Média</option>
+                                <option value="Alta" ${cliente.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Ano:</label>
+                            <input type="number" id="editarAno" name="ano" value="${cliente.ano}" required>
+                        </div>
+                        <div>
+                            <label>Serviço Solicitado:</label>
+                            <input type="date" id="editarServicoSolicitado" name="servicoSolicitado" value="${cliente.servicoSolicitado}" required>
+                        </div>
                         <button type="button" onclick="salvarEdicaoCliente()">Salvar</button>
                         <button type="button" onclick="mostrarListaClientes()">Cancelar</button>
                     </form>
@@ -430,7 +479,11 @@ function salvarEdicaoCliente() {
         telefone: document.getElementById('editarTelefone').value,
         senhaGovBr: document.getElementById('editarSenhaGovBr').value,
         procuracao: document.getElementById('editarProcuracao').value,
+        prioridade: document.getElementById('editarPrioridade').value,
+        ano: document.getElementById('editarAno').value,
+        servico_solicitado: document.getElementById('editarServicoSolicitado').value,
         dataVencimento: document.getElementById('editarDataVencimento').value,
+
     };
 
     fetch('editar_cliente.php', {
