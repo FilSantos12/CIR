@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF">
+                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF" oninput="mascaraCPF(this)">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="senhaGovBr" class="form-label">senhaGovBr</label>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="telefone" class="form-label">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="Digite o telefone">
+                    <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="Digite o telefone" oninput="mascaraTelefone(this)">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -98,10 +98,48 @@
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
-    
             `;
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
         }
+
+//************************Mascara pata CPF*********************************************************/
+
+            function mascaraCPF(input) {
+                    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+                    // Limita o número de caracteres a 11 (CPF tem 11 dígitos)
+                    if (value.length > 11) {
+                        value = value.slice(0, 11);
+                    }
+
+                    // Aplica a máscara (XXX.XXX.XXX-XX)
+                    if (value.length <= 9) {
+                        value = value.replace(/(\d{3})(\d{0,3})(\d{0,3})/, '$1.$2.$3');
+                    } else {
+                        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+                    }
+
+                    input.value = value; // Atualiza o campo de input com a máscara
+    }
+
+//***********************Mascara do telefone******************************************************/
+            function mascaraTelefone(input) {
+        let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+                // Limita o número de caracteres a 11
+        if (value.length > 11) {
+            value = value.slice(0, 11);
+        }
+
+        // Aplica a máscara (XX) XXXXX-XXXX
+        if (value.length <= 10) {
+            value = value.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+        } else {
+            value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        }
+
+        input.value = value; // Atualiza o campo de input com a máscara
+    }
 
 //************************************** Lista de Clientes Cadastrados *******************************/
 
