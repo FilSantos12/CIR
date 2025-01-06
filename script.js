@@ -1,3 +1,14 @@
+
+//*****************************************Conteudo principal ***********************/
+
+        function mostrarTelaInicio() {
+            const conteudoInicio = `
+                <h1>Bem-vindo ao Sistema C.I.R</h1>
+                <p>Sistema dedicado ao controle de documentos e gestão de clientes para o imposto de Renda...</p>
+                <img src="imagem/mesa.jpg" alt="Descrição da imagem" class="img-fluid" />
+            `;
+            document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
+        }
 //************************************* CLIENTE DO SISTEMA ********************************************/
 
             function mostrarTelaCadastroClientes() {
@@ -254,107 +265,8 @@ $("#cpf").on("blur", function() {
             `;
             document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
         }
-//*****************************************Voltar ao conteudo principal ***********************/
 
-        function mostrarTelaInicio() {
-            const conteudoInicio = `
-                <h1>Bem-vindo ao Web Service</h1>
-                <p>Este é o conteúdo principal do sistema.</p>
-            `;
-            document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
-        }
 //************************************* Buscar dados de usuarios ************************/
-
-function mostrarListaUsuarios() {
-    // Faz requisição para o backend
-    fetch("buscar_dados.php")
-        .then(response => response.json())
-        .then(data => {
-            // Cria a estrutura da lista
-            const listaUsuariosHTML = `
-                <h2>Lista de Usuários</h2>
-                <ul id="listaUsuarios" class="list-group"></ul>
-            `;
-
-            // Renderiza a estrutura na página
-            document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
-
-            // Adiciona os itens retornados do backend
-            const listaUsuarios = document.getElementById("listaUsuarios");
-            data.forEach(usuario => {
-                const li = document.createElement("li");
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
-                li.innerHTML = `
-                    ${usuario.id} - ${usuario.nome} (${usuario.email})
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${usuario.id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id})">Excluir</button>
-                    </div>
-                `;
-                listaUsuarios.appendChild(li);
-            });
-        })
-        .catch(error => console.error("Erro ao buscar dados:", error));
-}
-
-
-//***************************************** Função para editar usuário ****************************/
-
-        function editarUsuario(id) {
-            const nome = prompt("Digite o novo nome:");
-            const email = prompt("Digite o novo email:");
-
-            if (nome && email) {
-                const payload = { id, nome, email };
-                console.log("Dados enviados para edição:", payload); // DEBUG
-
-                fetch("editar_usuario.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data); // DEBUG
-                    if (data.sucesso) {
-                        alert("Usuário editado com sucesso!");
-                        mostrarListaUsuarios(); // Atualiza a lista
-                    } else {
-                        alert("Erro ao editar usuário: " + data.mensagem);
-                    }
-                })
-                .catch(error => console.error("Erro:", error));
-            }
-        }
-
-
-//**************************************** Função para excluir usuário ************************/
-
-        function excluirUsuario(id) {
-            if (confirm("Tem certeza que deseja excluir este usuário?")) {
-                const payload = { id };
-                console.log("Dados enviados para exclusão:", payload); // DEBUG
-
-                fetch("excluir_usuario.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data); // DEBUG
-                    if (data.sucesso) {
-                        alert("Usuário excluído com sucesso!");
-                        mostrarListaUsuarios(); // Atualiza a lista
-                    } else {
-                        alert("Erro ao excluir usuário: " + data.mensagem);
-                    }
-                })
-                .catch(error => console.error("Erro:", error));
-            }
-        }
-        
-    //******************* Mostrar Lista de Clientes Cadastrados******************/
 
 function mostrarListaClientes() {
     // Faz a requisição para o PHP
@@ -362,7 +274,7 @@ function mostrarListaClientes() {
         .then(response => response.json()) // Converte a resposta em JSON
         .then(clientes => {
             let tabelaClientes = `
-                <h2>Lista de Clientes</h2>
+                <h2 class="mb-4">Lista de Clientes</h2>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead class="table-dark">
@@ -418,10 +330,18 @@ function mostrarListaClientes() {
             `;
 
             // Exibe a tabela na página
-            document.getElementById('conteudoPrincipal').innerHTML = tabelaClientes;
+            const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+            conteudoPrincipal.innerHTML = tabelaClientes;
+
+            // Garante que o menu lateral não seja afetado
+            const menuLateral = document.getElementById('menuLateral');
+            if (menuLateral) {
+                menuLateral.style.minHeight = `${conteudoPrincipal.offsetHeight}px`;
+            }
         })
         .catch(error => console.error('Erro ao buscar cliente:', error));
 }
+
 
 
 //********************************************Excluir Cliente******************************************/
@@ -579,8 +499,8 @@ function editarCliente(id) {
                                         class="form-control" 
                                         id="editarServicoSolicitado" 
                                         name="servico_solicitado" 
-                                        value="${cliente.servico_solicitado}" 
-                                        required>
+                                        value="${cliente.servico_solicitado}">
+                                    
                                 </div>
                             </div>
 
@@ -644,6 +564,23 @@ function salvarEdicaoCliente() {
         }
     })
     .catch(error => console.error('Erro ao salvar edição:', error));
+}
+
+//*******************************Controle de Cliente****************************************************/
+function mostrarBuscaClientes() {
+    const conteudoPrincipal = document.getElementById("conteudoPrincipal");
+    conteudoPrincipal.innerHTML = `
+        <h2>Busca de Clientes</h2>
+        <form id="formBusca" class="mb-4">
+            <div class="input-group">
+                <input type="text" id="nomeCliente" class="form-control" placeholder="Digite o nome do cliente" />
+                <button type="button" class="btn btn-primary" onclick="buscarClientes()">Buscar</button>
+            </div>
+        </form>
+        <div id="resultadoBusca">
+            <!-- Resultados serão exibidos aqui -->
+        </div>
+    `;
 }
 
 
