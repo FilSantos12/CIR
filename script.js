@@ -237,6 +237,7 @@ $("#cpf").on("blur", function() {
 //**************************************** Lista de Usuarios Cadastrados ***************************/
 
                 function mostrarListaUsuarios() {
+                    
             const listaUsuarios = `
                 <h2>Lista de Usuários</h2>
                 <ul id="listaUsuarios" class="list-group">
@@ -266,7 +267,98 @@ $("#cpf").on("blur", function() {
             document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
         }
 
-//************************************* Buscar dados de usuarios ************************/
+        //************************************* Buscar dados de usuarios ************************/
+
+function mostrarListaUsuarios() {
+    // Faz requisição para o backend
+    fetch("buscar_dados.php")
+        .then(response => response.json())
+        .then(data => {
+            // Cria a estrutura da lista
+            const listaUsuariosHTML = `
+                <h2>Lista de Usuários</h2>
+                <ul id="listaUsuarios" class="list-group"></ul>
+            `;
+
+            // Renderiza a estrutura na página
+            document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
+
+            // Adiciona os itens retornados do backend
+            const listaUsuarios = document.getElementById("listaUsuarios");
+            data.forEach(usuario => {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.innerHTML = `
+                    ${usuario.id} - ${usuario.nome} (${usuario.email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id})">Excluir</button>
+                    </div>
+                `;
+                listaUsuarios.appendChild(li);
+            });
+        })
+        .catch(error => console.error("Erro ao buscar dados:", error));
+}
+
+
+//***************************************** Função para editar usuário ****************************/
+
+        function editarUsuario(id) {
+            const nome = prompt("Digite o novo nome:");
+            const email = prompt("Digite o novo email:");
+
+            if (nome && email) {
+                const payload = { id, nome, email };
+                console.log("Dados enviados para edição:", payload); // DEBUG
+
+                fetch("editar_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário editado com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao editar usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
+
+//**************************************** Função para excluir usuário ************************/
+
+        function excluirUsuario(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                const payload = { id };
+                console.log("Dados enviados para exclusão:", payload); // DEBUG
+
+                fetch("excluir_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário excluído com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao excluir usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
+//************************************* Buscar dados de Clientes ************************/
 
 function mostrarListaClientes() {
     // Faz a requisição para o PHP
