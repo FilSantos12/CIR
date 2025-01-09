@@ -3,8 +3,7 @@
 
         function mostrarTelaInicio() {
             const conteudoInicio = `
-                <h1>Bem-vindo ao Sistema C.I.R</h1>
-                <p>Sistema dedicado ao controle de documentos e gestão de clientes para o imposto de Renda...</p>
+                <h1>Sistema Controle De Imposto de Renda</h1>
                 <img src="imagem/mesa.jpg" alt="Descrição da imagem" class="img-fluid" />
             `;
             document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
@@ -29,7 +28,7 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF" oninput="mascaraCPF(this)">
+                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF" maxlenght="14" oninput="mascaraCPF(this)">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="senhaGovBr" class="form-label">senhaGovBr</label>
@@ -134,22 +133,24 @@ $("#cpf").on("blur", function() {
 //************************Mascara para CPF*********************************************************/
 
             function mascaraCPF(input) {
-                    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+                let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
 
-                    // Limita o número de caracteres a 11 (CPF tem 11 dígitos)
-                    if (value.length > 11) {
-                        value = value.slice(0, 11);
-                    }
+                // Limita o número de caracteres a 11 (CPF tem 11 dígitos)
+                if (value.length > 11) {
+                    value = value.slice(0, 11);
+                }
 
-                    // Aplica a máscara (XXX.XXX.XXX-XX)
-                    if (value.length <= 9) {
-                        value = value.replace(/(\d{3})(\d{0,3})(\d{0,3})/, '$1.$2.$3');
-                    } else {
-                        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
-                    }
+                // Aplica a máscara (XXX.XXX.XXX-XX)
+                if (value.length > 9) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+                } else if (value.length > 6) {
+                    value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+                } else if (value.length > 3) {
+                    value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+                }
 
-                    input.value = value; // Atualiza o campo de input com a máscara
-    }
+                input.value = value; // Atualiza o campo de input com a máscara
+            }
 
 //***********************Mascara do telefone******************************************************/
             function mascaraTelefone(input) {
@@ -502,7 +503,7 @@ function editarCliente(id) {
                                         name="cpf" 
                                         required 
                                         value="${cliente.cpf}" 
-                                        placeholder="Digite o CPF"
+                                        placeholder="Digite o CPF" maxlenght="14"
                                         oninput="mascaraCPF(this)">
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -602,7 +603,6 @@ function editarCliente(id) {
                                 <button type="button" class="btn btn-secondary" onclick="mostrarListaClientes()">Cancelar</button>
                             </div>
                         </form>
-
                 `;
 
                 // Substitui o conteúdo principal pelo formulário de edição
@@ -658,21 +658,36 @@ function salvarEdicaoCliente() {
     .catch(error => console.error('Erro ao salvar edição:', error));
 }
 
-//*******************************Controle de Cliente****************************************************/
-function mostrarBuscaClientes() {
-    const conteudoPrincipal = document.getElementById("conteudoPrincipal");
-    conteudoPrincipal.innerHTML = `
-        <h2>Busca de Clientes</h2>
-        <form id="formBusca" class="mb-4">
-            <div class="input-group">
-                <input type="text" id="nomeCliente" class="form-control" placeholder="Digite o nome do cliente" />
-                <button type="button" class="btn btn-primary" onclick="buscarClientes()">Buscar</button>
-            </div>
-        </form>
-        <div id="resultadoBusca">
-            <!-- Resultados serão exibidos aqui -->
-        </div>
-    `;
+//*********************************Validação do CPF************************************************************/
+function validarCPF(cpf) {
+    // Remove a máscara (pontos e hífen)
+    const cpfLimpo = cpf.replace(/\D/g, ''); // Remove tudo que não for número
+
+    // Verifica se o CPF tem exatamente 11 dígitos
+    if (cpfLimpo.length !== 11) {
+        return false; // CPF inválido
+    }
+
+    // Validação básica do CPF pode ser adicionada aqui (opcional)
+    return true; // CPF válido
+}
+
+
+//*******************************Chama a função Controle de Clientes****************************************************/
+function carregarControleClientes() {
+    const script = document.createElement('script');
+    script.src = 'controle_clientes.js'; // Caminho para o arquivo JS
+    script.onload = () => {
+        console.log("Script 'controle_clientes.js' carregado com sucesso!");
+        // Aqui você pode chamar funções definidas em controle_cliente.js
+        if (typeof iniciarControleClientes === 'function') {
+            iniciarControleClientes();
+        }
+    };
+    script.onerror = () => {
+        console.error("Erro ao carregar o script 'controle_clientes.js'.");
+    };
+    document.head.appendChild(script);
 }
 
 
