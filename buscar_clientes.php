@@ -2,16 +2,7 @@
 // Inclui o arquivo de conexão com o banco
 require_once 'db_connection.php';
 
-$nomeCliente = isset($_POST['nomeCliente']) ? $_POST['nomeCliente'] : '';
-
-// Montar a consulta
-if ($nomeCliente === '') {
-    $query = "SELECT * FROM clientes"; // Seleciona todos os clientes
-} else {
-    $query = "SELECT * FROM clientes WHERE nome LIKE '%$nomeCliente%'"; // Busca pelo nome
-}
-
-// Verifica se o nome e CPF foram enviados
+// Recebe os dados do formulário
 $nomeCliente = isset($_POST['nomeCliente']) ? $conn->real_escape_string($_POST['nomeCliente']) : '';
 $cpf = isset($_POST['cpf']) ? $conn->real_escape_string($_POST['cpf']) : '';
 
@@ -21,7 +12,7 @@ if (!empty($cpf) && preg_match('/^\d{11}$/', $cpf)) {
 }
 
 // Consulta SQL básica
-$sql = "SELECT nomeCliente, cpf FROM cliente";
+$sql = "SELECT id, nomeCliente, cpf, telefone, email FROM cliente";
 
 // Adiciona condições ao SQL se houver filtros
 $conditions = [];
@@ -37,23 +28,41 @@ if (!empty($conditions)) {
     $sql .= " WHERE " . implode(" OR ", $conditions);
 }
 
-// Debug (opcional): Exibe a consulta gerada para verificação
-// echo "<pre>Consulta SQL: $sql</pre>";
-
+// Executa a consulta
 $result = $conn->query($sql);
 
 // Verifica se há resultados
 if ($result->num_rows > 0) {
-    // Exibe os clientes em formato HTML
+    // Exibe os resultados em uma tabela
+    echo "<table class='table table-striped table-hover'>";
+    echo "<thead class='table-dark'>";
+    echo "<tr>";
+    echo "<th>#</th>";
+    echo "<th>Nome</th>";
+    echo "<th>CPF</th>";
+    echo "<th>Telefone</th>";
+    echo "<th>Email</th>";
+    echo "<th>Ações</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
-        echo "<div class='mb-2'>";
-        echo "<strong>Nome:</strong> " . htmlspecialchars($row['nomeCliente']) . "<br>";
-        echo "<strong>CPF:</strong> " . htmlspecialchars($row['cpf']) . "<br>";
-        echo "<button class='btn btn-primary btn-sm'>Selecionar</button>";
-        echo "</div>";
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['nomeCliente']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['cpf']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['telefone']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['email']) . "</td>";
+        echo "<td>";
+        echo "<button class='btn btn-primary btn-sm me-2' onclick=\"window.location.href='dashboard.html?id=" . htmlspecialchars($row['id']) . "'\">Selecionar</button>";
+        echo "</td>";
+        echo "</tr>";
     }
+    echo "</tbody>";
+    echo "</table>";
 } else {
-    echo "Nenhum cliente encontrado.";
+    // Exibe uma mensagem caso nenhum cliente seja encontrado
+    echo "<p class='text-center text-muted'>Nenhum cliente encontrado.</p>";
 }
 
 // Fecha a conexão
