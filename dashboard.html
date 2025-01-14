@@ -66,7 +66,7 @@
         <!-- Checklist de Progresso -->
         <h3>Checklist de Progresso</h3>
         <div class="progress mb-3">
-            <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+            <div id="progress-bar" class="progress-bar" role="progressbar" style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
         </div>
 
             <ul class="list-group">
@@ -92,7 +92,14 @@
                 <label for="checkpoint5">Checkpoint 5</label>
                 </li>
             </ul>
-        </div>            
+        </div>     
+        
+    
+               <!-- Botão de voltar -->
+
+        <div>
+            <button id="btnVoltar" class="btn btn-primary mt-3">Voltar para Controle de Clientes</button>
+        </div>
 
     <script>
         function updateProgress() {
@@ -130,6 +137,11 @@
                     progressBar.classList.add('bg-success');
                 }
         }
+
+            document.getElementById('btnVoltar').addEventListener('click', function () {
+        window.location.href = 'http://localhost/#'; // Atualize com o caminho correto
+            })
+
     </script>
 </body>
 </html>
