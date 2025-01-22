@@ -84,7 +84,7 @@
                 echo "<td>" . htmlspecialchars($row['cpf']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['procuracao']) . "</td>";
 
-                echo "<td><input type='date' name='data_solicitacao[]' class='form-control' value='" . htmlspecialchars($row['data_solicitacao']) . "'></td>";
+                echo "<td><input type='date' name='data_solicitacao' class='form-control' value='" . htmlspecialchars($row['data_solicitacao']) . "'></td>";
                 echo "<td>
                     <select name='tipo[]' class='form-select' style='width: 150px'>
                         <option value='Básica'>Básica</option>
@@ -121,7 +121,7 @@
                         <option value='Sim'>Sim</option>
                     </select>
                 </td>";
-                echo "<td><input type='number' name='dados_doacao[]' class='form-control' value='" . htmlspecialchars($row['dados_doacao']) . "'></td>";
+                echo "<td><input type='text' name='dados_doacao[]' class='form-control' value='" . htmlspecialchars($row['dados_doacao']) . "'></td>";
                 echo "<td>
                     <select name='parcelamento[]' class='form-select' style='width: 100px'>
                         <option>1</option><option>2</option><option>3</option>

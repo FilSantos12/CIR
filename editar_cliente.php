@@ -43,10 +43,19 @@ if (empty($nomeCliente)) {
     exit;
 }
 
-if (!empty($cpf) && !preg_match('/^\d{11}$/', $cpf)) {
-    echo json_encode(['sucesso' => false, 'mensagem' => 'CPF inválido. Deve conter 11 dígitos.']);
-    exit;
+if (!empty($cpf)) {
+    // Remove a máscara do CPF (pontos e hífen)
+    $cpfLimpo = preg_replace('/\D/', '', $cpf);
+
+    // Verifica se o CPF tem exatamente 11 dígitos
+    if (!preg_match('/^\d{11}$/', $cpfLimpo)) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'CPF inválido. Deve conter 11 dígitos.']);
+        exit;
+    }
+
+    // Aqui você pode adicionar validações adicionais se necessário
 }
+
 
 if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Email inválido']);
