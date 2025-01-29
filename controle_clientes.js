@@ -42,3 +42,10 @@ function buscarClientes() {
         console.error("Erro ao buscar clientes:", error);
     });
 }
+
+//**********************************Proteção das Páginas:*******************************/
+session_start();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.html');
+    exit();
+}
