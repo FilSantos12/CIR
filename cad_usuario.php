@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div class="center-button">
-        <a href="index.html" class="btn btn-primary btn-lg">Voltar à Página Principal</a>
+        <a href="index.php" class="btn btn-primary btn-lg">Voltar à Página Principal</a>
     </div>
 
     <!-- Modal -->

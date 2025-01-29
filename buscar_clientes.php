@@ -33,7 +33,6 @@
                 cliente.nomeCliente,
                 cliente.cpf, 
                 cliente.procuracao,
- 
                 processos.*
             FROM 
                 cliente
@@ -84,26 +83,32 @@
                 echo "<td>" . htmlspecialchars($row['cpf']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['procuracao']) . "</td>";
 
-                echo "<td><input type='date' name='data_solicitacao' class='form-control' value='" . htmlspecialchars($row['data_solicitacao']) . "'></td>";
+                // Adiciona o campo oculto para o ID do processo
+                echo "<input type='hidden' name='id[]' value='" . htmlspecialchars($row['id']) . "'>";
+
+                echo "<td><input type='date' name='data_solicitacao[]' class='form-control' value='" . htmlspecialchars($row['data_solicitacao']) . "'></td>";
                 echo "<td>
                     <select name='tipo[]' class='form-select' style='width: 150px'>
-                        <option value='Básica'>Básica</option>
-                        <option value='Com Ações'>Com Ações</option>
-                        <option value='Com Espólio'>Com Espólio</option>
+                        <option value=''</option>
+                        <option value='Básica'" . ($row['tipo'] == 'Básica' ? ' selected' : '') . ">Básica</option>
+                        <option value='Com Ações'" . ($row['tipo'] == 'Com Ações' ? ' selected' : '') . ">Com Ações</option>
+                        <option value='Com Espólio'" . ($row['tipo'] == 'Com Espólio' ? ' selected' : '') . ">Com Espólio</option>
                     </select>
                 </td>";
                 echo "<td>
                     <select name='documentos[]' class='form-select' style='width: 200px'>
-                        <option value='Pendente de Envio'>Pendente de Envio</option>
-                        <option value='Com Pendências'>Com Pendências</option>
-                        <option value='Enviados'>Enviados</option>
+                        <option value=''</option>
+                        <option value='Pendente de Envio'" . ($row['documentos'] == 'Pendente de Envio' ? ' selected' : '') . ">Pendente de Envio</option>
+                        <option value='Com Pendências'" . ($row['documentos'] == 'Com Pendências' ? ' selected' : '') . ">Com Pendências</option>
+                        <option value='Enviados'" . ($row['documentos'] == 'Enviados' ? ' selected' : '') . ">Enviados</option>
                     </select>
                 </td>";
                 echo "<td>
                     <select name='conferencia[]' class='form-select' style='width: 210px'>
-                        <option value='Pendente'>Pendente</option>
-                        <option value='Em Andamento'>Em Andamento</option>
-                        <option value='Conferido pelo Cliente'>Conferido pelo Cliente</option>
+                        <option value=''</option>
+                        <option value='Pendente'" . ($row['conferencia'] == 'Pendente' ? ' selected' : '') . ">Pendente</option>
+                        <option value='Em Andamento'" . ($row['conferencia'] == 'Em Andamento' ? ' selected' : '') . ">Em Andamento</option>
+                        <option value='Conferido pelo Cliente'" . ($row['conferencia'] == 'Conferido pelo Cliente' ? ' selected' : '') . ">Conferido pelo Cliente</option>
                     </select>
                 </td>";
 
@@ -114,18 +119,23 @@
                     </div>
                 </td>";
 
-
                 echo "<td>
                     <select name='doacao[]' class='form-select' style='width: 100px'>
-                        <option value='Não'>Não</option>
-                        <option value='Sim'>Sim</option>
+                        <option value=''</option>
+                        <option value='Não'" . ($row['doacao'] == 'Não' ? ' selected' : '') . ">Não</option>
+                        <option value='Sim'" . ($row['doacao'] == 'Sim' ? ' selected' : '') . ">Sim</option>
                     </select>
                 </td>";
                 echo "<td><input type='text' name='dados_doacao[]' class='form-control' value='" . htmlspecialchars($row['dados_doacao']) . "'></td>";
                 echo "<td>
                     <select name='parcelamento[]' class='form-select' style='width: 100px'>
-                        <option>1</option><option>2</option><option>3</option>
-                        <option>4</option><option>5</option><option>6</option>
+                        <option value=''</option>
+                        <option value='1'" . ($row['parcelamento'] == '1' ? ' selected' : '') . ">1</option>
+                        <option value='2'" . ($row['parcelamento'] == '2' ? ' selected' : '') . ">2</option>
+                        <option value='3'" . ($row['parcelamento'] == '3' ? ' selected' : '') . ">3</option>
+                        <option value='4'" . ($row['parcelamento'] == '4' ? ' selected' : '') . ">4</option>
+                        <option value='5'" . ($row['parcelamento'] == '5' ? ' selected' : '') . ">5</option>
+                        <option value='6'" . ($row['parcelamento'] == '6' ? ' selected' : '') . ">6</option>
                     </select>
                 </td>";
                 echo "<td>
@@ -137,9 +147,10 @@
 
                 echo "<td>
                     <select name='transmissao[]' class='form-select' style='width: 160px'>
-                        <option value='Pendente'>Pendente</option>
-                        <option value='Em Andamento'>Em Andamento</option>
-                        <option value='Transmitido'>Transmitido</option>
+                        <option value=''</option>
+                        <option value='Pendente'" . ($row['transmissao'] == 'Pendente' ? ' selected' : '') . ">Pendente</option>
+                        <option value='Em Andamento'" . ($row['transmissao'] == 'Em Andamento' ? ' selected' : '') . ">Em Andamento</option>
+                        <option value='Transmitido'" . ($row['transmissao'] == 'Transmitido' ? ' selected' : '') . ">Transmitido</option>
                     </select>
                 </td>";
                 echo "<td><input type='date' name='data_transmissao[]' class='form-control' value='" . htmlspecialchars($row['data_transmissao']) . "'></td>";
@@ -155,17 +166,19 @@
 
                 echo "<td>
                     <select name='boleto_enviado[]' class='form-select'>
-                        <option value='Sim'>Sim</option>
-                        <option value='Não'>Não</option>
+                        <option value=''</option>
+                        <option value='Sim'" . ($row['boleto_enviado'] == 'Sim' ? ' selected' : '') . ">Sim</option>
+                        <option value='Não'" . ($row['boleto_enviado'] == 'Não' ? ' selected' : '') . ">Não</option>
                     </select>
                 </td>";
                 echo "<td>
                     <select name='pagamento[]' class='form-select' style='width: 150px'>
-                        <option value='Pendente'>Pendente</option>
-                        <option value='Pago'>Pago</option>
+                        <option value=''</option>
+                        <option value='Pendente'" . ($row['pagamento'] == 'Pendente' ? ' selected' : '') . ">Pendente</option>
+                        <option value='Pago'" . ($row['pagamento'] == 'Pago' ? ' selected' : '') . ">Pago</option>
                     </select>
                 </td>";
-                echo "<td><button class='btn btn-success btn-sm'>Salvar</button></td>";
+                echo "<td><button type='submit' class='btn btn-success btn-sm'>Salvar</button></td>";
                 echo "</tr>";
             }
             echo "</tbody>";
@@ -182,10 +195,8 @@
 </body>
 </html>
 
-
 <script>
-
-//***********Padronizando os campo que necessitam de inserção de valores tipo moeda*****************************
+    //***********Padronizando os campo que necessitam de inserção de valores tipo moeda*****************************
 
     // Função para formatar o valor como moeda
     function formatarMoeda(elemento) {
@@ -197,9 +208,12 @@
     }
 
     // Seleciona todos os inputs com a classe 'moeda' e aplica a formatação
-    document.querySelectorAll('.moeda').forEach(function (campo) {
-        formatarMoeda(campo);
+document.querySelectorAll('.moeda').forEach(function (campo) {
+    campo.addEventListener('input', function () {
+        let valor = campo.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        valor = (parseFloat(valor) / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+        campo.value = valor;
     });
+});
+
 </script>
-
-

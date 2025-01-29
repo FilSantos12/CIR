@@ -41,8 +41,9 @@ $username = $_SESSION['username'];
 
                 <!-- Nome do usuário logado -->
                 <div class="d-flex align-items-center">
+                    <i class="bi bi-person-fill"></i>
                     <span class="navbar-text text-dark me-2">
-                        Usuário: <strong><?php echo htmlspecialchars($username); ?></strong>
+                        <strong><?php echo htmlspecialchars($username); ?></strong>
                     </span>
 
                     <!-- Engrenagem com dropdown -->
@@ -68,23 +69,23 @@ $username = $_SESSION['username'];
             <!--Botão inicio-->
             <ul class="nav flex-column">
                 <li class="mt-2 nav-item">
-                    <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaInicio()">Início</button>
+                    <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaInicio()">Início <i class="bi bi-house-door-fill"></i></button>
                 </li>
             <!--Clientes-->    
                 <li class="mt-2 nav-item">
                     <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#submenu" aria-expanded="false" aria-controls="submenu">
-                        Clientes
+                        Clientes <i class="bi bi-building-fill"></i>
                     </button>
                     <div class="collapse" id="submenu" data-bs-parent="#menuLateral">
                         <ul class="list-unstyled ps-3">
                             <li class="mt-2">
-                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaCadastroClientes()">Cadastro de Clientes</button>
+                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaCadastroClientes()">Cadastro de Clientes <i class="bi bi-person-fill-gear"></i></button>
                             </li>
                             <li class="mt-2">
-                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarListaClientes()">Consulta Clientes</button>
+                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarListaClientes()">Consulta Clientes <i class="bi bi-clipboard-data-fill"></i></button>
                             </li>
                             <li class="mt-2">
-                               <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarControleClientes()">Controle de Clientes</button>
+                               <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarControleClientes()">Controle de Clientes <i class="bi bi-kanban-fill"></i></button>
                             </li>
                         </ul>
                     </div>
@@ -92,15 +93,15 @@ $username = $_SESSION['username'];
             <!--Configurações-->
                 <li class="mt-2 nav-item">
                     <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#submenu1" aria-expanded="false" aria-controls="submenu1">
-                        Configurações
+                        Configurações <i class="bi bi-gear-fill"></i>
                     </button>
                     <div class="collapse" id="submenu1" data-bs-parent="#menuLateral">
                         <ul class="list-unstyled ps-3">
                             <li class="mt-2">
-                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaCadastroUsuarios()">Cadastro de Usuario</button>
+                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaCadastroUsuarios()">Cadastro de Usuario <i class="bi bi-person-plus-fill"></i></button>
                             </li>
                             <li class="mt-2">
-                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarListaUsuarios()">Usuarios Cadastrados</button>
+                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarListaUsuarios()">Usuarios Cadastrados <i class="bi bi-people-fill"></i></button>
                             </li>
                         </ul>
                     </div>
