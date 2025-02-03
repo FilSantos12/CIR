@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Clientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 95%;
+        }
+
+        .table-responsive {
+            margin-top: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background-color: #ece072;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        tbody tr:hover {
+            background-color: rgba(236, 224, 114, 0.3);
+        }
+
+        .input-group {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cliente-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .cliente-block h4 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ece072;">
+    <div class="container-fluid">
+        <!-- Ícone de seta com link para index.php -->
+        <a href="index.php" class="text-dark" style="text-decoration: none;" title="Voltar para a página inicial">
+            <i class="bi bi-arrow-left-circle-fill" style="font-size: 1.5rem;"></i>
+            <span class="visually-hidden">Voltar</span>
+        </a>
+        <!-- Nome do sistema -->
+        <a class="navbar-brand ms-4" href="#">Controle Imposto de Renda</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav me-auto"></ul>
+            <div class="d-flex align-items-center">
+                <span class="navbar-text text-dark me-2">
+                    Usuário: <strong>nome_do_usuario</strong>
+                </span>
+                <button class="btn btn-dark">Sair</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="container mt-4">
+        <h2>Controle de Clientes</h2>
+
+        <!-- Campo de busca -->
+        <form id="formBusca" class="mb-4">
+            <div class="input-group">
+                <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o nome do cliente" />
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+
+        <!-- Lista de clientes e detalhes -->
+        <div id="listaClientes">
+            <!-- Os blocos de clientes serão adicionados dinamicamente aqui -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Variável para armazenar todos os clientes
+        let todosClientes = [];
+
+        // Função para carregar os clientes ao carregar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('buscar_cliente.php')
+                .then(response => response.json())
+                .then(data => {
+                    todosClientes = data; // Armazena todos os clientes
+                    exibirClientes(data); // Exibe todos os clientes inicialmente
+                })
+                .catch(error => console.error('Erro ao buscar clientes:', error));
+        });
+
+        // Função para exibir os clientes na página
+        function exibirClientes(clientes) {
+            const listaClientes = document.getElementById('listaClientes');
+            listaClientes.innerHTML = ''; // Limpa a lista antes de adicionar novos dados
+
+            clientes.forEach(cliente => {
+                // Cria o bloco do cliente
+                const clienteBlock = `
+                    <div class="cliente-block">
+                        <h4>Dados do Cliente</h4>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <strong>ID:</strong> ${cliente.cliente_id}
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Nome:</strong> ${cliente.nomeCliente}
+                            </div>
+                            <div class="col-md-3">
+                                <strong>CPF:</strong> ${cliente.cpf}
+                            </div>
+                            <div class="col-md-2">
+                                <strong> Tem procuração:</strong> ${cliente.procuracao}
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-warning">
+                                    <tr>
+                                        <th>Data Solicitação</th> 
+                                        <th>Tipo</th>
+                                        <th>Documentos</th>
+                                        <th>Conferência</th>
+                                        <th>Imposto a Pagar</th>
+                                        <th>Doação</th>
+                                        <th>Dados Doação</th>
+                                        <th>Parcelamento</th>
+                                        <th>Imposto a Restituir</th>
+                                        <th>Transmissão</th>
+                                        <th>Data Transmissão</th>
+                                        <th>Enviada ao Cliente</th>
+                                        <th>Observações</th>
+                                        <th>Valor Cobrado</th>
+                                        <th>Boleto Enviado</th>
+                                        <th>Pagamento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="date" class="form-control" /></td>
+
+                                        <td>
+                                            <select name='tipo[]' class='form-select' style='width: 150px'>
+                                                <option value=''></option>
+                                                <option value='Básica'>Básica</option>
+                                                <option value='Com Ações'>Com Ações</option>
+                                                <option value='Com Espólio'>Com Espólio</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <select name='documentos[]' class='form-select' style='width: 200px'>
+                                                <option value=''></option>
+                                                <option value='Pendente de Envio'>Pendente de Envio</option>
+                                                <option value='Com Pendências'>Com Pendências</option>
+                                                <option value='Enviados'>Enviados</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <select name='conferencia[]' class='form-select' style='width: 210px'>
+                                                <option value=''></option>
+                                                <option value='Pendente'>Pendente</option>
+                                                <option value='Em Andamento'>Em Andamento</option>
+                                                <option value='Conferido pelo Cliente'>Conferido pelo Cliente</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" class="form-control money" style="width: 125px" />
+                                        </td>
+
+                                        <td>
+                                            <select name='doacao[]' class='form-select' style='width: 100px'>
+                                                <option value=''></option>
+                                                <option value='Não'>Não</option>
+                                                <option value='Sim'>Sim</option>
+                                            </select>
+                                        </td>
+
+                                        <td><input type="text" class="form-control" style="width: 200px"/></td>
+                                        
+                                        <td>
+                                            <select name='parcelamento[]' class='form-select' style='width: 100px'>
+                                                <option value=''></option>
+                                                <option value='1'>1</option>
+                                                <option value='2'>2</option>
+                                                <option value='3'>3</option>
+                                                <option value='4'>4</option>
+                                                <option value='5'>5</option>
+                                                <option value='6'>6</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <input type="text" class="form-control money" style="width: 125px" />
+                                        </td>
+
+                                        <td>
+                                            <select name='transmissao[]' class='form-select' style='width: 160px'>
+                                                <option value=''></option>
+                                                <option value='Pendente'>Pendente</option>
+                                                <option value='Em Andamento'>Em Andamento</option>
+                                                <option value='Transmitido'>Transmitido</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="date" class="form-control" /></td>
+                                        <td><input type="date" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" style="width: 200px" /></td>
+                                        <td>
+                                            <input type="text" class="form-control money" style="width: 125px" />
+                                        </td>
+                                        <td>
+                                            <select name='boleto_enviado[]' class='form-select' style='width: 100px'>
+                                                <option value=''></option>
+                                                <option value='Sim'>Sim</option>
+                                                <option value='Não'>Não</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <select name='pagamento[]' class='form-select' style='width: 150px'>
+                                                <option value=''></option>
+                                                <option value='Pendente'>Pendente</option>
+                                                <option value='Pago'>Pago</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                                    <!-- Centralizar o botão de salvar -->
+                                    <div class="d-flex justify-content-center mt-3">
+                                        <form>
+                                            <button type="submit" class="btn btn-success">Salvar</button>
+                                        </form>
+                                    </div>
+                    </div>
+                `;
+
+                // Adiciona o bloco do cliente à lista
+                listaClientes.innerHTML += clienteBlock;
+            });
+
+            // Aplica a formatação de moeda aos campos
+            aplicarFormatacaoMoeda();
+        }
+
+        // Função para aplicar a formatação de moeda
+        function aplicarFormatacaoMoeda() {
+            document.querySelectorAll('.money').forEach(input => {
+                // Formata o campo ao digitar
+                input.addEventListener('input', () => {
+                    // Remove formatação anterior para evitar conflitos
+                    input.value = input.value.replace(/\D/g, '');
+                });
+
+                // Formata o campo ao perder o foco
+                input.addEventListener('blur', () => {
+                    formatarMoeda(input);
+                });
+            });
+        }
+
+        // Função para formatar o campo como moeda
+        function formatarMoeda(input) {
+            // Remove tudo que não for número
+            let valor = input.value.replace(/\D/g, '');
+
+            // Converte para número e formata como moeda
+            valor = (Number(valor) / 100).toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+
+            // Atualiza o valor do campo
+            input.value = valor;
+        }
+
+        // Captura o evento de submit do formulário de busca
+        document.getElementById('formBusca').addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o recarregamento da página
+
+            const nomeCliente = document.getElementById('nomeClienteInput').value.toLowerCase();
+
+            // Filtra os clientes com base no nome digitado
+            const clientesFiltrados = todosClientes.filter(cliente =>
+                cliente.nomeCliente.toLowerCase().includes(nomeCliente)
+            );
+
+            // Exibe os clientes filtrados
+            exibirClientes(clientesFiltrados);
+        });
+    </script>
+</body>
+</html>

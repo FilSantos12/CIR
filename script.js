@@ -675,19 +675,7 @@ function validarCPF(cpf) {
 
 //*******************************Chama a função Controle de Clientes****************************************************/
 function carregarControleClientes() {
-    const script = document.createElement('script');
-    script.src = 'controle_clientes.js'; // Caminho para o arquivo JS
-    script.onload = () => {
-        console.log("Script 'controle_clientes.js' carregado com sucesso!");
-        // Aqui você pode chamar funções definidas em controle_cliente.js
-        if (typeof iniciarControleClientes === 'function') {
-            iniciarControleClientes();
-        }
-    };
-    script.onerror = () => {
-        console.error("Erro ao carregar o script 'controle_clientes.js'.");
-    };
-    document.head.appendChild(script);
+    window.open("controle_clientes.html", "_blank");
 }
 
 

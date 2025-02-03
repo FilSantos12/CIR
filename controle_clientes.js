@@ -20,7 +20,7 @@ function iniciarControleClientes() {
         buscarClientes(); // Executa a função de busca
     });
 
-    // Chamar a função para buscar todos os clientes ao iniciar
+//*******************************Chamar a função para buscar todos os clientes ao iniciar
     buscarClientes();
 }
 
