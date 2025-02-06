@@ -85,10 +85,7 @@
         <div class="collapse navbar-collapse" id="navbarContent">
             <ul class="navbar-nav me-auto"></ul>
             <div class="d-flex align-items-center">
-                <span class="navbar-text text-dark me-2">
-                    Usuário: <strong>nome_do_usuario</strong>
-                </span>
-                <button class="btn btn-dark">Sair</button>
+                <button class="btn btn-dark" onclick="fecharPagina()">Sair</button>
             </div>
         </div>
     </div>
@@ -112,7 +109,16 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
+
+
+<!--********************************script da funções da pagina*******************************************-->
+<script>
+//***************************************Fechar a pagina ****************************************************
+                function fecharPagina() {
+                    window.close();
+                }
+    </script>
+   <script>
         // Variável para armazenar todos os clientes
         let todosClientes = [];
 
@@ -128,208 +134,297 @@
         });
 
         // Função para exibir os clientes na página
-        function exibirClientes(clientes) {
-            const listaClientes = document.getElementById('listaClientes');
-            listaClientes.innerHTML = ''; // Limpa a lista antes de adicionar novos dados
+       function exibirClientes(clientes) {
+    const listaClientes = document.getElementById('listaClientes');
+    listaClientes.innerHTML = ''; // Limpa a lista antes de adicionar novos dados
 
-            clientes.forEach(cliente => {
-                // Cria o bloco do cliente
-                const clienteBlock = `
-                    <div class="cliente-block">
-                        <h4>Dados do Cliente</h4>
-                        <div class="row">
-                            <div class="col-md-1">
-                                <strong>ID:</strong> ${cliente.cliente_id}
-                            </div>
-                            <div class="col-md-4">
-                                <strong>Nome:</strong> ${cliente.nomeCliente}
-                            </div>
-                            <div class="col-md-3">
-                                <strong>CPF:</strong> ${cliente.cpf}
-                            </div>
-                            <div class="col-md-2">
-                                <strong> Tem procuração:</strong> ${cliente.procuracao}
-                            </div>
+    clientes.forEach(cliente => {
+        const clienteBlock = document.createElement('div');
+        clienteBlock.className = 'cliente-block';
+        clienteBlock.innerHTML = `
+
+
+                    <span class="navbar-brand d-flex justify-content-between w-100">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-person-vcard" style="font-size: 2.0rem;"></i> 
+                            <span class="ms-3">Dados do Cliente</span>
                         </div>
+                        <button type="button" class="btn btn-success" onclick="salvarProcesso()">Salvar</button>
+                    </span>
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead class="table-warning">
-                                    <tr>
-                                        <th>Data Solicitação</th> 
-                                        <th>Tipo</th>
-                                        <th>Documentos</th>
-                                        <th>Conferência</th>
-                                        <th>Imposto a Pagar</th>
-                                        <th>Doação</th>
-                                        <th>Dados Doação</th>
-                                        <th>Parcelamento</th>
-                                        <th>Imposto a Restituir</th>
-                                        <th>Transmissão</th>
-                                        <th>Data Transmissão</th>
-                                        <th>Enviada ao Cliente</th>
-                                        <th>Observações</th>
-                                        <th>Valor Cobrado</th>
-                                        <th>Boleto Enviado</th>
-                                        <th>Pagamento</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><input type="date" class="form-control" /></td>
-
-                                        <td>
-                                            <select name='tipo[]' class='form-select' style='width: 150px'>
-                                                <option value=''></option>
-                                                <option value='Básica'>Básica</option>
-                                                <option value='Com Ações'>Com Ações</option>
-                                                <option value='Com Espólio'>Com Espólio</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <select name='documentos[]' class='form-select' style='width: 200px'>
-                                                <option value=''></option>
-                                                <option value='Pendente de Envio'>Pendente de Envio</option>
-                                                <option value='Com Pendências'>Com Pendências</option>
-                                                <option value='Enviados'>Enviados</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <select name='conferencia[]' class='form-select' style='width: 210px'>
-                                                <option value=''></option>
-                                                <option value='Pendente'>Pendente</option>
-                                                <option value='Em Andamento'>Em Andamento</option>
-                                                <option value='Conferido pelo Cliente'>Conferido pelo Cliente</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <input type="text" class="form-control money" style="width: 125px" />
-                                        </td>
-
-                                        <td>
-                                            <select name='doacao[]' class='form-select' style='width: 100px'>
-                                                <option value=''></option>
-                                                <option value='Não'>Não</option>
-                                                <option value='Sim'>Sim</option>
-                                            </select>
-                                        </td>
-
-                                        <td><input type="text" class="form-control" style="width: 200px"/></td>
-                                        
-                                        <td>
-                                            <select name='parcelamento[]' class='form-select' style='width: 100px'>
-                                                <option value=''></option>
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                                <option value='5'>5</option>
-                                                <option value='6'>6</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <input type="text" class="form-control money" style="width: 125px" />
-                                        </td>
-
-                                        <td>
-                                            <select name='transmissao[]' class='form-select' style='width: 160px'>
-                                                <option value=''></option>
-                                                <option value='Pendente'>Pendente</option>
-                                                <option value='Em Andamento'>Em Andamento</option>
-                                                <option value='Transmitido'>Transmitido</option>
-                                            </select>
-                                        </td>
-                                        <td><input type="date" class="form-control" /></td>
-                                        <td><input type="date" class="form-control" /></td>
-                                        <td><input type="text" class="form-control" style="width: 200px" /></td>
-                                        <td>
-                                            <input type="text" class="form-control money" style="width: 125px" />
-                                        </td>
-                                        <td>
-                                            <select name='boleto_enviado[]' class='form-select' style='width: 100px'>
-                                                <option value=''></option>
-                                                <option value='Sim'>Sim</option>
-                                                <option value='Não'>Não</option>
-                                            </select>
-                                        </td>
-
-                                        <td>
-                                            <select name='pagamento[]' class='form-select' style='width: 150px'>
-                                                <option value=''></option>
-                                                <option value='Pendente'>Pendente</option>
-                                                <option value='Pago'>Pago</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <strong>ID:</strong> ${cliente.cliente_id}
                         </div>
-                                    <!-- Centralizar o botão de salvar -->
-                                    <div class="d-flex justify-content-center mt-3">
-                                        <form>
-                                            <button type="submit" class="btn btn-success">Salvar</button>
-                                        </form>
-                                    </div>
+                        <div class="col-md-4">
+                            <strong>Nome:</strong> ${cliente.nomeCliente}
+                        </div>
+                        <div class="col-md-3">
+                            <strong>CPF:</strong> ${cliente.cpf}
+                        </div>
+                        <div class="col-md-2">
+                            <strong> Tem procuração:</strong> ${cliente.procuracao}
+                        </div>
                     </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-warning">
+                                <tr>
+                                    <th>Data Solicitação</th> 
+                                    <th>Tipo</th>
+                                    <th>Documentos</th>
+                                    <th>Conferência</th>
+                                    <th>Imposto a Pagar</th>
+                                    <th>Doação</th>
+                                    <th>Dados Doação</th>
+                                    <th>Parcelamento</th>
+                                    <th>Imposto a Restituir</th>
+                                    <th>Transmissão</th>
+                                    <th>Data Transmissão</th>
+                                    <th>Enviada ao Cliente</th>
+                                    <th>Observações</th>
+                                    <th>Valor Cobrado</th>
+                                    <th>Boleto Enviado</th>
+                                    <th>Pagamento</th>
+                                </tr>
+                            </thead>
+<tbody>
+    <tr>
+        <input type="hidden" name="id_cliente[]" value="${cliente.cliente_id}" />
+        <!-- Data Solicitação -->
+        <td><input type="date" name="data_solicitacao[]" class="form-control" /></td>
+
+        <!-- Tipo -->
+        <td>
+            <select name="tipo[]" class="form-select" style="width: 150px">
+                <option value=""></option>
+                <option value="Básica">Básica</option>
+                <option value="Com Ações">Com Ações</option>
+                <option value="Com Espólio">Com Espólio</option>
+            </select>
+        </td>
+
+        <!-- Documentos -->
+        <td>
+            <select name="documentos[]" class="form-select" style="width: 200px">
+                <option value=""></option>
+                <option value="Pendente de Envio">Pendente de Envio</option>
+                <option value="Com Pendências">Com Pendências</option>
+                <option value="Enviados">Enviados</option>
+            </select>
+        </td>
+
+        <!-- Conferência -->
+        <td>
+            <select name="conferencia[]" class="form-select" style="width: 210px">
+                <option value=""></option>
+                <option value="Pendente">Pendente</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Conferido pelo Cliente">Conferido pelo Cliente</option>
+            </select>
+        </td>
+
+        <!-- Imposto a Pagar -->
+        <td><input type="text" name="imposto_pagar[]" class="form-control money" style="width: 125px" /></td>
+
+        <!-- Doação -->
+        <td>
+            <select name="doacao[]" class="form-select" style="width: 100px">
+                <option value=""></option>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </td>
+
+        <!-- Dados Doação -->
+        <td><input type="text" name="dados_doacao[]" class="form-control" style="width: 200px" /></td>
+
+        <!-- Parcelamento -->
+        <td>
+            <select name="parcelamento[]" class="form-select" style="width: 100px">
+                <option value=""></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </td>
+
+        <!-- Imposto a Restituir -->
+        <td><input type="text" name="imposto_restituir[]" class="form-control money" style="width: 125px" /></td>
+
+        <!-- Transmissão -->
+        <td>
+            <select name="transmissao[]" class="form-select" style="width: 160px">
+                <option value=""></option>
+                <option value="Pendente">Pendente</option>
+                <option value="Em Andamento">Em Andamento</option>
+                <option value="Transmitido">Transmitido</option>
+            </select>
+        </td>
+
+        <!-- Data Transmissão -->
+        <td><input type="date" name="data_transmissao[]" class="form-control" /></td>
+
+        <!-- Enviada ao Cliente -->
+        <td><input type="date" name="enviada_cliente[]" class="form-control" /></td>
+
+        <!-- Observações -->
+        <td><input type="text" name="observacoes[]" class="form-control" style="width: 200px" /></td>
+
+        <!-- Valor Cobrado -->
+        <td><input type="text" name="valor_cobrado[]" class="form-control money" style="width: 125px" /></td>
+
+        <!-- Boleto Enviado -->
+        <td>
+            <select name="boleto_enviado[]" class="form-select" style="width: 100px">
+                <option value=""></option>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
+        </td>
+
+        <!-- Pagamento -->
+        <td>
+            <select name="pagamento[]" class="form-select" style="width: 150px">
+                <option value=""></option>
+                <option value="Pendente">Pendente</option>
+                <option value="Pago">Pago</option>
+            </select>
+        </td>
+    </tr>
+</tbody>
+                        </table>
+                    </div>
+
+         
                 `;
 
+                
+//********************************script da funções da pagina*******************************************
+
                 // Adiciona o bloco do cliente à lista
-                listaClientes.innerHTML += clienteBlock;
-            });
+                listaClientes.appendChild(clienteBlock);
+    });
 
-            // Aplica a formatação de moeda aos campos
-            aplicarFormatacaoMoeda();
-        }
+    // Aplica a formatação de moeda aos campos
+    aplicarFormatacaoMoeda();
+}
 
-        // Função para aplicar a formatação de moeda
-        function aplicarFormatacaoMoeda() {
-            document.querySelectorAll('.money').forEach(input => {
-                // Formata o campo ao digitar
-                input.addEventListener('input', () => {
-                    // Remove formatação anterior para evitar conflitos
-                    input.value = input.value.replace(/\D/g, '');
-                });
+//******************************** Função para aplicar a formatação de moeda******************************
 
-                // Formata o campo ao perder o foco
-                input.addEventListener('blur', () => {
-                    formatarMoeda(input);
-                });
-            });
-        }
-
-        // Função para formatar o campo como moeda
-        function formatarMoeda(input) {
-            // Remove tudo que não for número
-            let valor = input.value.replace(/\D/g, '');
-
-            // Converte para número e formata como moeda
-            valor = (Number(valor) / 100).toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
-
-            // Atualiza o valor do campo
-            input.value = valor;
-        }
-
-        // Captura o evento de submit do formulário de busca
-        document.getElementById('formBusca').addEventListener('submit', function (event) {
-            event.preventDefault(); // Impede o recarregamento da página
-
-            const nomeCliente = document.getElementById('nomeClienteInput').value.toLowerCase();
-
-            // Filtra os clientes com base no nome digitado
-            const clientesFiltrados = todosClientes.filter(cliente =>
-                cliente.nomeCliente.toLowerCase().includes(nomeCliente)
-            );
-
-            // Exibe os clientes filtrados
-            exibirClientes(clientesFiltrados);
+      function aplicarFormatacaoMoeda() {
+    document.querySelectorAll('.money').forEach(input => {
+        // Formata o campo ao digitar
+        input.addEventListener('input', () => {
+            // Remove formatação anterior para evitar conflitos
+            input.value = input.value.replace(/\D/g, '');
         });
+
+        // Formata o campo ao perder o foco
+        input.addEventListener('blur', () => {
+            formatarMoeda(input);
+        });
+    });
+}
+
+function formatarMoeda(input) {
+    // Remove tudo que não for número
+    let valor = input.value.replace(/\D/g, '');
+
+    // Converte para número e formata como moeda
+    valor = (Number(valor) / 100).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
+    // Atualiza o valor do campo
+    input.value = valor;
+}
+
+//******************************** Captura o evento de submit do formulário de busca****************************
+
+       document.getElementById('formBusca').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o recarregamento da página
+
+    const nomeCliente = document.getElementById('nomeClienteInput').value.trim().toLowerCase();
+
+    if (!nomeCliente) {
+        alert('Por favor, digite um nome para buscar.');
+        return;
+    }
+
+    // Filtra os clientes com base no nome digitado
+    const clientesFiltrados = todosClientes.filter(cliente =>
+        cliente.nomeCliente.toLowerCase().includes(nomeCliente)
+    );
+
+    // Exibe os clientes filtrados
+    exibirClientes(clientesFiltrados);
+});
+
+//****************************ENVIA OS DADOS PARA O BANCO********************************
+
+async function salvarProcesso() {
+    console.log("Função salvarProcesso() foi chamada!");
+
+    // Coleta os dados da tabela
+    const rows = [];
+    document.querySelectorAll('tbody tr').forEach(row => {
+        const data = {
+            id_cliente: row.querySelector('[name="id_cliente[]"]')?.value || '',
+            data_solicitacao: row.querySelector('[name="data_solicitacao[]"]')?.value || '',
+            tipo: row.querySelector('[name="tipo[]"]')?.value || '',
+            documentos: row.querySelector('[name="documentos[]"]')?.value || '',
+            conferencia: row.querySelector('[name="conferencia[]"]')?.value || '',
+            imposto_pagar: row.querySelector('[name="imposto_pagar[]"]')?.value || '',
+            doacao: row.querySelector('[name="doacao[]"]')?.value || '',
+            dados_doacao: row.querySelector('[name="dados_doacao[]"]')?.value || '',
+            parcelamento: row.querySelector('[name="parcelamento[]"]')?.value || '',
+            imposto_restituir: row.querySelector('[name="imposto_restituir[]"]')?.value || '',
+            transmissao: row.querySelector('[name="transmissao[]"]')?.value || '',
+            data_transmissao: row.querySelector('[name="data_transmissao[]"]')?.value || '',
+            enviada_cliente: row.querySelector('[name="enviada_cliente[]"]')?.value || '',
+            observacoes: row.querySelector('[name="observacoes[]"]')?.value || '',
+            valor_cobrado: row.querySelector('[name="valor_cobrado[]"]')?.value || '',
+            boleto_enviado: row.querySelector('[name="boleto_enviado[]"]')?.value || '',
+            pagamento: row.querySelector('[name="pagamento[]"]')?.value || ''
+        };
+        rows.push(data);
+    });
+
+    console.log("Enviando os seguintes dados:", rows);
+
+    try {
+        const response = await fetch('salvar_processo.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(rows)
+        });
+
+        const result = await response.json();
+        console.log("Resposta do servidor:", result);
+
+        if (result.status === "success") {
+            alert("Processos salvos com sucesso!");
+        } else {
+            alert("Erro ao salvar os processos: " + result.message);
+        }
+    } catch (error) {
+        console.error("Erro ao salvar:", error);
+        alert("Erro ao salvar os processos. Verifique o console para mais detalhes.");
+    }
+}
+//************************Atualizando a página após o salvamento*****************************
+
+
+
+
     </script>
 </body>
 </html>
