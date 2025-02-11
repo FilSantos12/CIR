@@ -31,6 +31,26 @@ if (!isset($data[0])) {
     $data = [$data];
 }
 
+// Função para converter valores monetários para float
+function converterMoeda($valor) {
+    return (float) str_replace(['R$', '.', ','], ['', '', '.'], $valor);
+}
+
+// Função para validar e formatar datas
+function formatarData($data) {
+    if (empty($data)) {
+        return NULL; // Retorna NULL se o campo estiver vazio
+    }
+
+    // Tenta criar um objeto DateTime a partir da string
+    $d = DateTime::createFromFormat('Y-m-d', $data);
+    if ($d && $d->format('Y-m-d') === $data) {
+        return $data; // Retorna a data no formato Y-m-d
+    }
+
+    return NULL; // Retorna NULL se a data for inválida
+}
+
 // Prepara a query SQL
 $sql = "INSERT INTO processos (
             id_cliente, data_solicitacao, tipo, documentos, conferencia, 
@@ -51,20 +71,20 @@ if (!$stmt) {
 foreach ($data as $row) {
     // Converte valores vazios para NULL e corrige formatos
     $id_cliente = !empty($row['id_cliente']) ? (int)$row['id_cliente'] : NULL;
-    $data_solicitacao = !empty($row['data_solicitacao']) ? $row['data_solicitacao'] : NULL;
+    $data_solicitacao = formatarData($row['data_solicitacao']); // Valida e formata a data
     $tipo = !empty($row['tipo']) ? $row['tipo'] : NULL;
     $documentos = !empty($row['documentos']) ? $row['documentos'] : NULL;
     $conferencia = !empty($row['conferencia']) ? $row['conferencia'] : NULL;
-    $imposto_pagar = !empty($row['imposto_pagar']) ? (float) str_replace(['R$', '.', ','], ['', '', '.'], $row['imposto_pagar']) : 0;
+    $imposto_pagar = !empty($row['imposto_pagar']) ? converterMoeda($row['imposto_pagar']) : 0;
     $doacao = !empty($row['doacao']) ? $row['doacao'] : NULL;
     $dados_doacao = !empty($row['dados_doacao']) ? $row['dados_doacao'] : NULL;
     $parcelamento = !empty($row['parcelamento']) ? (int)$row['parcelamento'] : NULL;
-    $imposto_restituir = !empty($row['imposto_restituir']) ? (float) str_replace(['R$', '.', ','], ['', '', '.'], $row['imposto_restituir']) : 0;
+    $imposto_restituir = !empty($row['imposto_restituir']) ? converterMoeda($row['imposto_restituir']) : 0;
     $transmissao = !empty($row['transmissao']) ? $row['transmissao'] : NULL;
-    $data_transmissao = !empty($row['data_transmissao']) ? $row['data_transmissao'] : NULL;
-    $enviada_cliente = !empty($row['enviada_cliente']) ? $row['enviada_cliente'] : NULL;
+    $data_transmissao = formatarData($row['data_transmissao']); // Valida e formata a data
+    $enviada_cliente = formatarData($row['enviada_cliente']); // Valida e formata a data
     $observacoes = !empty($row['observacoes']) ? $row['observacoes'] : NULL;
-    $valor_cobrado = !empty($row['valor_cobrado']) ? (float) str_replace(['R$', '.', ','], ['', '', '.'], $row['valor_cobrado']) : 0;
+    $valor_cobrado = !empty($row['valor_cobrado']) ? converterMoeda($row['valor_cobrado']) : 0;
     $boleto_enviado = !empty($row['boleto_enviado']) ? $row['boleto_enviado'] : NULL;
     $pagamento = !empty($row['pagamento']) ? $row['pagamento'] : NULL;
 
@@ -90,12 +110,16 @@ foreach ($data as $row) {
         $pagamento
     )) {
         echo json_encode(["status" => "error", "message" => "Erro no bind_param: " . $stmt->error]);
+        $stmt->close();
+        $conn->close();
         exit;
     }
 
     // Executa a query
     if (!$stmt->execute()) {
         echo json_encode(["status" => "error", "message" => "Erro ao salvar o processo: " . $stmt->error]);
+        $stmt->close();
+        $conn->close();
         exit;
     }
 }
