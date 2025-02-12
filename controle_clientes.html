@@ -148,7 +148,8 @@
                     <div class="mb-3">
                         <label for="editTipo" class="form-label">Tipo</label>
                         <select name="tipo" class="form-select" id="editTipo">
-                            <option value="Basica" selected>Básica</option>
+                            <option value="" selected></option>
+                            <option value="Basica">Básica</option>
                             <option value="Com Ações">Com Ações</option>
                             <option value="Com Espólio">Com Espólio</option>
                         </select>
@@ -190,16 +191,16 @@
                     <!-- Doação -->
                     <div class="mb-3">
                         <label for="editDoacao" class="form-label">Doação</label>
-                        <select class="form-select" id="editDoacao">
+                        <select name="doacao" class="form-select" id="editdoacao">
                             <option value="" selected></option>
-                            <option value="Não">Não</option>
                             <option value="Sim">Sim</option>
+                            <option value="Não">Não</option>
                         </select>
                     </div>
                     <!-- Dados Doação -->
                     <div class="mb-3">
                         <label for="editDadosDoacao" class="form-label">Dados Doação</label>
-                        <input type="text" name="dados_doacao" class="form-control" id="editDadosDoacao" placeholder="Exemplo: Nome da instituição.">
+                        <input type="text" name="dados_doacao" class="form-control" id="editDadosDoacao" placeholder="Nome da instituição.">
                     </div>
                     <!-- Parcelamento -->
                     <div class="mb-3">
@@ -447,6 +448,8 @@
         salvarProcesso();
     });
 });
+
+
 
 
     </script>
