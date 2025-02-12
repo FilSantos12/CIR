@@ -78,45 +78,54 @@
         <div id="listaClientes"></div>
     </div>
 
-    <div class="container mt-5">
-        <h2 class="text-center">Lista de Clientes e Processos</h2>
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered">
-                <thead class="table-warning text-center">
-                    <tr>
-                        <th style="width: 80px;">Ações</th>
-                        <th style="width: 50px;">ID</th>
-                        <th style="min-width: 200px;">Nome</th>
-                        <th style="min-width: 130px;">CPF</th>
-                        <th style="width: 100px;">Procuração</th>
-                        <th style="min-width: 150px;">Data Solicitação</th>
-                        <th style="min-width: 120px;">Tipo</th>
-                        <th style="min-width: 150px;">Documentos</th>
-                        <th style="min-width: 150px;">Conferência</th>
-                        <th style="min-width: 150px;">Imposto a Pagar</th>
-                        <th style="min-width: 100px;">Doação</th>
-                        <th style="min-width: 150px;">Dados Doação</th>
-                        <th style="min-width: 130px;">Parcelamento</th>
-                        <th style="min-width: 150px;">Imposto a Restituir</th>
-                        <th style="min-width: 130px;">Transmissão</th>
-                        <th style="min-width: 150px;">Data Transmissão</th>
-                        <th style="min-width: 160px;">Enviada ao Cliente</th>
-                        <th style="min-width: 200px;">Observações</th>
-                        <th style="min-width: 120px;">Valor Cobrado</th>
-                        <th style="min-width: 140px;">Boleto Enviado</th>
-                        <th style="min-width: 120px;">Pagamento</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="tabela-clientes">
-                    <!-- Os dados dos clientes serão inseridos aqui via JavaScript -->
-                </tbody>
-            </table>
-        </div>
+<div class="container mt-5">
+    <h2 class="text-center">Lista de Clientes e Processos</h2>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead class="table-warning text-center">
+                <tr>
+                    <th style="width: 80px;">Ações</th>
+                    <th style="width: 50px;">ID</th>
+                    <th style="min-width: 200px;">Nome</th>
+                    <th style="min-width: 130px;">CPF</th>
+                    <th style="width: 100px;">Procuração</th>
+                    <th style="border-left: 3px solid #000; width: 10px;"></th>
+                    <th style="min-width: 150px;">Data Solicitação</th>
+                    <th style="min-width: 120px;">Tipo</th>
+                    <th style="min-width: 150px;">Documentos</th>
+                    <th style="min-width: 150px;">Conferência</th>
+                    <th style="min-width: 150px;">Imposto a Pagar</th>
+                    <th style="min-width: 100px;">Doação</th>
+                    <th style="min-width: 150px;">Dados Doação</th>
+                    <th style="min-width: 130px;">Parcelamento</th>
+                    <th style="min-width: 150px;">Imposto a Restituir</th>
+                    <th style="min-width: 130px;">Transmissão</th>
+                    <th style="min-width: 150px;">Data Transmissão</th>
+                    <th style="min-width: 160px;">Enviada ao Cliente</th>
+                    <th style="min-width: 200px;">Observações</th>
+                    <th style="min-width: 120px;">Valor Cobrado</th>
+                    <th style="min-width: 140px;">Boleto Enviado</th>
+                    <th style="min-width: 120px;">Pagamento</th>
+                </tr>
+            </thead>
+            <tbody class="text-center" id="tabela-dados"></tbody>
+        </table>
     </div>
+</div>
+
+<style>
+    th:nth-child(6), td:nth-child(6) {
+        border-left: 3px solid #000;
+        background-color: #f8f9fa;
+    }
+    .table {
+        width: 100%;
+    }
+</style>
 
 <!-- **************************************Modal de edição*************************************************-->
 
-   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -127,8 +136,9 @@
                 <!-- Campos do formulário para editar as informações do cliente -->
                 <form id="editForm">
                     <!-- id do cliente da tabela cliente -->
+                    
                         <input type="hidden" id="editIdCliente" name="id_cliente" />
-
+                    
                     <!-- Data da Solicitação-->
                     <div class="mb-3">
                         <label for="editDataSolicitacao" class="form-label">Data Solicitação</label>
@@ -287,81 +297,118 @@
     </div>
 
     <!--************************************Script *****************************************************-->
+
+<!--*********************************BUSCAR E RENDERIZAR NA TELA BLOCO 1********************************-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetchClientes(); // Carregar os clientes ao carregar a página
+        // Função para buscar dados no backend
+        async function buscarDados() {
+            try {
+                const resposta = await fetch('buscar_cliente.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `nomeCliente=${encodeURIComponent('')}`
+                });
 
-            // Adiciona evento de busca ao formulário
-            document.getElementById("formBusca").addEventListener("submit", function (e) {
-                e.preventDefault(); // Evita o recarregamento da página
-                const nomeCliente = document.getElementById("nomeClienteInput").value;
-                fetchClientes(nomeCliente); // Busca clientes com o nome fornecido
-            });
+                if (!resposta.ok) throw new Error('Erro ao buscar dados');
 
-            // Adiciona evento de clique ao botão de salvar no modal
-            document.getElementById('saveEditButton').addEventListener('click', salvarProcesso);
-        });
+                // Captura o texto bruto antes de converter para JSON
+                const respostaTexto = await resposta.text();
+                console.log('Resposta do servidor:', respostaTexto);
 
-        async function fetchClientes(nomeCliente = "") {
-            let url = 'buscar_cliente.php';
-            if (nomeCliente) {
-                url += `?nome=${encodeURIComponent(nomeCliente)}`; // Adiciona parâmetro de busca
+                try {
+                    return JSON.parse(respostaTexto);
+                } catch (erro) {
+                    console.error('Erro ao converter JSON:', erro);
+                    return { clientes: [], processos: [] };
+                }
+
+            } catch (erro) {
+                console.error('Erro:', erro);
+                return { clientes: [], processos: [] };
             }
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    const tabela = document.getElementById("tabela-clientes");
-                    tabela.innerHTML = ""; // Limpa a tabela antes de adicionar os novos dados
-
-                    data.forEach(cliente => {
-                        const row = document.createElement("tr");
-                        row.innerHTML = `
-                            <td>
-                                <button class="btn btn-primary btn-sm editBtn" data-id="${cliente.cliente_id}">Editar</button>
-                            </td>
-                            <td>${cliente.cliente_id}</td>
-                            <td>${cliente.nomeCliente}</td>
-                            <td>${cliente.cpf}</td>
-                            <td>${cliente.procuracao}</td>
-                            <td>${cliente.dataSolicitacao}</td>
-                            <td>${cliente.tipo}</td>
-                            <td>${cliente.documentos}</td>
-                            <td>${cliente.conferencia}</td>
-                            <td>${cliente.impostoPagar}</td>
-                            <td>${cliente.doacao}</td>
-                            <td>${cliente.dadosDoacao}</td>
-                            <td>${cliente.parcelamento}</td>
-                            <td>${cliente.impostoRestituir}</td>
-                            <td>${cliente.transmissao}</td>
-                            <td>${cliente.dataTransmissao}</td>
-                            <td>${cliente.enviadaCliente}</td>
-                            <td>${cliente.observacoes}</td>
-                            <td>${cliente.valorCobrado}</td>
-                            <td>${cliente.boletoEnviado}</td>
-                            <td>${cliente.pagamento}</td>
-                        `;
-                        tabela.appendChild(row);
-                    });
-
-                    // Adiciona evento de clique aos botões de edição
-                    document.querySelectorAll('.editBtn').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const row = this.closest('tr');
-                            const cells = row.querySelectorAll('td');
-                            document.getElementById('editIdCliente').value = cells[1].textContent;
-                            document.getElementById('editDataSolicitacao').value = cells[5].textContent;
-                            document.getElementById('editTipo').value = cells[6].textContent;
-                            // Preencha os outros campos do modal aqui
-                            new bootstrap.Modal(document.getElementById('editModal')).show();
-                        });
-                    });
-                })
-                .catch(error => console.error('Erro ao buscar clientes:', error));
         }
 
-                async function salvarProcesso() {
+        // Função para renderizar os dados na tabela
+        function renderizarTabela(dados) {
+            const tbody = document.getElementById('tabela-dados');
+            tbody.innerHTML = ''; // Limpa a tabela antes de inserir novos dados
+
+            const clientes = dados.clientes || [];
+            const processos = dados.processos || [];
+            const maxLength = Math.max(clientes.length, processos.length);
+
+            let linhas = []; // Criar um array para melhor desempenho
+
+            for (let i = 0; i < maxLength; i++) {
+                let cliente = clientes[i] || {};
+                let processo = processos[i] || {};
+
+                linhas.push(`
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary btn-sm editBtn" data-id="${cliente.cliente_id}" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                        </td>
+                        <td>${cliente.cliente_id || '—'}</td>
+                        <td>${cliente.nomeCliente || '—'}</td>
+                        <td>${cliente.cpf || '—'}</td>
+                        <td>${cliente.procuracao || '—'}</td>
+                        <td style="border-left: 3px solid #000;"></td>
+                        <td>${processo.data_solicitacao || '—'}</td>
+                        <td>${processo.tipo || '—'}</td>
+                        <td>${processo.documentos || '—'}</td>
+                        <td>${processo.conferencia || '—'}</td>
+                        <td>${processo.imposto_pagar || '—'}</td>
+                        <td>${processo.doacao || '—'}</td>
+                        <td>${processo.dados_doacao || '—'}</td>
+                        <td>${processo.parcelamento || '—'}</td>
+                        <td>${processo.imposto_restituir || '—'}</td>
+                        <td>${processo.transmissao || '—'}</td>
+                        <td>${processo.data_transmissao || '—'}</td>
+                        <td>${processo.enviada_cliente || '—'}</td>
+                        <td>${processo.observacoes || '—'}</td>
+                        <td>${processo.valor_cobrado || '—'}</td>
+                        <td>${processo.boleto_enviado || '—'}</td>
+                        <td>${processo.pagamento || '—'}</td>
+                    </tr>
+                `);
+            }
+
+            tbody.innerHTML = linhas.join('');
+        }
+
+        // Função principal para carregar e renderizar os dados
+        async function carregarDados() {
+            const dados = await buscarDados();
+            renderizarTabela(dados);
+        }
+
+        // Carrega os dados quando a página for carregada
+        window.onload = carregarDados;
+
+        // Adiciona evento de clique aos botões de edição após a tabela ser carregada
+        document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('tabela-dados').addEventListener('click', function(event) {
+        if (event.target.classList.contains('editBtn')) {
+            const idCliente = event.target.getAttribute('data-id');
+
+            // Verificar se o ID do cliente foi capturado corretamente
+            console.log('ID do cliente selecionado:', idCliente);
+
+            if (!idCliente) {
+                alert("Erro: ID do cliente não encontrado!");
+                return;
+            }
+
+            // Preencher o campo oculto no formulário do modal
+            document.getElementById('editIdCliente').value = idCliente;
+        }
+    });
+});
+
+
+        //***************************************SALVAR PROCESSOS********************************************************
+        async function salvarProcesso() {
             const formData = new FormData(document.getElementById('editForm'));
             const data = {};
             formData.forEach((value, key) => {
@@ -385,7 +432,7 @@
                     const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
                     if (modal) modal.hide();
 
-                    fetchClientes(); // Atualiza a tabela após salvar
+                    carregarDados(); // Atualiza a tabela após salvar
                 } else {
                     alert("Erro ao salvar os dados: " + result.message);
                 }
@@ -395,7 +442,14 @@
             }
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('saveEditButton').addEventListener('click', function () {
+        salvarProcesso();
+    });
+});
+
+
     </script>
+
 </body>
 </html>
-

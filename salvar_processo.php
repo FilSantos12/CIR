@@ -8,6 +8,8 @@ error_reporting(E_ALL);
 
 // Conexão com o banco de dados
 include 'db_connection.php';
+file_put_contents("log.txt", "JSON recebido: " . file_get_contents('php://input') . "\n", FILE_APPEND);
+
 
 // Verifica conexão
 if ($conn->connect_error) {
@@ -165,6 +167,7 @@ foreach ($data as $item) {
     } else {
         echo json_encode(["status" => "success", "message" => "Processo salvo com sucesso!"]);
     }
+    
 
     $stmt->close();
 }
