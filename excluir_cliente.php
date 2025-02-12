@@ -1,42 +1,33 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+header("Content-Type: application/json");
 error_reporting(E_ALL);
+ini_set('display_errors', 1);
+include 'db_connection.php'; // Certifique-se de incluir a conexão
 
-include 'db_connection.php';
+$dados = json_decode(file_get_contents("php://input"), true);
 
-// ********************************Recebe os dados do frontend ****************************************/
-
-$data = json_decode(file_get_contents("php://input"), true);
-
-if (isset($data['id'])) {
-    $id = intval($data['id']); // Garante que seja um número inteiro
-
-    if ($id > 0) { // Valida se o ID é válido
-        $sql = "DELETE FROM cliente WHERE id = ?";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt) {
-            $stmt->bind_param("i", $id);
-
-            if ($stmt->execute()) {
-                echo json_encode(["sucesso" => true]);
-            } else {
-                echo json_encode(["sucesso" => false, "mensagem" => "Erro ao executar a consulta: " . $stmt->error]);
-            }
-
-            $stmt->close();
-        } else {
-            echo json_encode(["sucesso" => false, "mensagem" => "Erro na preparação da consulta: " . $conn->error]);
-        }
-    } else {
-        echo json_encode(["sucesso" => false, "mensagem" => "ID inválido."]);
-    }
-} else {
-    echo json_encode(["sucesso" => false, "mensagem" => "ID não informado."]);
+if (!$dados || !isset($dados['id'])) {
+    echo json_encode(["sucesso" => false, "mensagem" => "ID do cliente não enviado!"]);
+    exit;
 }
 
+$id_cliente = $dados['id'];
 
-$conn->close();
+try {
+    // Excluir primeiro os processos vinculados ao cliente
+    $stmt = $conn->prepare("DELETE FROM processos WHERE id_cliente = ?");
+    $stmt->bind_param("i", $id_cliente);
+    $stmt->execute();
+    $stmt->close();
 
+    // Agora, excluir o cliente
+    $stmt = $conn->prepare("DELETE FROM cliente WHERE id = ?");
+    $stmt->bind_param("i", $id_cliente);
+    $stmt->execute();
+    $stmt->close();
+
+    echo json_encode(["sucesso" => true, "mensagem" => "Cliente excluído com sucesso!"]);
+} catch (mysqli_sql_exception $e) {
+    echo json_encode(["sucesso" => false, "mensagem" => "Erro ao excluir: " . $e->getMessage()]);
+}
 ?>
