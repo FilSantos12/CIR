@@ -89,7 +89,7 @@
                     <th style="min-width: 200px;">Nome</th>
                     <th style="min-width: 130px;">CPF</th>
                     <th style="width: 100px;">Procuração</th>
-                    <th style="border-left: 3px solid #000; width: 10px;"></th>
+                    <th style="border-left: 3px solid #f5ecb8; width: 10px;"></th>
                     <th style="min-width: 150px;">Data Solicitação</th>
                     <th style="min-width: 120px;">Tipo</th>
                     <th style="min-width: 150px;">Documentos</th>
@@ -115,8 +115,8 @@
 
 <style>
     th:nth-child(6), td:nth-child(6) {
-        border-left: 3px solid #000;
-        background-color: #f8f9fa;
+        border-left: 3px solid #f5ecb8;
+        background-color: #f5ecb8;
     }
     .table {
         width: 100%;
@@ -354,7 +354,7 @@
                         <td>${cliente.nomeCliente || '—'}</td>
                         <td>${cliente.cpf || '—'}</td>
                         <td>${cliente.procuracao || '—'}</td>
-                        <td style="border-left: 3px solid #000;"></td>
+                        <td style="border-left: 3px solid #f5ecb8;"></td>
                         <td>${processo.data_solicitacao || '—'}</td>
                         <td>${processo.tipo || '—'}</td>
                         <td>${processo.documentos || '—'}</td>
@@ -449,7 +449,66 @@
     });
 });
 
+//***********************************mostra os dados no modal**********************************************
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('tabela-dados').addEventListener('click', function (event) {
+        if (event.target.classList.contains('editBtn')) {
+            const idCliente = event.target.getAttribute('data-id');
+
+            // Verificar se o ID do cliente foi capturado corretamente
+            console.log('ID do cliente selecionado:', idCliente);
+
+            if (!idCliente) {
+                alert("Erro: ID do cliente não encontrado!");
+                return;
+            }
+
+            // Capturar a linha da tabela onde o botão foi clicado
+            const linha = event.target.closest('tr');
+
+            // Capturar os dados da linha
+            const dados = {
+                idCliente: linha.cells[1].textContent.trim(),
+                dataSolicitacao: linha.cells[6].textContent.trim(),
+                tipo: linha.cells[7].textContent.trim(),
+                documentos: linha.cells[8].textContent.trim(),
+                conferencia: linha.cells[9].textContent.trim(),
+                impostoPagar: linha.cells[10].textContent.trim(),
+                doacao: linha.cells[11].textContent.trim(),
+                dadosDoacao: linha.cells[12].textContent.trim(),
+                parcelamento: linha.cells[13].textContent.trim(),
+                impostoRestituir: linha.cells[14].textContent.trim(),
+                transmissao: linha.cells[15].textContent.trim(),
+                dataTransmissao: linha.cells[16].textContent.trim(),
+                enviadaCliente: linha.cells[17].textContent.trim(),
+                observacoes: linha.cells[18].textContent.trim(),
+                valorCobrado: linha.cells[19].textContent.trim(),
+                boletoEnviado: linha.cells[20].textContent.trim(),
+                pagamento: linha.cells[21].textContent.trim()
+            };
+
+            // Preencher os campos do modal com os dados capturados
+            document.getElementById('editIdCliente').value = dados.idCliente;
+            document.getElementById('editDataSolicitacao').value = dados.dataSolicitacao;
+            document.getElementById('editTipo').value = dados.tipo;
+            document.getElementById('editDocumentos').value = dados.documentos;
+            document.getElementById('editConferencia').value = dados.conferencia;
+            document.getElementById('editImpostoPagar').value = dados.impostoPagar;
+            document.getElementById('editdoacao').value = dados.doacao;
+            document.getElementById('editDadosDoacao').value = dados.dadosDoacao;
+            document.getElementById('editParcelamento').value = dados.parcelamento;
+            document.getElementById('editImpostoRestituir').value = dados.impostoRestituir;
+            document.getElementById('editTransmissao').value = dados.transmissao;
+            document.getElementById('editDataTransmissao').value = dados.dataTransmissao;
+            document.getElementById('editEnviadaCliente').value = dados.enviadaCliente;
+            document.getElementById('editObservacoes').value = dados.observacoes;
+            document.getElementById('editValorCobrado').value = dados.valorCobrado;
+            document.getElementById('editBoletoEnviado').value = dados.boletoEnviado;
+            document.getElementById('editPagamento').value = dados.pagamento;
+        }
+    });
+});
 
 
     </script>
