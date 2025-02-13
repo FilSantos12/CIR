@@ -71,12 +71,41 @@
         <!-- Campo de busca -->
         <form id="formBusca" class="mb-4">
             <div class="input-group">
-                <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o nome do cliente" />
+                <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o que deseja buscar" />
                 <button type="submit" class="btn btn-primary">Buscar</button>
             </div>
         </form>
         <div id="listaClientes"></div>
     </div>
+    
+ <!--**************************************script filtro de busca****************************************--> 
+ <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputBusca = document.getElementById("nomeClienteInput");
+            const tabela = document.querySelector(".table tbody");
+
+            inputBusca.addEventListener("keyup", function () {
+                const termoBusca = inputBusca.value.toLowerCase();
+                const linhas = tabela.getElementsByTagName("tr");
+
+                for (let linha of linhas) {
+                    let encontrou = false;
+                    const colunas = linha.getElementsByTagName("td");
+
+                    for (let coluna of colunas) {
+                        if (coluna.textContent.toLowerCase().includes(termoBusca)) {
+                            encontrou = true;
+                            break; // Se encontrou em uma coluna, não precisa verificar as outras
+                        }
+                    }
+
+                    linha.style.display = encontrou ? "" : "none";
+                }
+            });
+        });
+</script>
+
+ <!--***************************************Lista de Processos*********************************************-->
 
 <div class="container mt-5">
     <h2 class="text-center">Lista de Clientes e Processos</h2>
@@ -123,7 +152,7 @@
     }
 </style>
 
-<!-- **************************************Modal de edição*************************************************-->
+<!-- **************************************Modal de edição de prcessos*************************************************-->
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -297,9 +326,9 @@
         </div>
     </div>
 
-    <!--************************************Script *****************************************************-->
+<!--******************************************Script *****************************************************-->
 
-<!--*********************************BUSCAR E RENDERIZAR NA TELA BLOCO 1********************************-->
+                                <!--BUSCAR E RENDERIZAR NA TELA BLOCO 1 e 2-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Função para buscar dados no backend
@@ -417,7 +446,7 @@
 });
 
 
-//***************************************SALVAR PROCESSOS********************************************************
+//***************************************Salvar processos do modal********************************************************
 
         async function salvarProcesso() {
             const formData = new FormData(document.getElementById('editForm'));
