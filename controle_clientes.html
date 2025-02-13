@@ -359,16 +359,25 @@
                         <td>${processo.tipo || '—'}</td>
                         <td>${processo.documentos || '—'}</td>
                         <td>${processo.conferencia || '—'}</td>
-                        <td>${processo.imposto_pagar || '—'}</td>
+                        <td>${processo.imposto_pagar 
+                            ? Number(processo.imposto_pagar).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                            : '—'}
+                        </td>
                         <td>${processo.doacao || '—'}</td>
                         <td>${processo.dados_doacao || '—'}</td>
                         <td>${processo.parcelamento || '—'}</td>
-                        <td>${processo.imposto_restituir || '—'}</td>
+                        <td>${processo.imposto_restituir 
+                            ? Number(processo.imposto_restituir).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                            : '—'}
+                        </td>
                         <td>${processo.transmissao || '—'}</td>
                         <td>${processo.data_transmissao || '—'}</td>
                         <td>${processo.enviada_cliente || '—'}</td>
                         <td>${processo.observacoes || '—'}</td>
-                        <td>${processo.valor_cobrado || '—'}</td>
+                        <td>${processo.valor_cobrado 
+                            ? Number(processo.valor_cobrado ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                            : '—'}
+                        </td>
                         <td>${processo.boleto_enviado || '—'}</td>
                         <td>${processo.pagamento || '—'}</td>
                     </tr>
@@ -408,7 +417,8 @@
 });
 
 
-        //***************************************SALVAR PROCESSOS********************************************************
+//***************************************SALVAR PROCESSOS********************************************************
+
         async function salvarProcesso() {
             const formData = new FormData(document.getElementById('editForm'));
             const data = {};
@@ -449,7 +459,7 @@
     });
 });
 
-//***********************************mostra os dados no modal**********************************************
+//***********************************mostra os dados no modal para edição**********************************************
 
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('tabela-dados').addEventListener('click', function (event) {
