@@ -80,26 +80,26 @@
     
  <!--**************************************script filtro de busca****************************************--> 
  <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputBusca = document.getElementById("nomeClienteInput");
-            const tabela = document.querySelector(".table tbody");
+        document.addEventListener("DOMContentLoaded", function () { //Espera o HTML ser carregado antes de rodar o script.
+            const inputBusca = document.getElementById("nomeClienteInput");// Captura o campo de busca pelo ID nomeClienteInput
+            const tabela = document.querySelector(".table tbody");//Captura o corpo da tabela, onde estão os dados dos clientes.
 
-            inputBusca.addEventListener("keyup", function () {
-                const termoBusca = inputBusca.value.toLowerCase();
-                const linhas = tabela.getElementsByTagName("tr");
+            inputBusca.addEventListener("keyup", function () {//dispara sempre que o usuário digita algo
+                const termoBusca = inputBusca.value.toLowerCase();//Pega o que o usuário digitou e transforma tudo em letras minúsculas para evitar problemas com
+                const linhas = tabela.getElementsByTagName("tr");//Pega todas as linhas da tabela
 
-                for (let linha of linhas) {
-                    let encontrou = false;
-                    const colunas = linha.getElementsByTagName("td");
+                for (let linha of linhas) {//Percorre todas as linhas da tabela.
+                    let encontrou = false;//Variável para verificar se o termo de busca foi encontrado na linha.
+                    const colunas = linha.getElementsByTagName("td");//Pega todas as colunas da linha.
 
-                    for (let coluna of colunas) {
-                        if (coluna.textContent.toLowerCase().includes(termoBusca)) {
-                            encontrou = true;
+                    for (let coluna of colunas) {//Percorre todas as colunas da linha.
+                        if (coluna.textContent.toLowerCase().includes(termoBusca)) {//Verifica se o conteúdo da coluna contém o termo de busca.
+                            encontrou = true;//Se encontrou, muda o valor da variável para true.
                             break; // Se encontrou em uma coluna, não precisa verificar as outras
                         }
-                    }
+                    }//Fim do loop das colunas.
 
-                    linha.style.display = encontrou ? "" : "none";
+                    linha.style.display = encontrou ? "" : "none";//Se encontrou o termo de busca, exibe a linha, senão, esconde.
                 }
             });
         });
