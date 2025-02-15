@@ -14,18 +14,19 @@ if (isset($data['id'], $data['nome'], $data['email'])) {
     $id = intval($data['id']); // Garante que seja um número inteiro
     $nome = $data['nome'];
     $email = $data['email'];
+    
 
     if ($id > 0) { // Valida se o ID é válido
-        $sql = "UPDATE usuario SET nome = ?, email = ? WHERE id = ?";
+        $sql = "UPDATE usuario SET nome = ?, email = ?, WHERE id = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
             $stmt->bind_param("ssi", $nome, $email, $id);
 
-            if ($stmt->execute()) {
-                echo json_encode(["sucesso" => true]);
+            if ($stmt->execute()) { // Executa a consulta
+                echo json_encode(["sucesso" => true]);// Resposta de sucesso
             } else {
-                echo json_encode(["sucesso" => false, "mensagem" => "Erro ao executar a consulta: " . $stmt->error]);
+                echo json_encode(["sucesso" => false, "mensagem" => "Erro ao executar a consulta: " . $stmt->error]);// Resposta de erro
             }
 
             $stmt->close();

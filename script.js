@@ -9,17 +9,14 @@
             document.getElementById('conteudoPrincipal').innerHTML = conteudoInicio;
         }
 //************************************* CLIENTE DO SISTEMA ********************************************/
-
-            function mostrarTelaCadastroClientes() {
-
-//***************************** Conteúdo da tela de cadastro de Clientes *******************************/
-
-            const telaCadastro = `
-            <h2>Cadastro de Clientes</h2>
-        <form action="cad_cliente.php" method="POST">
-        <input type="hidden" id="clienteId" name="clienteId">
+function mostrarTelaCadastroClientes() {
+    // Conteúdo da tela de cadastro de Clientes
+    const telaCadastro = `
+        <h2>Cadastro de Clientes</h2>
+        <form id="cadastroForm">
+            <input type="hidden" id="clienteId" name="clienteId">
             <!-- Nome do Cliente -->
-        <div class="mb-3">
+            <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
                 <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required placeholder="Digite o nome do cliente">
             </div>
@@ -28,10 +25,10 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF" maxlenght="14" oninput="mascaraCPF(this)">
+                    <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Digite o CPF" maxlength="14" oninput="mascaraCPF(this)">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="senhaGovBr" class="form-label">senhaGovBr</label>
+                    <label for="senhaGovBr" class="form-label">Senha Gov.Br</label>
                     <input type="password" class="form-control" id="senhaGovBr" name="senhaGovBr" placeholder="Digite a senha Gov.Br">
                 </div>
             </div>
@@ -66,29 +63,29 @@
                 </div>
             </div>
 
-        <!-- Serviço Solicitado e Prioridade -->
-    <div class="row">
-        <!--Prioridade-->
-            <div class="col-md-4 mb-3">
-                <label class="form-label">Prioridade</label>
-                <select class="form-select" id="prioridade" name="prioridade">
-                    <option value="" disabled selected hidden>Selecione</option>
-                    <option value="baixa">Baixa</option>
-                    <option value="media">Média</option>
-                    <option value="alta">Alta</option>
-                </select>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="ano" class="form-label">Ano</label>
-                <select class="form-select" id="ano" name="ano">
-                    <option value="" disabled selected hidden>Selecione o ano</option>
-                    <option value="2025">2025</option>
-                    <option value="2024">2024</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                </select>
-            </div>
-        <!--Serviço solicitado -->
+            <!-- Serviço Solicitado e Prioridade -->
+            <div class="row">
+                <!-- Prioridade -->
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Prioridade</label>
+                    <select class="form-select" id="prioridade" name="prioridade">
+                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="baixa">Baixa</option>
+                        <option value="media">Média</option>
+                        <option value="alta">Alta</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="ano" class="form-label">Ano</label>
+                    <select class="form-select" id="ano" name="ano">
+                        <option value="" disabled selected hidden>Selecione o ano</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                </div>
+                <!-- Serviço Solicitado -->
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Serviço Solicitado</label>
                     <select class="form-select" id="status_servico" name="status_servico">
@@ -97,79 +94,116 @@
                         <option value="nao">Não</option>
                     </select>
                 </div>
-        <!-- Data -->
-            <div class="col-md-4 mb-3">
-                <label for="servico_solicitado" class="form-label">Data</label>
-                <input type="date" class="form-control" id="servico_solicitado" name="servico_solicitado">
+                <!-- Data -->
+                <div class="col-md-4 mb-3">
+                    <label for="servico_solicitado" class="form-label">Data</label>
+                    <input type="date" class="form-control" id="servico_solicitado" name="servico_solicitado">
+                </div>
             </div>
 
-        <form>
             <!-- Botão de Envio -->
             <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
-    </div>
-            `;
+ <!-- Modal de Resposta -->
+                <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" id="modalHeader">
+                                <h5 class="modal-title" id="responseModalLabel"></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalBody"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    `;
+
+             // Insere o conteúdo na div principal
             document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
-        }
 
-//*******************************Tratar duplicidade de CPF**********************************************/
+            // Adiciona o evento de submit ao formulário
+            const form = document.getElementById('cadastroForm');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Impede o envio tradicional do formulário
 
-$("#cpf").on("blur", function() {
-    var cpf = $(this).val();
-    $.ajax({
-        url: "verificar_cpf.php",
-        type: "POST",
-        data: { cpf: cpf },
-        success: function(response) {
-            if (response === "duplicado") {
-                alert("Este CPF já está cadastrado.");
-                $("#cpf").focus();
-            }
-        }
-    });
-});
+                const formData = new FormData(form);
 
+                fetch('cad_cliente.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const modalHeader = document.getElementById('modalHeader');
+                    const modalTitle = document.getElementById('responseModalLabel');
+                    const modalBody = document.getElementById('modalBody');
 
-//************************Mascara para CPF*********************************************************/
-
-            function mascaraCPF(input) {
-                let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-
-                // Limita o número de caracteres a 11 (CPF tem 11 dígitos)
-                if (value.length > 11) {
-                    value = value.slice(0, 11);
-                }
-
-                // Aplica a máscara (XXX.XXX.XXX-XX)
-                if (value.length > 9) {
-                    value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
-                } else if (value.length > 6) {
-                    value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
-                } else if (value.length > 3) {
-                    value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
-                }
-
-                input.value = value; // Atualiza o campo de input com a máscara
-            }
-
-//***********************Mascara do telefone******************************************************/
-            function mascaraTelefone(input) {
-                    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
-
-                            // Limita o número de caracteres a 11
-                    if (value.length > 11) {
-                        value = value.slice(0, 11);
-                    }
-
-                    // Aplica a máscara (XX) XXXXX-XXXX
-                    if (value.length <= 10) {
-                        value = value.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+                    if (data.success) {
+                        modalHeader.className = 'modal-header bg-success text-white';
+                        modalTitle.textContent = 'Sucesso';
+                        modalBody.textContent = data.message;
                     } else {
-                        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                        modalHeader.className = 'modal-header bg-danger text-white';
+                        modalTitle.textContent = 'Erro';
+                        modalBody.textContent = data.message;
                     }
 
-                    input.value = value; // Atualiza o campo de input com a máscara
+                    // Exibe o modal
+                    const responseModal = new bootstrap.Modal(document.getElementById('responseModal'));
+                    responseModal.show();
+
+                    // Limpa o formulário se o cadastro foi bem-sucedido
+                    if (data.success) {
+                        form.reset();
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+            });
+        }
+
+// Funções de Máscara
+function mascaraCPF(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+    // Limita o número de caracteres a 11 (CPF tem 11 dígitos)
+    if (value.length > 11) {
+        value = value.slice(0, 11);
     }
+
+    // Aplica a máscara (XXX.XXX.XXX-XX)
+    if (value.length > 9) {
+        value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, '$1.$2.$3-$4');
+    } else if (value.length > 6) {
+        value = value.replace(/(\d{3})(\d{3})(\d{0,3})/, '$1.$2.$3');
+    } else if (value.length > 3) {
+        value = value.replace(/(\d{3})(\d{0,3})/, '$1.$2');
+    }
+
+    input.value = value; // Atualiza o campo de input com a máscara
+}
+
+function mascaraTelefone(input) {
+    let value = input.value.replace(/\D/g, ''); // Remove tudo que não for número
+
+    // Limita o número de caracteres a 11
+    if (value.length > 11) {
+        value = value.slice(0, 11);
+    }
+
+    // Aplica a máscara (XX) XXXXX-XXXX
+    if (value.length <= 10) {
+        value = value.replace(/(\d{2})(\d{0,5})(\d{0,4})/, '($1) $2-$3');
+    } else {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    }
+
+    input.value = value; // Atualiza o campo de input com a máscara
+}
 
 //************************************** Lista de Clientes Cadastrados *******************************/
 
@@ -308,9 +342,10 @@ function mostrarListaUsuarios() {
         function editarUsuario(id) {
             const nome = prompt("Digite o novo nome:");
             const email = prompt("Digite o novo email:");
+            
 
             if (nome && email) {
-                const payload = { id, nome, email };
+                const payload = { id, nome, email, };
                 console.log("Dados enviados para edição:", payload); // DEBUG
 
                 fetch("editar_usuario.php", {
