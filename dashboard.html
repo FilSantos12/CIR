@@ -12,9 +12,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Link CSS (para seu estilo personalizado) -->
-    <link href="style.css" rel="stylesheet">
+    <link href="style_dash.css" rel="stylesheet">
 </head>
-<body>
+
+    <!-- Barra de navegação -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ece072;">
         <div class="container-fluid">
             <!-- Nome do Sistema -->
@@ -53,56 +54,49 @@
     </nav>
 
 <!--***************************************Texto e botão **********************************************-->
-
+<body>
+    
         <div class="container my-5 position-relative d-flex justify-content-center">
             <h1 class="mb-4">Dashboard do Cliente</h1>
             <button id="btnVoltar" class="btn btn-info py-2 px-3 shadow-sm rounded-3 position-absolute start-0">
-                Controle de Clientes <i class="bi bi-kanban-fill"></i>
+                <i class="bi bi-arrow-left-circle"></i> Controle de Clientes <i class="bi bi-kanban-fill"></i>
             </button>
         </div>
 
+<!--***************************************Conteudo do Dashboard **********************************************-->
+
+<div class="container">
+    <!-- Linha 1: Chart 1 e Chart 2 -->
+    <div class="chart-container">
+        <canvas id="barchart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="doughnut"></canvas>
+    </div>
+
+    <!-- Linha 2: Chart 3 e Chart 4 -->
+    <div class="chart-container">
+        <canvas id="bar"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="line"></canvas>
+    </div>
+</div>
+
+
 <!--******************************************Script******************************************************-->
     <script>
-        function updateProgress() {
-            var checkpoints = document.querySelectorAll('input[type="checkbox"]');
-            var completed = 0;
-
-            checkpoints.forEach(function (checkpoint) {
-                if (checkpoint.checked) {
-                    completed++;
-                }
-            });
-
-            var progress = (completed / checkpoints.length) * 100;
-            var progressBar = document.getElementById('progress-bar');
-            progressBar.style.width = progress + '%';
-            progressBar.setAttribute('aria-valuenow', progress);
-            progressBar.textContent = Math.round(progress) + '%';
-
-            // Alterando a cor da barra de progresso com base no valor
-                if (progress <= 30) {
-                    // Progresso menor ou igual a 30% - estado crítico (vermelho)
-                    progressBar.classList.remove('bg-warning', 'bg-success', 'bg-info');
-                    progressBar.classList.add('bg-danger');
-                } else if (progress <= 60) {
-                    // Progresso entre 31% e 60% - estado de aviso (amarelo)
-                    progressBar.classList.remove('bg-danger', 'bg-success', 'bg-info');
-                    progressBar.classList.add('bg-warning');
-                } else if (progress <= 90) {
-                    // Progresso entre 61% e 90% - estado intermediário (azul)
-                    progressBar.classList.remove('bg-danger', 'bg-warning', 'bg-success');
-                    progressBar.classList.add('bg-info');
-                } else {
-                    // Progresso acima de 90% - estado de sucesso (verde)
-                    progressBar.classList.remove('bg-danger', 'bg-warning', 'bg-info');
-                    progressBar.classList.add('bg-success');
-                }
-        }
 // Adicionando evento de clique para cada checkbox FUNÇÃO PARA VOLTAR AO CONTROLE DE CLIENTES
             document.getElementById('btnVoltar').addEventListener('click', function () {// Função para redirecionar para a página de controle de clientes
         window.location.href = 'http://localhost/controle_clientes.html'; // Atualize com o caminho correto
             })
 
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart1.js"></script>
+    <script src="chart2.js"></script>
+    <script src="chart3.js"></script>
+    <script src="chart4.js"></script>
 </body>
 </html>

@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os gráficos se ajustem em múltiplas linhas */
+    justify-content: center; /* Centraliza os gráficos */
+    gap: 20px; /* Espaço entre os gráficos */
+}
+
+.chart-container {
+    width: 45%; /* Ajusta o tamanho para caber dois gráficos por linha */
+    max-width: 500px; /* Define o tamanho máximo */
+    height: auto;
+    text-align: center;
+}
+
+canvas {
+    width: 100% !important; /* Garante que o gráfico ocupe 100% da largura do container */
+    height: auto !important; /* Mantém a proporção */
+}
