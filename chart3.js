@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     datasets: [{
                         label: "Valores Financeiros",
                         data: [imposto_pagar, imposto_restituir, doacao, parcelamento],
-                        backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4caf50"]
+                        backgroundColor: ["#ff6384", "#36a2eb", "#ffce56", "#4caf50"]// Cores diferentes para cada barra
                     }]
                 },
                 options: { 

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     datasets: [{
                         label: "Status da Conferência",
                         data: valores,
-                        backgroundColor: ["#9b59b6", "#1abc9c", "#e74c3c"]
+                        backgroundColor: ["#9b59b6", "#1abc9c", "#FFFF00"]
                     }]
                 },
                 options: { 

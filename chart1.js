@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     datasets: [{
                         label: "Processos por Tipo",
                         data: valores,
-                        backgroundColor: ["#3498db", "#e74c3c", "#2ecc71", "#f1c40f"],
+                        backgroundColor: ["#3498db", "#ffca24", "#2ecc71", "#f1c40f"],
                         borderWidth: 1
                     }]
                 },

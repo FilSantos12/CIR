@@ -127,6 +127,7 @@ $username = $_SESSION['username'];
     <!-- *************************************Ícones do Bootstrap **********************************************-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+
 </body>
 <script src="script.js"></script>
 <script>
@@ -135,5 +136,12 @@ function carregarDashboard() {
     window.open("dashboard.html", "_blank");
 }
 </script>
+
+<footer class="bg-dark text-white text-center py-2 mt-4">
+    <div class="container">
+        <p>&copy; 2025 Filipe Santos. Todos os direitos reservados.</p>
+        <p><a href="https://filsantos12.github.io/MyPortifolio/index.html" class="text-white text-decoration-none">Visite Meu Portifolio</a></p>
+    </div>
+</footer>
 
 </html>

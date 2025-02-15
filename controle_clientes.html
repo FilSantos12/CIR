@@ -66,17 +66,36 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h2>Controle de Clientes</h2>
-        <!-- Campo de busca -->
-        <form id="formBusca" class="mb-4">
-            <div class="input-group">
-                <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o que deseja buscar" />
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
-        </form>
-        <div id="listaClientes"></div>
-    </div>
+    <!-- Fechar a pagina -->
+    <script>
+        function fecharPagina() {
+            window.close();
+        }
+    </script>
+
+<div class="container mt-4">
+    <h2>Controle de Clientes</h2>
+    <!-- Campo de busca e botão Dashboard na mesma linha -->
+    <form id="formBusca" class="mb-4 d-flex align-items-center">
+        <div class="input-group center"> <!-- 'me-2' adiciona margem à direita para o botão de busca -->
+            <input type="text" id="nomeClienteInput" class="form-control w-50" placeholder="Digite o que deseja buscar" />
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+        <!-- Botão Dashboard na mesma linha -->
+        <button class="btn btn-info text-start py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarDashboard()">Dashboard <i class="bi bi-bar-chart-fill"></i></button>
+    </form>
+
+    <div id="listaClientes"></div>
+</div>
+
+<!--*******************************Chama a função Dashboard para o botão*************************************************-->
+<script>
+
+function carregarDashboard() {
+    window.open("dashboard.html", "_blank");
+}
+
+</script>
     
  <!--**************************************script filtro de busca****************************************--> 
  <script>
@@ -549,8 +568,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
-    </script>
+</script>
 
 </body>
+
 </html>
