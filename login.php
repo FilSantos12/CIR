@@ -1,18 +1,20 @@
 <?php
 session_start();
 
+$response = ['success' => false, 'message' => ''];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = trim($_POST['username']); // Remove espaços extras
+    $nome = trim($_POST['username']);
     $senha = trim($_POST['password']);
 
-    // Conexão com o banco de dados
-    include 'db_connection.php'; // Certifique-se de que este arquivo define corretamente $conn
+    include 'db_connection.php';
 
     if ($conn->connect_error) {
-        die("Conexão falhou: " . $conn->connect_error);
+        $response['message'] = "Conexão falhou: " . $conn->connect_error;
+        echo json_encode($response);
+        exit();
     }
 
-    // Consulta para verificar se o usuário existe
     $sql = "SELECT * FROM usuario WHERE nome = ?";
     $stmt = $conn->prepare($sql);
 
@@ -22,29 +24,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
 
         if ($result->num_rows > 0) {
-            // Verifica a senha
             $user = $result->fetch_assoc();
             if (password_verify($senha, $user['senha'])) {
-                // Login bem-sucedido
                 $_SESSION['username'] = $nome;
-                header('Location: index.php'); // Redireciona para o painel
-                exit(); // Garante que o restante do script não será executado
+                $response['success'] = true;
+                $response['message'] = "Login bem-sucedido!";
             } else {
-                echo "Usuário ou senha inválidos.";
+                $response['message'] = "Usuário ou senha inválidos.";
             }
         } else {
-            echo "Usuário não encontrado.";
+            $response['message'] = "Usuário não encontrado.";
         }
 
         $stmt->close();
     } else {
-        echo "Erro na preparação da consulta.";
+        $response['message'] = "Erro na preparação da consulta.";
     }
 
     $conn->close();
 }
 
-// Exibir erros para depuração
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+echo json_encode($response);
 ?>
