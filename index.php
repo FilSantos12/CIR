@@ -71,6 +71,11 @@ $username = $_SESSION['username'];
                 <li class="mt-2 nav-item">
                     <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="mostrarTelaInicio()">Início <i class="bi bi-house-door-fill"></i></button>
                 </li>
+            <!--Botão Dashboard-->
+                <ul class="nav flex-column">
+                    <li class="mt-2 nav-item">
+                        <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarDashboard()">Dashboard <i class="bi bi-bar-chart-fill"></i></button>
+                    </li>
             <!--Clientes-->    
                 <li class="mt-2 nav-item">
                     <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" data-bs-toggle="collapse" data-bs-target="#submenu" aria-expanded="false" aria-controls="submenu">
@@ -124,4 +129,11 @@ $username = $_SESSION['username'];
 
 </body>
 <script src="script.js"></script>
+<script>
+    //*******************************Chama a função Dashboard para o botão****************************************************/
+function carregarDashboard() {
+    window.open("dashboard.html", "_blank");
+}
+</script>
+
 </html>
