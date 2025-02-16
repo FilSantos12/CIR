@@ -468,40 +468,43 @@ function carregarDashboard() {
 //***************************************Salvar processos do modal********************************************************
 
         async function salvarProcesso() {
-            const formData = new FormData(document.getElementById('editForm'));
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+    const formData = new FormData(document.getElementById('editForm'));
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
 
-            try {
-                const response = await fetch('salvar_processo.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+    // Verificar o ID do cliente antes de enviar
+    console.log('ID do cliente a ser salvo:', data.id_cliente);
 
-                const result = await response.json();
-                if (result.status === "success") {
-                    alert("Dados salvos com sucesso!");
+    try {
+        const response = await fetch('salvar_processo.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-                    // Obtém a instância do modal e fecha
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
-                    if (modal) modal.hide();
+        const result = await response.json();
+        if (result.status === "success") {
+            alert("Dados salvos com sucesso!");
 
-                    carregarDados(); // Atualiza a tabela após salvar
-                } else {
-                    alert("Erro ao salvar os dados: " + result.message);
-                }
-            } catch (error) {
-                console.error("Erro ao salvar:", error);
-                alert("Erro ao salvar os dados. Verifique o console para mais detalhes.");
-            }
+            // Obtém a instância do modal e fecha
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+            if (modal) modal.hide();
+
+            carregarDados(); // Atualiza a tabela após salvar
+        } else {
+            alert("Erro ao salvar os dados: " + result.message);
         }
+    } catch (error) {
+        console.error("Erro ao salvar:", error);
+        alert("Erro ao salvar os dados. Verifique o console para mais detalhes.");
+    }
+}
 
-        document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('saveEditButton').addEventListener('click', function () {
         salvarProcesso();
     });
@@ -522,12 +525,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
+            // Preencher o campo oculto no formulário do modal
+            document.getElementById('editIdCliente').value = idCliente;
+
             // Capturar a linha da tabela onde o botão foi clicado
             const linha = event.target.closest('tr');
 
             // Capturar os dados da linha
             const dados = {
-                idCliente: linha.cells[1].textContent.trim(),
                 dataSolicitacao: linha.cells[6].textContent.trim(),
                 tipo: linha.cells[7].textContent.trim(),
                 documentos: linha.cells[8].textContent.trim(),
@@ -547,7 +552,6 @@ document.addEventListener('DOMContentLoaded', function () {
             };
 
             // Preencher os campos do modal com os dados capturados
-            document.getElementById('editIdCliente').value = dados.idCliente;
             document.getElementById('editDataSolicitacao').value = dados.dataSolicitacao;
             document.getElementById('editTipo').value = dados.tipo;
             document.getElementById('editDocumentos').value = dados.documentos;
