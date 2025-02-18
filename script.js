@@ -206,193 +206,43 @@ function mascaraTelefone(input) {
 }
 
 //************************************** Lista de Clientes Cadastrados *******************************/
-
-                function mostrarListaClientes() {
-            const listaCliente = `
-                <h2>Lista de Clientes</h2>
-                <ul id="listaCliente" class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+function mostrarListaClientes() {
+    const listaCliente = `
+        <div id="conteudoPrincipal">
+            <h2>Lista de Clientes</h2>
+            <ul id="listaCliente" class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
                     ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
                     <div> 
                         <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
                     </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
                     ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
                     <div>
                         <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
                     </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
                     ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
                     ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
                     <div>
                         <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
                         <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
                     </div>
-                    </li>
-                </ul>
-            `;
-            document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
-        }
+                </li>
+            </ul>
+        </div>
+    `;
 
-    
-//**************************************** USUARIO DO SISTEMA ***************************************/
-
-        function mostrarTelaCadastroUsuarios() {
-
-//*************************************** Conteúdo da tela de cadastro de usuarios ******************/
-            const telaCadastro = `
-                <h2>Cadastro de Usuários</h2>
-                <form action="cad_usuario.php" method="POST">
-                    <div class="mb-3">
-                        <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
-                        <input type="text" class="form-control" id="nomeUsuario" name="nome" required placeholder="Digite o nome">
-                    </div>
-                    <div class="mb-3">
-                        <label for="emailUsuario" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="emailUsuario" name="email" required placeholder="Digite o e-mail">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="senhaUsuario" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senhaUsuario" name="senha" required placeholder="Digite a senha">
-                    </div>
-                    <button type="submit" class="btn btn-success">Salvar</button>
-                </form>
-                
-            `;
-            document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
-
-        }
-//**************************************** Lista de Usuarios Cadastrados ***************************/
-
-                function mostrarListaUsuarios() {
-                    
-            const listaUsuarios = `
-                <h2>Lista de Usuários</h2>
-                <ul id="listaUsuarios" class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nome} (${email})
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
-                    </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nome} (${email})
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
-                    </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nome} (${email})
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
-                    </div>
-                    </li>
-                </ul>
-            `;
-            document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
-        }
-
-        //************************************* Buscar dados de usuarios ************************/
-
-function mostrarListaUsuarios() {
-    // Faz requisição para o backend
-    fetch("buscar_dados.php")
-        .then(response => response.json())
-        .then(data => {
-            // Cria a estrutura da lista
-            const listaUsuariosHTML = `
-                <h2>Lista de Usuários</h2>
-                <ul id="listaUsuarios" class="list-group"></ul>
-            `;
-
-            // Renderiza a estrutura na página
-            document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
-
-            // Adiciona os itens retornados do backend
-            const listaUsuarios = document.getElementById("listaUsuarios");
-            data.forEach(usuario => {
-                const li = document.createElement("li");
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
-                li.innerHTML = `
-                    ${usuario.id} - ${usuario.nome} (${usuario.email})
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${usuario.id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id})">Excluir</button>
-                    </div>
-                `;
-                listaUsuarios.appendChild(li);
-            });
-        })
-        .catch(error => console.error("Erro ao buscar dados:", error));
+    // Inserindo o conteúdo de forma correta
+    document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
 }
 
-
-//***************************************** Função para editar usuário ****************************/
-
-        function editarUsuario(id) {
-            const nome = prompt("Digite o novo nome:");
-            const email = prompt("Digite o novo email:");
-            
-
-            if (nome && email) {
-                const payload = { id, nome, email, };
-                console.log("Dados enviados para edição:", payload); // DEBUG
-
-                fetch("editar_usuario.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data); // DEBUG
-                    if (data.sucesso) {
-                        alert("Usuário editado com sucesso!");
-                        mostrarListaUsuarios(); // Atualiza a lista
-                    } else {
-                        alert("Erro ao editar usuário: " + data.mensagem);
-                    }
-                })
-                .catch(error => console.error("Erro:", error));
-            }
-        }
-
-
-//**************************************** Função para excluir usuário ************************/
-
-        function excluirUsuario(id) {
-            if (confirm("Tem certeza que deseja excluir este usuário?")) {
-                const payload = { id };
-                console.log("Dados enviados para exclusão:", payload); // DEBUG
-
-                fetch("excluir_usuario.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data); // DEBUG
-                    if (data.sucesso) {
-                        alert("Usuário excluído com sucesso!");
-                        mostrarListaUsuarios(); // Atualiza a lista
-                    } else {
-                        alert("Erro ao excluir usuário: " + data.mensagem);
-                    }
-                })
-                .catch(error => console.error("Erro:", error));
-            }
-        }
 
 //************************************* Buscar dados de Clientes ************************/
 
@@ -403,8 +253,14 @@ function mostrarListaClientes() {
         .then(clientes => {
             let tabelaClientes = `
                 <h2 class="mb-4">Lista de Clientes</h2>
+                <form id="formBusca" class="mb-4 d-flex align-items-center">
+                    <div class="input-group center">
+                        <input type="text" id="nomeClienteInput" class="form-control w-50" placeholder="Digite o que deseja buscar" />
+                        <button type="submit" class="btn btn-primary">Buscar</button>
+                    </div>
+                </form>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover" id="tabelaClientes">
                         <thead class="table-dark">
                             <tr>
                                 <th>ID</th>
@@ -422,7 +278,7 @@ function mostrarListaClientes() {
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="corpoTabela">
             `;
 
             // Adiciona cada cliente como uma linha na tabela
@@ -466,37 +322,71 @@ function mostrarListaClientes() {
             if (menuLateral) {
                 menuLateral.style.minHeight = `${conteudoPrincipal.offsetHeight}px`;
             }
+
+            // Adiciona o evento de busca após a tabela ser renderizada
+            adicionarEventoBusca(clientes);
         })
         .catch(error => console.error('Erro ao buscar cliente:', error));
 }
 
+// Função para adicionar o evento de busca
+function adicionarEventoBusca(clientes) {
+    const formBusca = document.getElementById('formBusca');
+    if (formBusca) {
+        formBusca.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+            const termo = document.getElementById('nomeClienteInput').value;
+            const clientesFiltrados = filtrarClientes(clientes, termo);
+            renderizarTabela(clientesFiltrados);
+        });
+    }
+}
 
+// Função para filtrar os clientes com base no termo de busca
+function filtrarClientes(clientes, termo) {
+    return clientes.filter(cliente =>
+        cliente.nomeCliente.toLowerCase().includes(termo.toLowerCase()) ||
+        cliente.cpf.includes(termo) ||
+        cliente.email.toLowerCase().includes(termo.toLowerCase())
+    );
+}
 
-//********************************************Excluir Cliente******************************************/
+// Função para renderizar a tabela com os clientes filtrados
+function renderizarTabela(clientesFiltrados) {
+    const corpoTabela = document.getElementById('corpoTabela');
+    if (corpoTabela) {
+        corpoTabela.innerHTML = ''; // Limpa a tabela antes de renderizar
 
-                function excluirCliente(id) {
-            if (confirm("Tem certeza que deseja excluir este usuário?")) {
-                const payload = { id };
-                console.log("Dados enviados para exclusão:", payload); // DEBUG
+        clientesFiltrados.forEach(cliente => {
+            const linha = `
+                <tr>
+                    <td>${cliente.id}</td>
+                    <td>${cliente.nomeCliente}</td>
+                    <td>${cliente.cpf}</td>
+                    <td>${cliente.senhaGovBr}</td>
+                    <td>${cliente.procuracao}</td>
+                    <td>${cliente.dataVencimento}</td>
+                    <td>${cliente.telefone}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.prioridade}</td>
+                    <td>${cliente.servico_solicitado}</td>
+                    <td>${cliente.ano}</td>
+                    <td>${cliente.status_servico}</td>
+                    <td>
+                        <div class="d-flex">
+                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
+                            <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+            corpoTabela.innerHTML += linha;
+        });
+    }
+}
 
-                fetch("excluir_cliente.php", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Resposta do servidor:", data); // DEBUG
-                    if (data.sucesso) {
-                        alert("Cliente excluído com sucesso!");
-                        mostrarListaClientes(); // Atualiza a lista
-                    } else {
-                        alert("Erro ao excluir usuário: " + data.mensagem);
-                    }
-                })
-                .catch(error => console.error("Erro:", error));
-            }
-        }
+// Chama a função para mostrar a lista de clientes ao carregar a página
+//mostrarListaClientes();
 
 //*******************************Editar Cliente*********************************************************/ 
 
@@ -706,6 +596,191 @@ function validarCPF(cpf) {
     // Validação básica do CPF pode ser adicionada aqui (opcional)
     return true; // CPF válido
 }
+
+    
+//**************************************** USUARIO DO SISTEMA ***************************************/
+
+        function mostrarTelaCadastroUsuarios() {
+
+//*************************************** Conteúdo da tela de cadastro de usuarios ******************/
+            const telaCadastro = `
+                <h2>Cadastro de Usuários</h2>
+                <form action="cad_usuario.php" method="POST">
+                    <div class="mb-3">
+                        <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
+                        <input type="text" class="form-control" id="nomeUsuario" name="nome" required placeholder="Digite o nome">
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailUsuario" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="emailUsuario" name="email" required placeholder="Digite o e-mail">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="senhaUsuario" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="senhaUsuario" name="senha" required placeholder="Digite a senha">
+                    </div>
+                    <button type="submit" class="btn btn-success">Salvar</button>
+                </form>
+                
+            `;
+            document.getElementById('conteudoPrincipal').innerHTML = telaCadastro;
+
+        }
+//**************************************** Lista de Usuarios Cadastrados ***************************/
+
+                function mostrarListaUsuarios() {
+                    
+            const listaUsuarios = `
+                <h2>Lista de Usuários</h2>
+                <ul id="listaUsuarios" class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${id} ${nome} (${email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${id})">Excluir</button>
+                    </div>
+                    </li>
+                </ul>
+            `;
+            document.getElementById('conteudoPrincipal').innerHTML = listaUsuarios;
+        }
+
+        //************************************* Buscar dados de usuarios ************************/
+
+function mostrarListaUsuarios() {
+    // Faz requisição para o backend
+    fetch("buscar_dados.php")
+        .then(response => response.json())
+        .then(data => {
+            // Cria a estrutura da lista
+            const listaUsuariosHTML = `
+                <h2>Lista de Usuários</h2>
+                <ul id="listaUsuarios" class="list-group"></ul>
+            `;
+
+            // Renderiza a estrutura na página
+            document.getElementById('conteudoPrincipal').innerHTML = listaUsuariosHTML;
+
+            // Adiciona os itens retornados do backend
+            const listaUsuarios = document.getElementById("listaUsuarios");
+            data.forEach(usuario => {
+                const li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.innerHTML = `
+                    ${usuario.id} - ${usuario.nome} (${usuario.email})
+                    <div>
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarUsuario(${usuario.id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirUsuario(${usuario.id})">Excluir</button>
+                    </div>
+                `;
+                listaUsuarios.appendChild(li);
+            });
+        })
+        .catch(error => console.error("Erro ao buscar dados:", error));
+}
+
+
+//***************************************** Função para editar usuário ****************************/
+
+        function editarUsuario(id) {
+            const nome = prompt("Digite o novo nome:");
+            const email = prompt("Digite o novo email:");
+            
+
+            if (nome && email) {
+                const payload = { id, nome, email, };
+                console.log("Dados enviados para edição:", payload); // DEBUG
+
+                fetch("editar_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário editado com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao editar usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
+
+//**************************************** Função para excluir usuário ************************/
+
+        function excluirUsuario(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                const payload = { id };
+                console.log("Dados enviados para exclusão:", payload); // DEBUG
+
+                fetch("excluir_usuario.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Usuário excluído com sucesso!");
+                        mostrarListaUsuarios(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao excluir usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
+
+
+
+
+//********************************************Excluir Cliente******************************************/
+
+                function excluirCliente(id) {
+            if (confirm("Tem certeza que deseja excluir este usuário?")) {
+                const payload = { id };
+                console.log("Dados enviados para exclusão:", payload); // DEBUG
+
+                fetch("excluir_cliente.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Resposta do servidor:", data); // DEBUG
+                    if (data.sucesso) {
+                        alert("Cliente excluído com sucesso!");
+                        mostrarListaClientes(); // Atualiza a lista
+                    } else {
+                        alert("Erro ao excluir usuário: " + data.mensagem);
+                    }
+                })
+                .catch(error => console.error("Erro:", error));
+            }
+        }
+
 
 
 //*******************************Chama a função Controle de Clientes****************************************************/

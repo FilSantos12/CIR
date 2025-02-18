@@ -13,11 +13,7 @@ select.form-select {
 
 
 /* Estilos gerais para a lista de clientes */
-#listaCliente {
-    list-style-type: none;  /* Remove o marcador padrão da lista */
-    padding: 0;
-    margin: 0;
-}
+
 
 /* Estilo para cada item da lista */
 #listaCliente .list-group-item {
@@ -73,5 +69,34 @@ select.form-select {
 }
 
 
+/* Estilo para o menu lateral */
+#menuLateral {
+    width: 250px; /* Largura do menu lateral */
+    height: 100vh; /* Altura total da viewport */
+    position: fixed; /* Fixo na tela */
+    top: 0;
+    left: 0;
+    background-color: #343a40; /* Cor de fundo do menu */
+    color: white; /* Cor do texto */
+    overflow-y: auto; /* Adiciona scroll se o conteúdo for muito longo */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+}
 
+/* Estilo para o conteúdo principal */
+#conteudoPrincipal {
+    max-width: 800px; /* Largura máxima da lista */
+    margin-left: 270px; /* Ajusta para deixar espaço para o menu lateral */
+    margin-right: auto;
+    padding: 20px;
+    background: #f8f9fa; /* Cor de fundo opcional */
+    border-radius: 8px; /* Bordas arredondadas para um design mais elegante */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+/* Estilo para a lista de clientes */
+#listaCliente {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
