@@ -206,123 +206,122 @@ function mascaraTelefone(input) {
 }
 
 //************************************** Lista de Clientes Cadastrados *******************************/
-function mostrarListaClientes() {
-    const listaCliente = `
-        <div id="conteudoPrincipal">
-            <h2>Lista de Clientes</h2>
-            <ul id="listaCliente" class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
-                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
-                    <div> 
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
-                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    ${id} ${nomeCliente} ${cpf} ${senhaGovBr} ${procuracao} ${dataVencimento} ${telefone} (${email})
-                    ${prioridade} ${servico_solicitado} ${ano} ${status_servico} 
-                    <div>
-                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${id})">Editar</button>
-                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${id})">Excluir</button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    `;
+// Variáveis para controle de páginas
+let currentPage = 1;
+const itemsPerPage = 5; // Número de itens por página
+let clientesFiltrados = []; // Armazena os clientes após a busca
 
-    // Inserindo o conteúdo de forma correta
-    document.getElementById('conteudoPrincipal').innerHTML = listaCliente;
-}
-
-
-//************************************* Buscar dados de Clientes ************************/
-
+// Função para mostrar a lista de clientes
 function mostrarListaClientes() {
     // Faz a requisição para o PHP
     fetch('buscar_dados_cliente.php')
         .then(response => response.json()) // Converte a resposta em JSON
         .then(clientes => {
-            let tabelaClientes = `
-                <h2 class="mb-4">Lista de Clientes</h2>
-                <form id="formBusca" class="mb-4 d-flex align-items-center">
-                    <div class="input-group center">
-                        <input type="text" id="nomeClienteInput" class="form-control w-50" placeholder="Digite o que deseja buscar" />
-                        <button type="submit" class="btn btn-primary">Buscar</button>
-                    </div>
-                </form>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover" id="tabelaClientes">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Senha Gov.Br</th>
-                                <th>Procuração</th>
-                                <th>Data Vencimento</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
-                                <th>Prioridade</th>
-                                <th>Serviço</th>
-                                <th>Ano</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody id="corpoTabela">
-            `;
+            // Função para dividir os dados em páginas
+            const totalPages = Math.ceil(clientes.length / itemsPerPage);
 
-            // Adiciona cada cliente como uma linha na tabela
-            clientes.forEach(cliente => {
-                tabelaClientes += `
-                    <tr>
-                        <td>${cliente.id}</td>
-                        <td>${cliente.nomeCliente}</td>
-                        <td>${cliente.cpf}</td>
-                        <td>${cliente.senhaGovBr}</td>
-                        <td>${cliente.procuracao}</td>
-                        <td>${cliente.dataVencimento}</td>
-                        <td>${cliente.telefone}</td>
-                        <td>${cliente.email}</td>
-                        <td>${cliente.prioridade}</td>
-                        <td>${cliente.servico_solicitado}</td>
-                        <td>${cliente.ano}</td>
-                        <td>${cliente.status_servico}</td>
-                        <td>
-                            <div class="d-flex">
-                                <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
-                                <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
-                            </div>
-                        </td>
-                    </tr>
+            // Função para exibir os clientes da página atual
+            function renderPage(page) {
+                const start = (page - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const clientesPagina = clientes.slice(start, end);
+
+                let tabelaClientes = `
+                    <h2 class="mb-4">Lista de Clientes</h2>
+                    <form id="formBusca" class="mb-4 d-flex align-items-center">
+                        <div class="input-group center">
+                            <input type="text" id="nomeClienteInput" class="form-control w-50" placeholder="Digite o que deseja buscar" />
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover" id="tabelaClientes">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Senha Gov.Br</th>
+                                    <th>Procuração</th>
+                                    <th>Data Vencimento</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>Prioridade</th>
+                                    <th>Serviço</th>
+                                    <th>Ano</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corpoTabela">
                 `;
-            });
 
-            tabelaClientes += `
+                // Adiciona cada cliente como uma linha na tabela
+                clientesPagina.forEach(cliente => {
+                    tabelaClientes += `
+                        <tr>
+                            <td>${cliente.id}</td>
+                            <td>${cliente.nomeCliente}</td>
+                            <td>${cliente.cpf}</td>
+                            <td>${cliente.senhaGovBr}</td>
+                            <td>${cliente.procuracao}</td>
+                            <td>${cliente.dataVencimento}</td>
+                            <td>${cliente.telefone}</td>
+                            <td>${cliente.email}</td>
+                            <td>${cliente.prioridade}</td>
+                            <td>${cliente.servico_solicitado}</td>
+                            <td>${cliente.ano}</td>
+                            <td>${cliente.status_servico}</td>
+                            <td>
+                                <div class="d-flex">
+                                    <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
+                                    <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                tabelaClientes += `
                         </tbody>
                     </table>
                 </div>
-            `;
 
-            // Exibe a tabela na página
-            const conteudoPrincipal = document.getElementById('conteudoPrincipal');
-            conteudoPrincipal.innerHTML = tabelaClientes;
+                
+                        <div class="d-flex justify-content-center mt-4">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <button class="page-link" id="prev" ${page === 1 ? 'disabled' : ''} onclick="navigatePage(${page - 1})">Anterior</button>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <span class="page-link">Página ${page} de ${totalPages}</span>
+                                    </li>
+                                    <li class="page-item ${page === totalPages ? 'disabled' : ''}">
+                                        <button class="page-link" id="next" ${page === totalPages ? 'disabled' : ''} onclick="navigatePage(${page + 1})">Próximo</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
-            // Garante que o menu lateral não seja afetado
-            const menuLateral = document.getElementById('menuLateral');
-            if (menuLateral) {
-                menuLateral.style.minHeight = `${conteudoPrincipal.offsetHeight}px`;
+                `;
+
+                // Exibe a tabela na página
+                const conteudoPrincipal = document.getElementById('conteudoPrincipal');
+                conteudoPrincipal.innerHTML = tabelaClientes;
             }
 
+            // Função de navegação entre páginas
+            window.navigatePage = function(page) {
+                if (page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    renderPage(page);
+                }
+            };
+
+            // Exibe a primeira página
+            renderPage(currentPage);
+            
             // Adiciona o evento de busca após a tabela ser renderizada
             adicionarEventoBusca(clientes);
         })
@@ -787,7 +786,6 @@ function mostrarListaUsuarios() {
 function carregarControleClientes() {
     window.open("controle_clientes.html", "_blank");
 }
-
 
 
 

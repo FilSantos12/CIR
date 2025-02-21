@@ -3,7 +3,7 @@
 
 html {
   font-family: 'Poppins', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /*text dos campos em cinza para diferenciar as opções*/
@@ -84,19 +84,34 @@ select.form-select {
 
 /* Estilo para o conteúdo principal */
 #conteudoPrincipal {
-    max-width: 800px; /* Largura máxima da lista */
-    margin-left: 270px; /* Ajusta para deixar espaço para o menu lateral */
-    margin-right: auto;
+    max-width: 1100px; /* Largura máxima da lista */
+    margin-left: 10px; /* Ajusta para deixar espaço para o menu lateral */
+    margin-right: 10px;
     padding: 20px;
     background: #f8f9fa; /* Cor de fundo opcional */
     border-radius: 8px; /* Bordas arredondadas para um design mais elegante */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
 }
 
-/* Estilo para a lista de clientes */
-#listaCliente {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+
+.table-sm {
+    font-size: 12px; /* Reduz o tamanho da fonte */
 }
+
+.table-sm th, .table-sm td {
+    padding: 2px 5px; /* Reduz o espaçamento interno */
+    white-space: nowrap; /* Evita que o texto quebre */
+    text-overflow: ellipsis; /* Adiciona reticências caso o texto seja muito longo */
+    overflow: hidden;
+}
+
+.table-sm th {
+    background-color: #f8f9fa; /* Dá um leve destaque no cabeçalho */
+}
+
+.table-sm td {
+    max-width: 150px; /* Define um limite para o tamanho das células */
+}
+
+
 
