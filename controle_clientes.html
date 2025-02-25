@@ -161,6 +161,25 @@ function carregarDashboard() {
     </div>
 </div>
 
+<!--**************************************Paginação*************************************************-->
+
+                    <div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li class="page-item">
+                <button class="page-link" id="prev" onclick="navigatePage(paginaAtual - 1)">Anterior</button>
+            </li>
+            <li class="page-item disabled">
+                <span class="page-link">Página <span id="pagina-atual"></span> de <span id="total-paginas"></span></span>
+            </li>
+            <li class="page-item">
+                <button class="page-link" id="next" onclick="navigatePage(paginaAtual + 1)">Próximo</button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
 <style>
     th:nth-child(6), td:nth-child(6) {
         border-left: 3px solid #f5ecb8;
@@ -429,6 +448,8 @@ function carregarDashboard() {
                         <td>${processo.boleto_enviado || '—'}</td>
                         <td>${processo.pagamento || '—'}</td>
                     </tr>
+
+
                 `);
             }
 
@@ -464,6 +485,99 @@ function carregarDashboard() {
     });
 });
 
+//***************************************Script de paginação*************************************************
+
+    let dadosTabela = [];
+    let paginaAtual = 1;
+    const itensPorPagina = 5;
+
+    async function carregarDados() {
+        const dados = await buscarDados();
+        const clientes = dados.clientes || [];
+        const processos = dados.processos || [];
+
+        // Combinar clientes e processos corretamente
+        dadosTabela = clientes.map((cliente, index) => ({
+            cliente: cliente,
+            processo: processos[index] || {} // Evita erro caso não haja processo correspondente
+        }));
+
+        renderizarTabela();
+        atualizarPaginacao();
+    }
+
+    function renderizarTabela() {
+        const tbody = document.getElementById('tabela-dados');
+        tbody.innerHTML = ''; // Limpa a tabela
+
+        const inicio = (paginaAtual - 1) * itensPorPagina;
+        const fim = inicio + itensPorPagina;
+        const dadosPagina = dadosTabela.slice(inicio, fim);
+
+        dadosPagina.forEach(item => {
+            let cliente = item.cliente;
+            let processo = item.processo;
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>
+                        <button class="btn btn-primary btn-sm editBtn" data-id="${cliente.cliente_id}" data-bs-toggle="modal" data-bs-target="#editModal">Editar</button>
+                    </td>
+                    <td>${cliente.cliente_id || '—'}</td>
+                    <td>${cliente.nomeCliente || '—'}</td>
+                    <td>${cliente.cpf || '—'}</td>
+                    <td>${cliente.procuracao || '—'}</td>
+                    <td style="border-left: 3px solid #f5ecb8;"></td>
+                    <td>${processo.data_solicitacao || '—'}</td>
+                    <td>${processo.tipo || '—'}</td>
+                    <td>${processo.documentos || '—'}</td>
+                    <td>${processo.conferencia || '—'}</td>
+                    <td>${processo.imposto_pagar 
+                        ? Number(processo.imposto_pagar).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                        : '—'}
+                    </td>
+                    <td>${processo.doacao || '—'}</td>
+                    <td>${processo.dados_doacao || '—'}</td>
+                    <td>${processo.parcelamento || '—'}</td>
+                    <td>${processo.imposto_restituir 
+                        ? Number(processo.imposto_restituir).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                        : '—'}
+                    </td>
+                    <td>${processo.transmissao || '—'}</td>
+                    <td>${processo.data_transmissao || '—'}</td>
+                    <td>${processo.enviada_cliente || '—'}</td>
+                    <td>${processo.observacoes || '—'}</td>
+                    <td>${processo.valor_cobrado 
+                        ? Number(processo.valor_cobrado).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+                        : '—'}
+                    </td>
+                    <td>${processo.boleto_enviado || '—'}</td>
+                    <td>${processo.pagamento || '—'}</td>
+                </tr>
+            `;
+        });
+    }
+
+    function atualizarPaginacao() {
+        const totalPaginas = Math.ceil(dadosTabela.length / itensPorPagina);
+
+        document.getElementById('pagina-atual').innerText = paginaAtual;
+        document.getElementById('total-paginas').innerText = totalPaginas;
+
+        document.getElementById('prev').disabled = paginaAtual === 1;
+        document.getElementById('next').disabled = paginaAtual === totalPaginas || totalPaginas === 0;
+    }
+
+    function navigatePage(pagina) {
+        const totalPaginas = Math.ceil(dadosTabela.length / itensPorPagina);
+        if (pagina < 1 || pagina > totalPaginas) return;
+
+        paginaAtual = pagina;
+        renderizarTabela();
+        atualizarPaginacao();
+    }
+
+    window.onload = carregarDados;
 
 //***************************************Salvar processos do modal********************************************************
 

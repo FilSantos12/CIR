@@ -84,7 +84,7 @@ select.form-select {
 
 /* Estilo para o conteúdo principal */
 #conteudoPrincipal {
-    max-width: 1100px; /* Largura máxima da lista */
+    max-width: 100%; /* Largura máxima da lista */
     margin-left: 10px; /* Ajusta para deixar espaço para o menu lateral */
     margin-right: 10px;
     padding: 20px;
