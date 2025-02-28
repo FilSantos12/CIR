@@ -190,7 +190,7 @@ function carregarDashboard() {
     }
 </style>
 
-<!-- **************************************Modal de edição de prcessos*************************************************-->
+<!-- **************************************Modal de edição de processos*************************************************-->
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -209,7 +209,7 @@ function carregarDashboard() {
                     <!-- Data da Solicitação-->
                     <div class="mb-3">
                         <label for="editDataSolicitacao" class="form-label">Data Solicitação</label>
-                        <input type="date" name="data_solicitacao" class="form-control" id="editDataSolicitacao">
+                        <input type="date" name="data_solicitacao" class="form-control" id="editDataSolicitacao" required>
                     </div>
                     <!-- Tipo -->
                     <div class="mb-3">
@@ -310,12 +310,12 @@ function carregarDashboard() {
                     <!-- Data Transmissão -->
                     <div class="mb-3">
                         <label for="editDataTransmissao" class="form-label">Data Transmissão</label>
-                        <input type="date" name="data_transmissao" class="form-control" id="editDataTransmissao">
+                        <input type="date" name="data_transmissao" class="form-control" id="editDataTransmissao" required>
                     </div>
                     <!-- Enviada ao Cliente -->
                     <div class="mb-3">
                         <label for="editEnviadaCliente" class="form-label">Enviada ao Cliente</label>
-                        <input type="date" name="enviada_cliente" class="form-control" id="editEnviadaCliente">
+                        <input type="date" name="enviada_cliente" class="form-control" id="editEnviadaCliente" required>
                     </div>
                     <!-- Observações -->
                     <div class="mb-3">
@@ -347,7 +347,7 @@ function carregarDashboard() {
                     </div>
                     <!-- Pagamento -->
                     <div class="mb-3">
-                        <label for="editPagamento" class="form-label">Pagemento</label>
+                        <label for="editPagamento" class="form-label">Pagamento</label>
                         <select name="pagamento" class="form-select" id="editPagamento">
                             <option value="" selected></option>
                             <option value="Pendente">Pendente</option>
@@ -489,7 +489,7 @@ function carregarDashboard() {
 
     let dadosTabela = [];
     let paginaAtual = 1;
-    const itensPorPagina = 5;
+    const itensPorPagina = 10;
 
     async function carregarDados() {
         const dados = await buscarDados();
@@ -614,7 +614,7 @@ function carregarDashboard() {
         }
     } catch (error) {
         console.error("Erro ao salvar:", error);
-        alert("Erro ao salvar os dados. Verifique o console para mais detalhes.");
+        alert("Erro ao salvar os dados. Os campos que possuem datas, não podem estar vazios.");
     }
 }
 

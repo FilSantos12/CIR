@@ -101,7 +101,7 @@ foreach ($data as $item) {
     }
 
     // Armazena os valores em variáveis antes de passar para bind_param
-    $data_solicitacao = $item['data_solicitacao'];
+    $data_solicitacao = $item['data_solicitacao'] ?? null; // Usando operador de coalescência nula para campos opcionais
     $tipo = $item['tipo'];
     $documentos = $item['documentos'];
     $conferencia = $item['conferencia'];
@@ -111,8 +111,8 @@ foreach ($data as $item) {
     $parcelamento = $item['parcelamento'] ?? null; // Usando operador de coalescência nula para campos opcionais
     $imposto_restituir = converterMoeda($item['imposto_restituir']);
     $transmissao = $item['transmissao'];
-    $data_transmissao = $item['data_transmissao'];
-    $enviada_cliente = $item['enviada_cliente'];
+    $data_transmissao = $item['data_transmissao'] ?? null; // Usando operador de coalescência nula para campos opcionais
+    $enviada_cliente = $item['enviada_cliente'] ?? null; // Usando operador de coalescência nula para campos opcionais
     $observacoes = $item['observacoes'];
     $valor_cobrado = converterMoeda($item['valor_cobrado']);
     $boleto_enviado = $item['boleto_enviado'];

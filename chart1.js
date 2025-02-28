@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Processos por Tipo",
+                        label: "Processos por Tipo", 
                         data: valores,
                         backgroundColor: ["#3498db", "#ffca24", "#2ecc71", "#f1c40f"],
                         borderWidth: 1

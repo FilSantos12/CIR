@@ -77,13 +77,8 @@ function mostrarTelaCadastroClientes() {
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="ano" class="form-label">Ano</label>
-                    <select class="form-select" id="ano" name="ano">
-                        <option value="" disabled selected hidden>Selecione o ano</option>
-                        <option value="2025">2025</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                    </select>
+                    <input type="number" class="form-control" id="ano" 
+                    name="ano" min="1900" max="2100" step="1" placeholder="Digite o ano">
                 </div>
                 <!-- Serviço Solicitado -->
                 <div class="col-md-4 mb-3">
@@ -238,7 +233,7 @@ function mostrarListaClientes() {
                         <table class="table table-striped table-hover" id="tabelaClientes">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>ID</th>
+                                    <th>ID</th>              
                                     <th>Nome</th>
                                     <th>CPF</th>
                                     <th>Senha Gov.Br</th>
@@ -287,7 +282,8 @@ function mostrarListaClientes() {
                     </table>
                 </div>
 
-                
+<!--***********************************Controle de Paginação ********************************************-->
+
                         <div class="d-flex justify-content-center mt-4">
                             <nav aria-label="Page navigation">
                                 <ul class="pagination">
@@ -749,10 +745,6 @@ function mostrarListaUsuarios() {
                 .catch(error => console.error("Erro:", error));
             }
         }
-
-
-
-
 
 //********************************************Excluir Cliente******************************************/
 
