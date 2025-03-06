@@ -7,19 +7,22 @@ html {
 }
 .container {
     display: flex;
-    flex-wrap: wrap; /* Permite que os gráficos se ajustem em múltiplas linhas */
+    flex-wrap: wrap; /* Permite múltiplas linhas */
     justify-content: center; /* Centraliza os gráficos */
     gap: 20px; /* Espaço entre os gráficos */
 }
 
 .chart-container {
-    width: 45%; /* Ajusta o tamanho para caber dois gráficos por linha */
-    max-width: 500px; /* Define o tamanho máximo */
+    flex: 1 1 30%; /* Permite ajuste automático mantendo três gráficos por linha */
+    max-width: 400px; /* Limita o tamanho máximo */
+    min-width: 250px; /* Evita que os gráficos fiquem muito pequenos */
     height: auto;
     text-align: center;
 }
 
 canvas {
-    width: 100% !important; /* Garante que o gráfico ocupe 100% da largura do container */
-    height: auto !important; /* Mantém a proporção */
+    width: 100% !important;
+    height: 300px !important; /* Mantém altura fixa */
 }
+
+
