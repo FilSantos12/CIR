@@ -203,7 +203,7 @@ function mascaraTelefone(input) {
 //************************************** Lista de Clientes Cadastrados *******************************/
 // Variáveis para controle de páginas
 let currentPage = 1;
-const itemsPerPage = 5; // Número de itens por página
+const itemsPerPage = 10; // Número de itens por página
 let clientesFiltrados = []; // Armazena os clientes após a busca
 
 // Função para mostrar a lista de clientes

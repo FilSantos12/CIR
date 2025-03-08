@@ -1,27 +1,61 @@
-JSON recebido: {"id_cliente":"11","data_solicitacao":"2025-02-26","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"2025-02-26","enviada_cliente":"2025-02-26","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"11","data_solicitacao":"","imposto_pagar":"R$ 0,00","dados_doacao":"—","imposto_restituir":"R$ 0,00","data_transmissao":"2025-02-26","enviada_cliente":"2025-02-26","observacoes":"0","valor_cobrado":"R$ 0,00"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
-JSON recebido: {"id_cliente":"11","data_solicitacao":"2025-02-26","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 0,00","doacao":"Não","dados_doacao":"—","parcelamento":"3","imposto_restituir":"R$ 0,00","transmissao":"Pendente","data_transmissao":"2025-02-26","enviada_cliente":"2025-02-26","observacoes":"0","valor_cobrado":"R$ 0,00","boleto_enviado":"Não","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"2025-02-27","tipo":"Basica","documentos":"Enviados","conferencia":"Pendente","imposto_pagar":"R$ 2.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"3","imposto_restituir":"R$ 500,00","transmissao":"Pendente","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"—","valor_cobrado":"R$ 400,00","boleto_enviado":"Não","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"13","data_solicitacao":"2025-02-27","tipo":"Com Ações","documentos":"Com Pendências","conferencia":"Pendente","imposto_pagar":"R$ 1.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"4","imposto_restituir":"R$ 280,00","transmissao":"Pendente","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"—","valor_cobrado":"R$ 350,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"14","data_solicitacao":"2025-02-27","tipo":"Com Espólio","documentos":"Com Pendências","conferencia":"Conferido pelo Cliente","imposto_pagar":"R$ 1.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"2","imposto_restituir":"R$ 200,00","transmissao":"Pendente","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"—","valor_cobrado":"R$ 300,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"15","data_solicitacao":"2025-03-04","imposto_pagar":"R$ 1.000,00","dados_doacao":"—","imposto_restituir":"R$ 500,00","transmissao":"Transmitido","data_transmissao":"2025-03-04","enviada_cliente":"2025-03-04","observacoes":"—","valor_cobrado":"R$ 350,00"}
-JSON recebido: {"id_cliente":"14","data_solicitacao":"2025-02-27","tipo":"Com Espólio","documentos":"Com Pendências","conferencia":"Conferido pelo Cliente","imposto_pagar":"R$ 1.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"2","imposto_restituir":"R$ 200,00","transmissao":"Transmitido","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"0","valor_cobrado":"R$ 300,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"13","data_solicitacao":"2025-02-27","tipo":"Com Ações","documentos":"Com Pendências","conferencia":"Pendente","imposto_pagar":"R$ 1.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"4","imposto_restituir":"R$ 280,00","transmissao":"Transmitido","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"0","valor_cobrado":"R$ 350,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"13","data_solicitacao":"2025-02-27","tipo":"Com Ações","documentos":"Com Pendências","conferencia":"Pendente","imposto_pagar":"R$ 0,00","doacao":"Não","dados_doacao":"—","parcelamento":"4","imposto_restituir":"R$ 0,00","transmissao":"Transmitido","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"0","valor_cobrado":"R$ 0,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"12","data_solicitacao":"2025-02-27","tipo":"Basica","documentos":"Enviados","conferencia":"Pendente","imposto_pagar":"R$ 2.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"3","imposto_restituir":"R$ 500,00","transmissao":"Transmitido","data_transmissao":"2025-02-27","enviada_cliente":"2025-02-27","observacoes":"0","valor_cobrado":"R$ 400,00","boleto_enviado":"Não","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"11","data_solicitacao":"2025-02-26","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 0,00","doacao":"Não","dados_doacao":"—","parcelamento":"3","imposto_restituir":"R$ 0,00","transmissao":"Transmitido","data_transmissao":"2025-02-26","enviada_cliente":"2025-02-26","observacoes":"0","valor_cobrado":"R$ 0,00","boleto_enviado":"Não","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"8","data_solicitacao":"2025-02-23","tipo":"Com Espólio","documentos":"Enviados","conferencia":"Pendente","imposto_pagar":"R$ 2.000,00","doacao":"Sim","dados_doacao":"Apae","parcelamento":"5","imposto_restituir":"R$ 700,00","transmissao":"Transmitido","data_transmissao":"2025-02-23","enviada_cliente":"2025-02-23","observacoes":"0","valor_cobrado":"R$ 500,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"7","data_solicitacao":"2025-02-23","tipo":"Basica","documentos":"Com Pendências","conferencia":"Em Andamento","imposto_pagar":"R$ 1.000,00","doacao":"Não","dados_doacao":"—","parcelamento":"4","imposto_restituir":"R$ 230,00","transmissao":"Transmitido","data_transmissao":"0001-01-01","enviada_cliente":"0001-01-01","observacoes":"0","valor_cobrado":"R$ 340,00","boleto_enviado":"Não","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"6","data_solicitacao":"2025-02-16","tipo":"Com Ações","documentos":"Pendente de Envio","conferencia":"Em Andamento","imposto_pagar":"R$ 180,00","doacao":"Não","dados_doacao":"Apae","parcelamento":"5","imposto_restituir":"R$ 180,00","transmissao":"Transmitido","data_transmissao":"2025-02-16","enviada_cliente":"2025-02-16","observacoes":"testes8","valor_cobrado":"R$ 180,00","boleto_enviado":"Não","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"4","data_solicitacao":"2025-02-15","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 150,00","doacao":"Sim","dados_doacao":"Lar pietá","parcelamento":"4","imposto_restituir":"R$ 150,00","transmissao":"Transmitido","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"teste 5","valor_cobrado":"R$ 150,00","boleto_enviado":"Sim","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"2","data_solicitacao":"2025-02-15","tipo":"Com Ações","documentos":"Com Pendências","conferencia":"Em Andamento","imposto_pagar":"R$ 130,00","doacao":"Não","dados_doacao":"—","parcelamento":"2","imposto_restituir":"R$ 130,00","transmissao":"Transmitido","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"0","valor_cobrado":"R$ 130,00","boleto_enviado":"Não","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"1","data_solicitacao":"2025-02-15","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 140,00","doacao":"Sim","dados_doacao":"Apae","parcelamento":"1","imposto_restituir":"R$ 120,00","transmissao":"Transmitido","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"livre o campo","valor_cobrado":"R$ 120,00","boleto_enviado":"Sim","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"2","data_solicitacao":"2025-02-15","tipo":"Com Ações","documentos":"Com Pendências","conferencia":"Em Andamento","imposto_pagar":"R$ 0,00","doacao":"Não","dados_doacao":"—","parcelamento":"2","imposto_restituir":"R$ 0,00","transmissao":"Pendente","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"0","valor_cobrado":"R$ 0,00","boleto_enviado":"Não","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"1","data_solicitacao":"2025-02-15","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 0,00","doacao":"Sim","dados_doacao":"Apae","parcelamento":"1","imposto_restituir":"R$ 0,00","transmissao":"Pendente","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"livre o campo","valor_cobrado":"R$ 0,00","boleto_enviado":"Sim","pagamento":"Pendente"}
-JSON recebido: {"id_cliente":"3","data_solicitacao":"2025-02-15","tipo":"Com Espólio","documentos":"Enviados","conferencia":"Conferido pelo Cliente","imposto_pagar":"R$ 140,00","doacao":"Sim","dados_doacao":"Santa casa","parcelamento":"3","imposto_restituir":"R$ 140,00","transmissao":"Em Andamento","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"0","valor_cobrado":"R$ 140,00","boleto_enviado":"Sim","pagamento":"Pago"}
-JSON recebido: {"id_cliente":"4","data_solicitacao":"2025-02-15","tipo":"Basica","documentos":"Pendente de Envio","conferencia":"Pendente","imposto_pagar":"R$ 0,00","doacao":"Sim","dados_doacao":"Lar pietá","parcelamento":"4","imposto_restituir":"R$ 0,00","transmissao":"Em Andamento","data_transmissao":"2025-02-15","enviada_cliente":"2025-02-15","observacoes":"teste 5","valor_cobrado":"R$ 0,00","boleto_enviado":"Sim","pagamento":"Pendente"}
+[08-Mar-2025 17:09:11 Europe/Berlin] Formato inválido. Por favor, escolha entre "xlsx" ou "pdf".
+[08-Mar-2025 17:16:34 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:16:34 Europe/Berlin] Erro: Formato inválido: excel
+[08-Mar-2025 17:16:39 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:16:39 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 17:16:39 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 17:16:39 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 17:16:39 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 17:16:39 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 17:16:39 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 17:16:39 Europe/Berlin] Gerando PDF...
+[08-Mar-2025 17:16:40 Europe/Berlin] PDF gerado com sucesso.
+[08-Mar-2025 17:17:13 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:17:13 Europe/Berlin] Erro: Formato inválido: excel
+[08-Mar-2025 17:17:44 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:17:44 Europe/Berlin] Erro: Formato inválido: excel
+[08-Mar-2025 17:21:34 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:21:34 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 17:21:34 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 17:21:34 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 17:21:34 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 17:21:34 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 17:21:34 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 17:21:34 Europe/Berlin] Gerando arquivo Excel...
+[08-Mar-2025 17:21:35 Europe/Berlin] Arquivo Excel gerado com sucesso.
+[08-Mar-2025 17:21:50 Europe/Berlin] Script iniciado.
+[08-Mar-2025 17:21:50 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 17:21:50 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 17:21:50 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 17:21:50 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 17:21:50 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 17:21:50 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 17:21:50 Europe/Berlin] Gerando PDF...
+[08-Mar-2025 17:21:51 Europe/Berlin] PDF gerado com sucesso.
+[08-Mar-2025 20:57:44 Europe/Berlin] Script iniciado.
+[08-Mar-2025 20:57:44 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 20:57:44 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 20:57:44 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 20:57:44 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 20:57:44 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 20:57:45 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 20:57:45 Europe/Berlin] Gerando PDF...
+[08-Mar-2025 20:57:51 Europe/Berlin] PDF gerado com sucesso.
+[08-Mar-2025 21:05:45 Europe/Berlin] Script iniciado.
+[08-Mar-2025 21:05:45 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 21:05:45 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 21:05:45 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 21:05:45 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 21:05:45 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 21:05:45 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 21:05:45 Europe/Berlin] Gerando PDF...
+[08-Mar-2025 21:05:46 Europe/Berlin] PDF gerado com sucesso.
+[08-Mar-2025 21:12:26 Europe/Berlin] Script iniciado.
+[08-Mar-2025 21:12:26 Europe/Berlin] Iniciando a geração do relatório...
+[08-Mar-2025 21:12:26 Europe/Berlin] Cabeçalhos da planilha definidos.
+[08-Mar-2025 21:12:26 Europe/Berlin] Executando consulta SQL...
+[08-Mar-2025 21:12:26 Europe/Berlin] Consulta SQL executada com sucesso.
+[08-Mar-2025 21:12:26 Europe/Berlin] Preenchendo a planilha e o HTML com os dados...
+[08-Mar-2025 21:12:26 Europe/Berlin] Dados preenchidos com sucesso.
+[08-Mar-2025 21:12:26 Europe/Berlin] Gerando PDF...
+[08-Mar-2025 21:12:27 Europe/Berlin] PDF gerado com sucesso.

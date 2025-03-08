@@ -1,0 +1,56 @@
+h2 {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 95%;
+        }
+        .table-responsive {
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        th {
+            background-color: #ece072;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        tbody tr:hover {
+            background-color: rgba(236, 224, 114, 0.3);
+        }
+        .input-group {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Permite que o Bloco 1 fique fixo */
+.sticky-coluna {
+    position: sticky;
+    left: 0;
+    background: white; /* Mantém a cor de fundo */
+    z-index: 100; /* Garante que fique acima do Bloco 2 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Efeito de sombra para destacar */
+}
+
+/* Ajusta a largura mínima para evitar corte no texto */
+th, td {
+    white-space: nowrap;
+}
+
+/* Ajusta a responsividade */
+.table-responsive {
+    max-height: 70vh; /* Define altura máxima para a tabela */
+    overflow-x: auto; /* Permite scroll apenas no Bloco 2 */
+}

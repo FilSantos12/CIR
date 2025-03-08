@@ -6,44 +6,8 @@
     <title>Controle de Clientes</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        h2 {
-            text-align: center;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 95%;
-        }
-        .table-responsive {
-            margin-top: 20px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        th {
-            background-color: #ece072;
-            text-align: center;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: center;
-        }
-        tbody tr:hover {
-            background-color: rgba(236, 224, 114, 0.3);
-        }
-        .input-group {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style_controleClientes.css">
+
 </head>
 <body>
     <!-- Navbar -->
@@ -72,21 +36,43 @@
             window.close();
         }
     </script>
+    
 
 <div class="container mt-4">
     <h2>Controle de Clientes</h2>
-    <!-- Campo de busca e botão Dashboard na mesma linha -->
-    <form id="formBusca" class="mb-4 d-flex align-items-center">
-        <div class="input-group center"> <!-- 'me-2' adiciona margem à direita para o botão de busca -->
-            <input type="text" id="nomeClienteInput" class="form-control w-50" placeholder="Digite o que deseja buscar" />
+    <!-- Campo de busca e botões na mesma linha -->
+    <form id="formBusca" class="mb-4 d-flex align-items-center justify-content-between">
+        <!-- Campo de busca -->
+        <div class="input-group w-100 mb-2">
+            <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o que deseja buscar" aria-label="Buscar cliente" />
             <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
-        <!-- Botão Dashboard na mesma linha -->
+
+        <!-- Botão Dashboard -->
         <button class="btn btn-info text-start py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarDashboard()">Dashboard <i class="bi bi-bar-chart-fill"></i></button>
+
+        <!-- Dropdown para escolha do formato -->
+        <div class="dropdown ms-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Relatório
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('pdf')">PDF</a></li>
+                <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('xlsx')">Excel</a></li>
+            </ul>
+        </div>
     </form>
 
     <div id="listaClientes"></div>
 </div>
+
+<script>
+    // Função para gerar o relatório (PDF ou Excel) com base na seleção
+    function gerarRelatorio(formato) {
+        window.location.href = `gerar_relatorio.php?formato=${formato}`;
+    }
+
+</script>
 
 <!--*******************************Chama a função Dashboard para o botão*************************************************-->
 <script>
@@ -128,38 +114,46 @@ function carregarDashboard() {
 
 <div class="container mt-5">
     <h2 class="text-center">Lista de Clientes e Processos</h2>
+
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
             <thead class="table-warning text-center">
                 <tr>
-                    <th style="width: 80px;">Ações</th>
-                    <th style="width: 50px;">ID</th>
-                    <th style="min-width: 200px;">Nome</th>
-                    <th style="min-width: 130px;">CPF</th>
-                    <th style="width: 100px;">Procuração</th>
-                    <th style="border-left: 3px solid #f5ecb8; width: 10px;"></th>
-                    <th style="min-width: 150px;">Data Solicitação</th>
-                    <th style="min-width: 120px;">Tipo</th>
-                    <th style="min-width: 150px;">Documentos</th>
-                    <th style="min-width: 150px;">Conferência</th>
-                    <th style="min-width: 150px;">Imposto a Pagar</th>
-                    <th style="min-width: 100px;">Doação</th>
-                    <th style="min-width: 150px;">Dados Doação</th>
-                    <th style="min-width: 130px;">Parcelamento</th>
-                    <th style="min-width: 150px;">Imposto a Restituir</th>
-                    <th style="min-width: 130px;">Transmissão</th>
-                    <th style="min-width: 150px;">Data Transmissão</th>
-                    <th style="min-width: 160px;">Enviada ao Cliente</th>
-                    <th style="min-width: 200px;">Observações</th>
-                    <th style="min-width: 120px;">Valor Cobrado</th>
-                    <th style="min-width: 140px;">Boleto Enviado</th>
-                    <th style="min-width: 120px;">Pagamento</th>
+                    <!-- BLOCO 1 (Colunas Fixas) -->
+                    <th class="sticky-coluna">Ações</th>
+                    <th class="sticky-coluna">ID</th>
+                    <th class="sticky-coluna">Nome</th>
+                    <th class="sticky-coluna">CPF</th>
+                    <th class="sticky-coluna">Procuração</th>
+
+                    <!-- Separador visual -->
+                    <th style="border-left: 3px solid #f5ecb8;"></th>
+
+                    <!-- BLOCO 2 (Colunas Roláveis) -->
+                    <th>Data Solicitação</th>
+                    <th>Tipo</th>
+                    <th>Documentos</th>
+                    <th>Conferência</th>
+                    <th>Imposto a Pagar</th>
+                    <th>Doação</th>
+                    <th>Dados Doação</th>
+                    <th>Parcelamento</th>
+                    <th>Imposto a Restituir</th>
+                    <th>Transmissão</th>
+                    <th>Data Transmissão</th>
+                    <th>Enviada ao Cliente</th>
+                    <th>Observações</th>
+                    <th>Valor Cobrado</th>
+                    <th>Boleto Enviado</th>
+                    <th>Pagamento</th>
                 </tr>
             </thead>
             <tbody class="text-center" id="tabela-dados"></tbody>
         </table>
     </div>
 </div>
+
+
 
 <!--**************************************Paginação*************************************************-->
 
