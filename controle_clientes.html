@@ -12,56 +12,147 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ece072;">
-        <div class="container-fluid">
-            <a href="index.php" class="text-dark" style="text-decoration: none;" title="Voltar para a página inicial">
-                <i class="bi bi-arrow-left-circle-fill" style="font-size: 1.5rem;"></i>
-                <span class="visually-hidden">Voltar</span>
-            </a>
-            <a class="navbar-brand ms-4" href="#">Controle Imposto de Renda</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="container-fluid">
+                <a href="index.php" class="text-dark" style="text-decoration: none;" title="Voltar para a página inicial">
+                    <i class="bi bi-arrow-left-circle-fill" style="font-size: 1.5rem;"></i>
+                    <span class="visually-hidden">Voltar</span>
+                </a>
+                <a class="navbar-brand ms-4" href="#">Controle Imposto de Renda</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                     Limpar Processos
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item" href="#" onclick="limparProcessos()">Limpar</a></li>
+                </ul>
+            </div>
+
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto"></ul>
                 <div class="d-flex align-items-center">
-                    <button class="btn btn-dark" onclick="fecharPagina()">Sair</button>
+                    <button class="btn btn-danger" onclick="fecharPagina()">Sair</button>
                 </div>
             </div>
         </div>
     </nav>
+    
+<!--Limpar pagina de processoa -->
+    <script>
+        function limparProcessos() {
+            if (confirm("Tem certeza que deseja mover os processos antigos para o histórico? Esta ação não pode ser desfeita.")) {
+                // Faz uma requisição AJAX para o script PHP
+                fetch('mover_historico.php', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Exibe a mensagem de retorno do PHP
+                    // Atualiza a página ou faz outra ação, se necessário
+                    location.reload(); // Recarrega a página para refletir as mudanças
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert("Ocorreu um erro ao tentar mover os processos.");
+                });
+            }
+        }
 
-    <!-- Fechar a pagina -->
+        // Função para visualizar o processo de processamento da limpeza dos processos
+        function limparProcessos() {
+    if (confirm("Tem certeza que deseja mover os processos antigos para o histórico? Esta ação não pode ser desfeita.")) {
+        // Exibe um ícone de carregamento
+        const botaoLimpar = document.querySelector("#dropdownMenuButton2");
+        botaoLimpar.innerHTML = '<i class="bi bi-arrow-repeat"></i> Processando...';
+
+        // Faz uma requisição AJAX para o script PHP
+        fetch('mover_historico.php', {
+            method: 'POST'
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Exibe a mensagem de retorno do PHP
+            // Restaura o texto do botão
+            botaoLimpar.innerHTML = '<i class="bi bi-file-earmark-arrow-down-fill"></i> Limpar Processos';
+            // Recarrega a página para refletir as mudanças
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert("Ocorreu um erro ao tentar mover os processos.");
+            // Restaura o texto do botão em caso de erro
+            botaoLimpar.innerHTML = '<i class="bi bi-file-earmark-arrow-down-fill"></i> Limpar Processos';
+        });
+    }
+}
+
+        //Função para bloquear execuções simultâneas
+        function limparProcessos() {
+    if (confirm("Tem certeza que deseja mover os processos antigos para o histórico? Esta ação não pode ser desfeita.")) {
+        const botaoLimpar = document.querySelector("#dropdownMenuButton2");
+        botaoLimpar.disabled = true; // Desabilita o botão
+        botaoLimpar.innerHTML = '<i class="bi bi-arrow-repeat"></i> Processando...';
+
+        fetch('mover_historico.php', {
+            method: 'POST'
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data);
+            botaoLimpar.innerHTML = '<i class="bi bi-file-earmark-arrow-down-fill"></i> Limpar Processos';
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert("Ocorreu um erro ao tentar mover os processos.");
+            botaoLimpar.innerHTML = '<i class="bi bi-file-earmark-arrow-down-fill"></i> Limpar Processos';
+        })
+        .finally(() => {
+            botaoLimpar.disabled = false; // Reabilita o botão
+        });
+    }
+}
+
+    </script>
+
+<!-- Fechar a pagina -->
     <script>
         function fecharPagina() {
             window.close();
         }
     </script>
     
-
+<!--Conteudo da pagina de processos-->
 <div class="container mt-4">
     <h2>Controle de Clientes</h2>
-    <!-- Campo de busca e botões na mesma linha -->
-    <form id="formBusca" class="mb-4 d-flex align-items-center justify-content-between">
-        <!-- Campo de busca -->
-        <div class="input-group w-100 mb-2">
-            <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o que deseja buscar" aria-label="Buscar cliente" />
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
 
-        <!-- Botão Dashboard -->
-        <button class="btn btn-info text-start py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarDashboard()">Dashboard <i class="bi bi-bar-chart-fill"></i></button>
+<!-- Container flexível para alinhar os itens na horizontal -->
+<form id="formBusca" class="mb-4 d-flex align-items-center gap-3">
+    <!-- Dropdown para escolha do formato -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-file-earmark-arrow-down-fill"></i> Exportar Relatório
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('pdf')"><i class="bi bi-file-earmark-pdf"></i>PDF</a></li> 
+            <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('xlsx')"><i class="bi bi-file-earmark-excel"></i>Excel</a></li> 
+        </ul>
+    </div>
 
-        <!-- Dropdown para escolha do formato -->
-        <div class="dropdown ms-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                Relatório
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('pdf')">PDF</a></li>
-                <li><a class="dropdown-item" href="#" onclick="gerarRelatorio('xlsx')">Excel</a></li>
-            </ul>
-        </div>
-    </form>
+    <!-- Campo de busca -->
+    <div class="input-group w-100">
+        <input type="text" id="nomeClienteInput" class="form-control" placeholder="Digite o que deseja buscar" aria-label="Buscar cliente" />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+
+    <!-- Botão Dashboard -->
+    <button class="btn btn-info text-start py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarDashboard()">Dashboard <i class="bi bi-bar-chart-fill"></i></button>
+
+</form>
+
 
     <div id="listaClientes"></div>
 </div>

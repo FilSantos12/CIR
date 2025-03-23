@@ -779,4 +779,7 @@ function carregarControleClientes() {
     window.open("controle_clientes.html", "_blank");
 }
 
-
+//**********************************Chama a função Historico de processos ******************************************/
+ function carregarHistoricoProcessos() {
+    window.open("historico_processos.html", "_blank");
+ }

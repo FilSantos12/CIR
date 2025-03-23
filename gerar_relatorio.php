@@ -123,8 +123,8 @@ try {
     } else {
         $message = 'Nenhum dado encontrado para gerar o relatório.';
         logMessage($message);
-        echo $message;
-        exit();
+        echo "<script>alert('Nenhum dado encontrado para gerar o relatório.');</script>";
+        //exit();
     }
     $dadosHTML .= '</table>';
 

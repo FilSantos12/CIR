@@ -39,18 +39,15 @@ h2 {
 .sticky-coluna {
     position: sticky;
     left: 0;
-    background: white; /* Mantém a cor de fundo */
-    z-index: 100; /* Garante que fique acima do Bloco 2 */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Efeito de sombra para destacar */
+    background-color: #f8f9fa; /* Adicionei um fundo claro para as colunas fixas */
+    z-index: 1; /* Garante que as colunas fixas fiquem acima das roláveis */
 }
 
-/* Ajusta a largura mínima para evitar corte no texto */
-th, td {
-    white-space: nowrap;
-}
-
-/* Ajusta a responsividade */
 .table-responsive {
-    max-height: 70vh; /* Define altura máxima para a tabela */
-    overflow-x: auto; /* Permite scroll apenas no Bloco 2 */
+    overflow-x: auto;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+    text-align: center; /* Para centralizar o conteúdo nas células */
 }

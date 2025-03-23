@@ -5,7 +5,9 @@ if ($conn->connect_error) {
     die("Erro de conexão: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, id_cliente, data_solicitacao, tipo, documentos, conferencia, imposto_pagar, doacao, dados_doacao, parcelamento, imposto_restituir, transmissao, data_transmissao, enviada_cliente, observacoes, valor_cobrado, boleto_enviado, pagamento FROM tabela";
+$sql = "SELECT id, id_cliente, data_solicitacao, tipo, documentos, conferencia, imposto_pagar, doacao, 
+dados_doacao, parcelamento, imposto_restituir, transmissao, data_transmissao, enviada_cliente, observacoes, 
+valor_cobrado, boleto_enviado, pagamento FROM processos";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

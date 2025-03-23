@@ -1,0 +1,18 @@
+[23-Mar-2025 12:55:19 Europe/Berlin] JSON recebido: {"id_cliente":"3","data_solicitacao":"2025-03-23","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"2025-03-23","enviada_cliente":"2025-03-23","observacoes":"—","valor_cobrado":"—"}
+[23-Mar-2025 12:55:19 Europe/Berlin] ID do cliente a ser processado: 3
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "tipo" in C:\xampp\htdocs\CIR\salvar_processo.php on line 105
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "documentos" in C:\xampp\htdocs\CIR\salvar_processo.php on line 106
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "conferencia" in C:\xampp\htdocs\CIR\salvar_processo.php on line 107
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "doacao" in C:\xampp\htdocs\CIR\salvar_processo.php on line 109
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "transmissao" in C:\xampp\htdocs\CIR\salvar_processo.php on line 113
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "boleto_enviado" in C:\xampp\htdocs\CIR\salvar_processo.php on line 118
+[23-Mar-2025 12:55:19 Europe/Berlin] PHP Warning:  Undefined array key "pagamento" in C:\xampp\htdocs\CIR\salvar_processo.php on line 119
+[23-Mar-2025 14:25:24 Europe/Berlin] JSON recebido: {"id_cliente":"1","data_solicitacao":"2024-03-23","imposto_pagar":"R$ 0,00","dados_doacao":"—","imposto_restituir":"R$ 0,00","data_transmissao":"2025-03-23","enviada_cliente":"2025-03-23","observacoes":"—","valor_cobrado":"R$ 0,00"}
+[23-Mar-2025 14:25:24 Europe/Berlin] ID do cliente a ser processado: 1
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "tipo" in C:\xampp\htdocs\CIR\salvar_processo.php on line 105
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "documentos" in C:\xampp\htdocs\CIR\salvar_processo.php on line 106
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "conferencia" in C:\xampp\htdocs\CIR\salvar_processo.php on line 107
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "doacao" in C:\xampp\htdocs\CIR\salvar_processo.php on line 109
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "transmissao" in C:\xampp\htdocs\CIR\salvar_processo.php on line 113
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "boleto_enviado" in C:\xampp\htdocs\CIR\salvar_processo.php on line 118
+[23-Mar-2025 14:25:24 Europe/Berlin] PHP Warning:  Undefined array key "pagamento" in C:\xampp\htdocs\CIR\salvar_processo.php on line 119

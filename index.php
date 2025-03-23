@@ -92,6 +92,9 @@ $username = $_SESSION['username'];
                             <li class="mt-2">
                                <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarControleClientes()">Controle de Clientes <i class="bi bi-kanban-fill"></i></button>
                             </li>
+                            <li class="mt-2">
+                               <button class="btn btn-info text-start w-100 py-2 px-3 shadow-sm rounded-3" type="button" onclick="carregarHistoricoProcessos()">Historico de Processos <i class="bi bi-box-seam-fill"></i></button>
+                            </li>
                         </ul>
                     </div>
                 </li>

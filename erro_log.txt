@@ -1,0 +1,177 @@
+[2025-03-17 01:00:20] Transação iniciada.
+[2025-03-17 01:00:21] Registros antigos encontrados: 0
+[2025-03-17 01:00:21] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-17 02:31:52] Transação iniciada.
+[2025-03-17 02:31:52] Registros antigos encontrados: 1
+[2025-03-17 02:31:52] Erro detectado! Transação revertida.
+[2025-03-17 02:31:52] Erro: Incorrect integer value: 'Sim' for column 'doacao' at row 1
+[2025-03-18 02:32:49] Transação iniciada.
+[2025-03-18 02:32:49] Registros antigos encontrados: 1
+[2025-03-18 02:32:49] Erro detectado! Transação revertida.
+[2025-03-18 02:32:49] Erro: Incorrect integer value: 'Pendente' for column 'transmissao' at row 1
+[2025-03-18 02:37:29] Transação iniciada.
+[2025-03-18 02:37:30] Registros antigos encontrados: 1
+[2025-03-18 02:37:30] Registros movidos: 1
+[2025-03-18 02:37:30] Registros excluídos: 1
+[2025-03-18 02:37:30] Transação confirmada com sucesso.
+[2025-03-18 02:41:14] Transação iniciada.
+[2025-03-18 02:41:14] Registros antigos encontrados: 3
+[2025-03-18 02:41:14] Registros movidos: 3
+[2025-03-18 02:41:14] Registros excluídos: 3
+[2025-03-18 02:41:14] Transação confirmada com sucesso.
+[2025-03-18 03:11:05] Transação iniciada.
+[2025-03-18 03:11:05] Registros antigos encontrados: 1
+[2025-03-18 03:11:05] Registros movidos: 1
+[2025-03-18 03:11:05] Registros excluídos: 1
+[2025-03-18 03:11:05] Transação confirmada com sucesso.
+[2025-03-18 03:12:26] Transação iniciada.
+[2025-03-18 03:12:26] Registros antigos encontrados: 0
+[2025-03-18 03:12:26] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:13:45] Transação iniciada.
+[2025-03-18 03:13:45] Registros antigos encontrados: 0
+[2025-03-18 03:13:45] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:14:47] Transação iniciada.
+[2025-03-18 03:14:47] Registros antigos encontrados: 0
+[2025-03-18 03:14:47] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:15:00] Transação iniciada.
+[2025-03-18 03:15:00] Registros antigos encontrados: 0
+[2025-03-18 03:15:00] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:15:13] Transação iniciada.
+[2025-03-18 03:15:13] Registros antigos encontrados: 0
+[2025-03-18 03:15:13] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:16:52] Transação iniciada.
+[2025-03-18 03:16:52] Registros antigos encontrados: 0
+[2025-03-18 03:16:52] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-18 03:18:47] Transação iniciada.
+[2025-03-18 03:18:47] Registros antigos encontrados: 1
+[2025-03-18 03:18:47] Registros movidos: 1
+[2025-03-18 03:18:47] Registros excluídos: 1
+[2025-03-18 03:18:47] Transação confirmada com sucesso.
+[2025-03-21 23:01:08] Transação iniciada.
+[2025-03-21 23:01:08] Registros antigos encontrados: 0
+[2025-03-21 23:01:08] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-21 23:01:39] Transação iniciada.
+[2025-03-21 23:01:39] Registros antigos encontrados: 1
+[2025-03-21 23:01:39] Registros movidos: 1
+[2025-03-21 23:01:39] Registros excluídos: 1
+[2025-03-21 23:01:39] Transação confirmada com sucesso.
+[2025-03-21 23:09:25] Transação iniciada.
+[2025-03-21 23:09:25] Registros antigos encontrados: 1
+[2025-03-21 23:09:25] Erro detectado! Transação revertida.
+[2025-03-21 23:09:25] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:10:29] Transação iniciada.
+[2025-03-21 23:10:29] Registros antigos encontrados: 1
+[2025-03-21 23:10:29] Erro detectado! Transação revertida.
+[2025-03-21 23:10:29] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:11:24] Transação iniciada.
+[2025-03-21 23:11:24] Registros antigos encontrados: 1
+[2025-03-21 23:11:24] Erro detectado! Transação revertida.
+[2025-03-21 23:11:24] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:12:02] Transação iniciada.
+[2025-03-21 23:12:02] Registros antigos encontrados: 1
+[2025-03-21 23:12:02] Erro detectado! Transação revertida.
+[2025-03-21 23:12:02] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:16:06] Transação iniciada.
+[2025-03-21 23:16:06] Registros antigos encontrados: 1
+[2025-03-21 23:16:06] Erro detectado! Transação revertida.
+[2025-03-21 23:16:06] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:16:54] Transação iniciada.
+[2025-03-21 23:16:54] Registros antigos encontrados: 1
+[2025-03-21 23:16:54] Erro detectado! Transação revertida.
+[2025-03-21 23:16:54] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:20:49] Transação iniciada.
+[2025-03-21 23:20:49] Registros antigos encontrados: 1
+[2025-03-21 23:20:49] Erro detectado! Transação revertida.
+[2025-03-21 23:20:49] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:21:21] Transação iniciada.
+[2025-03-21 23:21:21] Registros antigos encontrados: 1
+[2025-03-21 23:21:21] Erro detectado! Transação revertida.
+[2025-03-21 23:21:21] Erro: Unknown column 'nome' in 'field list'
+[2025-03-21 23:22:49] Transação iniciada.
+[2025-03-21 23:22:49] Registros antigos encontrados: 1
+[2025-03-21 23:22:49] Erro detectado! Transação revertida.
+[2025-03-21 23:22:49] Erro: Column count doesn't match value count at row 1
+[2025-03-21 23:24:57] Transação iniciada.
+[2025-03-21 23:24:57] Registros antigos encontrados: 1
+[2025-03-21 23:24:57] Erro detectado! Transação revertida.
+[2025-03-21 23:24:57] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:28:24] Transação iniciada.
+[2025-03-21 23:28:24] Registros antigos encontrados: 1
+[2025-03-21 23:28:24] Erro detectado! Transação revertida.
+[2025-03-21 23:28:24] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:29:06] Transação iniciada.
+[2025-03-21 23:29:06] Registros antigos encontrados: 1
+[2025-03-21 23:29:06] Erro detectado! Transação revertida.
+[2025-03-21 23:29:06] Erro: Unknown column 'nomeCliente' in 'field list'
+[2025-03-21 23:43:03] Transação iniciada.
+[2025-03-21 23:43:03] Registros antigos encontrados: 1
+[2025-03-21 23:43:03] Erro detectado! Transação revertida.
+[2025-03-21 23:43:03] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-21 23:44:12] Transação iniciada.
+[2025-03-21 23:44:12] Registros antigos encontrados: 1
+[2025-03-21 23:44:12] Erro detectado! Transação revertida.
+[2025-03-21 23:44:12] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:28:02] Transação iniciada.
+[2025-03-22 00:28:02] Registros antigos encontrados: 1
+[2025-03-22 00:28:02] Erro detectado! Transação revertida.
+[2025-03-22 00:28:02] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:28:45] Transação iniciada.
+[2025-03-22 00:28:45] Registros antigos encontrados: 1
+[2025-03-22 00:28:45] Erro detectado! Transação revertida.
+[2025-03-22 00:28:45] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:29:41] Transação iniciada.
+[2025-03-22 00:29:41] Registros antigos encontrados: 1
+[2025-03-22 00:29:41] Erro detectado! Transação revertida.
+[2025-03-22 00:29:41] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:30:05] Transação iniciada.
+[2025-03-22 00:30:05] Registros antigos encontrados: 1
+[2025-03-22 00:30:05] Erro detectado! Transação revertida.
+[2025-03-22 00:30:05] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:31:07] Transação iniciada.
+[2025-03-22 00:31:07] Registros antigos encontrados: 1
+[2025-03-22 00:31:07] Erro detectado! Transação revertida.
+[2025-03-22 00:31:07] Erro: Unknown column 'p.id_cliente' in 'field list'
+[2025-03-22 00:32:38] Transação iniciada.
+[2025-03-22 00:32:38] Registros antigos encontrados: 1
+[2025-03-22 00:32:38] Erro detectado! Transação revertida.
+[2025-03-22 00:32:38] Erro: Unknown column 'p.data_solicitacao' in 'field list'
+[2025-03-22 00:34:49] Transação iniciada.
+[2025-03-22 00:34:49] Registros antigos encontrados: 1
+[2025-03-22 00:34:49] Registros movidos: 15
+[2025-03-22 00:34:49] Registros excluídos: 1
+[2025-03-22 00:34:49] Transação confirmada com sucesso.
+[2025-03-22 21:27:54] Transação iniciada.
+[2025-03-22 21:27:54] Registros antigos encontrados: 1
+[2025-03-22 21:27:54] Erro detectado! Transação revertida.
+[2025-03-22 21:27:54] Erro: Unknown column 'p.id_cliente' in 'on clause'
+[2025-03-22 21:30:07] Transação iniciada.
+[2025-03-22 21:30:07] Registros antigos encontrados: 1
+[2025-03-22 21:30:07] Registros movidos: 1
+[2025-03-22 21:30:07] Registros excluídos: 1
+[2025-03-22 21:30:07] Transação confirmada com sucesso.
+[2025-03-22 21:32:14] Transação iniciada.
+[2025-03-22 21:32:14] Registros antigos encontrados: 0
+[2025-03-22 21:32:14] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-22 21:32:47] Transação iniciada.
+[2025-03-22 21:32:47] Registros antigos encontrados: 1
+[2025-03-22 21:32:47] Registros movidos: 1
+[2025-03-22 21:32:47] Registros excluídos: 1
+[2025-03-22 21:32:47] Transação confirmada com sucesso.
+[2025-03-22 21:34:32] Transação iniciada.
+[2025-03-22 21:34:32] Registros antigos encontrados: 1
+[2025-03-22 21:34:32] Registros movidos: 1
+[2025-03-22 21:34:32] Registros excluídos: 1
+[2025-03-22 21:34:32] Transação confirmada com sucesso.
+[2025-03-22 21:55:15] Transação iniciada.
+[2025-03-22 21:55:15] Registros antigos encontrados: 1
+[2025-03-22 21:55:15] Registros movidos: 1
+[2025-03-22 21:55:15] Registros excluídos: 1
+[2025-03-22 21:55:15] Transação confirmada com sucesso.
+[2025-03-23 14:24:52] Transação iniciada.
+[2025-03-23 14:24:52] Registros antigos encontrados: 0
+[2025-03-23 14:24:52] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-03-23 14:25:38] Transação iniciada.
+[2025-03-23 14:25:38] Registros antigos encontrados: 1
+[2025-03-23 14:25:38] Registros movidos: 1
+[2025-03-23 14:25:38] Registros excluídos: 1
+[2025-03-23 14:25:38] Transação confirmada com sucesso.
