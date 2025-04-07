@@ -1,2 +1,99 @@
 JSON recebido: {"id_cliente":"3","data_solicitacao":"2025-03-23","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"2025-03-23","enviada_cliente":"2025-03-23","observacoes":"—","valor_cobrado":"—"}
 JSON recebido: {"id_cliente":"1","data_solicitacao":"2024-03-23","imposto_pagar":"R$ 0,00","dados_doacao":"—","imposto_restituir":"R$ 0,00","data_transmissao":"2025-03-23","enviada_cliente":"2025-03-23","observacoes":"—","valor_cobrado":"R$ 0,00"}
+[06-Apr-2025 04:19:53 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:19:54 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:19:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:20:33 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:20:33 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:20:34 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:21:13 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:21:13 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:21:13 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:21:45 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:21:45 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:21:46 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:37:01 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:37:01 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:37:01 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:42:55 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:42:55 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:42:56 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Composer\Pcre\Preg" not found in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php:118
+Stack trace:
+#0 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1403): PhpOffice\PhpSpreadsheet\Worksheet\Validations::definedNameToCoordinate('B1', Object(PhpOffice\PhpSpreadsheet\Worksheet\Worksheet))
+#1 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(819): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->getStyle('B1')
+#2 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(330): PhpOffice\PhpSpreadsheet\Cell\Cell->getStyle()
+#3 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DefaultValueBinder.php(37): PhpOffice\PhpSpreadsheet\Cell\Cell->setValueExplicit('Nome Cliente', 's')
+#4 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell.php(240): PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder->bindValue(Object(PhpOffice\PhpSpreadsheet\Cell\Cell), 'Nome Cliente')
+#5 C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet.php(1122): PhpOffice\PhpSpreadsheet\Cell\Cell->setValue('Nome Cliente', Object(PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder))
+#6 C:\xampp\htdocs\CIR\gerar_relatorio.php(69): PhpOffice\PhpSpreadsheet\Worksheet\Worksheet->setCellValue('B1', 'Nome Cliente')
+#7 {main}
+  thrown in C:\xampp\htdocs\CIR\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations.php on line 118
+[06-Apr-2025 04:49:50 Europe/Berlin] Script iniciado.
+[06-Apr-2025 04:49:50 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 04:49:50 Europe/Berlin] Cabeçalhos da planilha definidos.
+[06-Apr-2025 04:49:50 Europe/Berlin] Executando consulta SQL...
+[06-Apr-2025 04:49:50 Europe/Berlin] Consulta SQL executada com sucesso.
+[06-Apr-2025 04:49:50 Europe/Berlin] Nenhum dado encontrado para gerar o relatório.
+[06-Apr-2025 04:49:50 Europe/Berlin] Gerando PDF...
+[06-Apr-2025 04:49:50 Europe/Berlin] PDF gerado com sucesso.
+[06-Apr-2025 05:04:18 Europe/Berlin] Script iniciado.
+[06-Apr-2025 05:04:18 Europe/Berlin] Iniciando a geração do relatório...
+[06-Apr-2025 05:04:18 Europe/Berlin] Cabeçalhos da planilha definidos.
+[06-Apr-2025 05:04:18 Europe/Berlin] Executando consulta SQL...
+[06-Apr-2025 05:04:18 Europe/Berlin] Consulta SQL executada com sucesso.
+[06-Apr-2025 05:04:18 Europe/Berlin] Nenhum dado encontrado para gerar o relatório.
+[06-Apr-2025 05:04:18 Europe/Berlin] Gerando arquivo Excel...
+[06-Apr-2025 05:04:18 Europe/Berlin] Arquivo Excel gerado com sucesso.
+JSON recebido: {"id_cliente":"1","data_solicitacao":"2025-04-06","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"","enviada_cliente":"","observacoes":"—","valor_cobrado":"—"}
+JSON recebido: {"id_cliente":"1","data_solicitacao":"2025-04-06","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"2025-04-06","enviada_cliente":"2025-04-06","observacoes":"—","valor_cobrado":"—"}
+JSON recebido: {"id_cliente":"23","data_solicitacao":"2025-04-06","imposto_pagar":"—","dados_doacao":"—","imposto_restituir":"—","data_transmissao":"2025-04-06","enviada_cliente":"2025-04-06","observacoes":"—","valor_cobrado":"—"}

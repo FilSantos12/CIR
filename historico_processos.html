@@ -105,13 +105,14 @@
  <!--***************************************Lista de Processos*********************************************-->
 
 <div class="container mt-5">
-    <h2 class="text-center">Historico de Processos</h2>
+    <h2 class="text-center">Lista de Clientes e Processos</h2>
 
     <div class="table-responsive">
         <table class="table table-hover table-bordered">
-            <thead class="table-warning text-center">
+            <thead class="table-warning text-center text-nowrap">
                 <tr>
                     <!-- BLOCO 1 (Colunas Fixas) -->
+                    <th class="sticky-coluna">Ações</th>
                     <th class="sticky-coluna">ID</th>
                     <th class="sticky-coluna">Nome</th>
                     <th class="sticky-coluna">CPF</th>
@@ -139,10 +140,11 @@
                     <th>Pagamento</th>
                 </tr>
             </thead>
-            <tbody class="text-center" id="tabela-dados"></tbody>
+            <tbody class="text-center text-nowrap" id="tabela-dados"></tbody>
         </table>
     </div>
 </div>
+
 
 <!--**************************************Paginação*************************************************-->
 

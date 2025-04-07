@@ -175,3 +175,26 @@
 [2025-03-23 14:25:38] Registros movidos: 1
 [2025-03-23 14:25:38] Registros excluídos: 1
 [2025-03-23 14:25:38] Transação confirmada com sucesso.
+[2025-04-06 04:19:41] Transação iniciada.
+[2025-04-06 04:19:41] Registros antigos encontrados: 0
+[2025-04-06 04:19:41] Nenhum registro antigo encontrado. Transação cancelada.
+Array
+(
+    [success] => 1
+    [message] => Cliente e processo cadastrados com sucesso!
+)
+Array
+(
+    [success] => 1
+    [message] => Cliente e processo cadastrados com sucesso!
+)
+Array
+(
+    [success] => 1
+    [message] => Cliente e processo cadastrados com sucesso!
+)
+Array
+(
+    [success] => 
+    [message] => Erro: Este CPF já está cadastrado no sistema.
+)

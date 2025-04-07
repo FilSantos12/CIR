@@ -51,3 +51,10 @@ h2 {
     vertical-align: middle;
     text-align: center; /* Para centralizar o conteúdo nas células */
 }
+
+
+th, td {
+     white-space: nowrap;
+}
+
+

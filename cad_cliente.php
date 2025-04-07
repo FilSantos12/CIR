@@ -1,6 +1,11 @@
 <?php
 include 'db_connection.php'; // Inclui o arquivo de conexão com o banco
 
+// Habilita exibição de erros e define retorno como JSON
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+header('Content-Type: application/json');
+
 $response = ['success' => false, 'message' => ''];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -56,8 +61,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Executa a consulta
             if ($stmt->execute()) {
-                $response['success'] = true;
-                $response['message'] = "Cliente cadastrado com sucesso!";
+                // Pega o ID do cliente recém inserido
+                $cliente_id = $conn->insert_id;
+
+                // Insere o ID na tabela processos
+                $sqlProcesso = "INSERT INTO processos (id_cliente) VALUES (?)";
+                $stmtProcesso = $conn->prepare($sqlProcesso);
+
+                if (!$stmtProcesso) {
+    $response['message'] = "Erro preparando SQL de processos: " . $conn->error;
+    echo json_encode($response);
+    exit;
+}
+
+
+                if ($stmtProcesso === false) {
+                    $response['message'] = "Cliente cadastrado, mas erro ao preparar inserção de processo: " . $conn->error;
+                } else {
+                    $stmtProcesso->bind_param("i", $cliente_id);
+                    if ($stmtProcesso->execute()) {
+                        $response['success'] = true;
+                        $response['message'] = "Cliente e processo cadastrados com sucesso!";
+                    } else {
+                        $response['message'] = "Cliente cadastrado, mas erro ao cadastrar processo: " . $stmtProcesso->error;
+                    }
+                    $stmtProcesso->close();
+                }
             } else {
                 $response['message'] = "Erro ao cadastrar cliente: " . $stmt->error;
             }
@@ -65,8 +94,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->close();
         }
     }
+
     $conn->close();
 }
+if (!$response['success']) {
+    error_log("Resposta com erro: " . print_r($response, true));
+}
+//file_put_contents('erro_log.txt', print_r($response, true), FILE_APPEND);
 
 echo json_encode($response);
 ?>
