@@ -145,7 +145,7 @@ function carregarDashboard() {
         <p class="mb-0 mx-auto text-center">&copy; 2025 Todos os direitos reservados. Desenvolvido por Filipe Santos / 
             <a href="https://filsantos12.github.io/MyPortifolio/index.html" class="text-white text-decoration-none">Contato</a>
         </p>
-        <p class="mb-0">Versão 1.1.0 beta</p>
+        <p class="mb-0">Versão 1.2.0 beta</p>
     </div>
 </footer>
 
