@@ -198,3 +198,64 @@ Array
     [success] => 
     [message] => Erro: Este CPF já está cadastrado no sistema.
 )
+[2025-04-10 02:19:50] Transação iniciada.
+[2025-04-10 02:19:50] Registros antigos encontrados: 4
+[2025-04-10 02:19:50] Registros movidos: 4
+[2025-04-10 02:19:50] Registros excluídos: 4
+[2025-04-10 02:19:50] Transação confirmada com sucesso.
+[2025-04-10 02:22:05] Transação iniciada.
+[2025-04-10 02:22:05] Registros antigos encontrados: 4
+[2025-04-10 02:22:05] Registros movidos: 4
+[2025-04-10 02:22:05] Registros excluídos: 4
+[2025-04-10 02:22:05] Transação confirmada com sucesso.
+[2025-04-10 02:24:18] Transação iniciada.
+[2025-04-10 02:24:18] Registros antigos encontrados: 4
+[2025-04-10 02:24:18] Registros movidos: 4
+[2025-04-10 02:24:18] Registros excluídos: 4
+[2025-04-10 02:24:18] Transação confirmada com sucesso.
+[2025-04-10 04:48:51] Transação iniciada.
+[2025-04-10 04:48:51] Registros antigos encontrados: 0
+[2025-04-10 04:48:51] Nenhum registro antigo encontrado. Transação cancelada.
+[2025-04-11 01:24:04] Transação iniciada.
+[2025-04-11 01:24:04] Registros antigos encontrados: 4
+[2025-04-11 01:24:04] Registros movidos: 4
+[2025-04-11 01:24:04] Tabela 'processos' truncada com sucesso.
+[2025-04-11 01:24:04] Transação confirmada com sucesso.
+[2025-04-11 01:54:40] Transação iniciada.
+[2025-04-11 01:54:40] Registros antigos encontrados: 4
+[2025-04-11 01:54:40] Registros movidos: 4
+[2025-04-11 01:54:40] Erro detectado! Transação revertida.
+[2025-04-11 01:54:40] Erro: Incorrect date value: '' for column 'enviada_cliente' at row 1
+[2025-04-11 01:55:05] Transação iniciada.
+[2025-04-11 01:55:05] Registros antigos encontrados: 4
+[2025-04-11 01:55:05] Registros movidos: 4
+[2025-04-11 01:55:05] Erro detectado! Transação revertida.
+[2025-04-11 01:55:05] Erro: Incorrect date value: '' for column 'enviada_cliente' at row 1
+[2025-04-11 01:55:48] Transação iniciada.
+[2025-04-11 01:55:48] Registros antigos encontrados: 4
+[2025-04-11 01:55:48] Registros movidos: 4
+[2025-04-11 01:55:48] Erro detectado! Transação revertida.
+[2025-04-11 01:55:48] Erro: Incorrect date value: '' for column 'enviada_cliente' at row 1
+[2025-04-11 01:57:42] Transação iniciada.
+[2025-04-11 01:57:42] Registros antigos encontrados: 4
+[2025-04-11 01:57:42] Registros movidos: 4
+[2025-04-11 01:57:42] Erro detectado! Transação revertida.
+[2025-04-11 01:57:42] Erro: Incorrect date value: 'NULL' for column 'enviada_cliente' at row 1
+[2025-04-11 01:57:53] Transação iniciada.
+[2025-04-11 01:57:53] Registros antigos encontrados: 4
+[2025-04-11 01:57:53] Registros movidos: 4
+[2025-04-11 01:57:53] Erro detectado! Transação revertida.
+[2025-04-11 01:57:53] Erro: Incorrect date value: 'NULL' for column 'enviada_cliente' at row 1
+[2025-04-11 01:58:41] Transação iniciada.
+[2025-04-11 01:58:41] Registros antigos encontrados: 4
+[2025-04-11 01:58:41] Registros movidos: 4
+[2025-04-11 01:58:41] Registros da tabela 'processos' atualizados com sucesso.
+[2025-04-11 01:58:41] Transação confirmada com sucesso.
+[2025-04-11 02:00:36] Transação iniciada.
+[2025-04-11 02:00:36] Registros antigos encontrados: 4
+[2025-04-11 02:00:36] Registros movidos: 4
+[2025-04-11 02:00:36] Registros da tabela 'processos' atualizados com sucesso.
+[2025-04-11 02:00:36] Transação confirmada com sucesso.
+[2025-04-11 02:03:06] Transação iniciada.
+[2025-04-11 02:03:06] Registros antigos encontrados: 0
+[2025-04-11 02:03:06] Nenhum registro antigo encontrado. Transação cancelada.

@@ -11,20 +11,20 @@ function logErro($mensagem) {
 }
 
 try {
-    // Teste se a conexão existe
+    // Testa se a conexão foi criada
     if (!isset($conn)) {
         logErro("Erro: Variável \$conn não está definida.");
         die("Erro na conexão.");
     }
 
-    // Iniciar uma transação
+    // Inicia a transação
     $conn->begin_transaction();
     logErro("Transação iniciada.");
 
-    // Verificar se há registros antigos antes de mover
+    // Verifica se existem registros antigos para mover
     $queryCheck = "SELECT COUNT(*) FROM processos WHERE YEAR(data_solicitacao) < YEAR(CURRENT_DATE)";
     $stmtCheck = $conn->prepare($queryCheck);
-    
+
     if (!$stmtCheck) {
         logErro("Erro ao preparar consulta: " . $conn->error);
         die("Erro ao preparar consulta.");
@@ -37,25 +37,25 @@ try {
     $stmtCheck->close();
 
     if ($count > 0) {
-        // Mover registros antigos para o histórico
+        // Move registros antigos para a tabela de histórico
         $queryMove = "
-                INSERT INTO historico_processos (
-                    id_cliente, nomeCliente, cpf, procuracao, data_solicitacao, tipo, documentos, conferencia, 
-                    imposto_pagar, doacao, dados_doacao, parcelamento, imposto_restituir, 
-                    transmissao, data_transmissao, enviada_cliente, observacoes, valor_cobrado, 
-                    boleto_enviado, pagamento
-                )
-                SELECT 
-                    p.id_cliente, c.nomeCliente, c.cpf, c.procuracao, data_solicitacao, tipo, documentos, conferencia, 
-                    imposto_pagar, doacao, dados_doacao, parcelamento, imposto_restituir, 
-                    transmissao, data_transmissao, enviada_cliente, observacoes, valor_cobrado, 
-                    boleto_enviado, pagamento
-                FROM processos p
-                JOIN cliente c ON p.id_cliente = c.id
-                WHERE YEAR(p.data_solicitacao) < YEAR(CURRENT_DATE);
-                ";
+            INSERT INTO historico_processos (
+                id_cliente, nomeCliente, cpf, procuracao, data_solicitacao, tipo, documentos, conferencia, 
+                imposto_pagar, doacao, dados_doacao, parcelamento, imposto_restituir, 
+                transmissao, data_transmissao, enviada_cliente, observacoes, valor_cobrado, 
+                boleto_enviado, pagamento
+            )
+            SELECT 
+                p.id_cliente, c.nomeCliente, c.cpf, c.procuracao, p.data_solicitacao, p.tipo, p.documentos, p.conferencia, 
+                p.imposto_pagar, p.doacao, p.dados_doacao, p.parcelamento, p.imposto_restituir, 
+                p.transmissao, p.data_transmissao, p.enviada_cliente, p.observacoes, p.valor_cobrado, 
+                p.boleto_enviado, p.pagamento
+            FROM processos p
+            JOIN cliente c ON p.id_cliente = c.id
+            WHERE YEAR(p.data_solicitacao) < YEAR(CURRENT_DATE);
+        ";
         $stmtMove = $conn->prepare($queryMove);
-        
+
         if (!$stmtMove) {
             logErro("Erro ao preparar consulta de inserção: " . $conn->error);
             die("Erro ao preparar consulta de inserção.");
@@ -66,56 +66,73 @@ try {
         logErro("Registros movidos: $rowsMoved");
         $stmtMove->close();
 
-        // Somente excluir se a movimentação foi bem-sucedida
         if ($rowsMoved > 0) {
-            $queryDelete = "
-                DELETE FROM processos
+            // Atualiza os registros antigos para zerar os campos
+            $queryUpdate = "
+                UPDATE processos
+                SET
+                    data_solicitacao = NULL,
+                    tipo = '',
+                    documentos = '',
+                    conferencia = '',
+                    imposto_pagar = 0,
+                    doacao = '',
+                    dados_doacao = '',
+                    parcelamento = '',
+                    imposto_restituir = 0,
+                    transmissao = '',
+                    data_transmissao = NULL,
+                    enviada_cliente = NULL,
+                    observacoes = '',
+                    valor_cobrado = 0,
+                    boleto_enviado = '',
+                    pagamento = ''
                 WHERE YEAR(data_solicitacao) < YEAR(CURRENT_DATE);
             ";
-            $stmtDelete = $conn->prepare($queryDelete);
-            
-            if (!$stmtDelete) {
-                logErro("Erro ao preparar consulta de exclusão: " . $conn->error);
-                die("Erro ao preparar consulta de exclusão.");
+            $stmtUpdate = $conn->prepare($queryUpdate);
+
+            if (!$stmtUpdate) {
+                logErro("Erro ao preparar UPDATE: " . $conn->error);
+                die("Erro ao preparar UPDATE.");
             }
 
-            $stmtDelete->execute();
-            $rowsDeleted = $stmtDelete->affected_rows;
-            logErro("Registros excluídos: $rowsDeleted");
-            $stmtDelete->close();
+            $stmtUpdate->execute();
+            logErro("Registros da tabela 'processos' atualizados com sucesso.");
+            $stmtUpdate->close();
         } else {
-            $rowsDeleted = 0;
-            logErro("Nenhum registro foi excluído.");
+            logErro("Nenhum registro foi movido. UPDATE não executado.");
         }
 
-        // Commit da transação
+        // Finaliza a transação
         $conn->commit();
         logErro("Transação confirmada com sucesso.");
 
-        // Exibir pop-up e redirecionar
         echo "<script>
                 alert('Transação concluída com sucesso!');
                 window.location.href='controle_clientes.html';
               </script>";
         exit;
+
     } else {
-        // Se não houver registros antigos, cancelar a transação
+        // Nenhum dado antigo encontrado, cancela a transação
         $conn->rollback();
         logErro("Nenhum registro antigo encontrado. Transação cancelada.");
+
         echo "<script>
-                Nenhum registro antigo encontrado. Transação cancelada.
-             </script>";
+                alert('Nenhum registro antigo encontrado. Transação cancelada.');
+                window.location.href='controle_clientes.html';
+              </script>";
         exit;
     }
+
 } catch (Exception $e) {
-    // Em caso de erro, desfazer a transação
     if ($conn->errno) {
         $conn->rollback();
         logErro("Erro detectado! Transação revertida.");
     }
+
     logErro("Erro: " . $e->getMessage());
 
-    // Exibir mensagem de erro e redirecionar
     echo "<script>
             alert('Erro: " . addslashes($e->getMessage()) . "');
             window.location.href='controle_clientes.html';

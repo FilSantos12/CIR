@@ -3,7 +3,7 @@ require 'db_connection.php'; // Inclui a conexão com o banco de dados
 
 header('Content-Type: application/json');
 
-$sql = "SELECT * FROM historico_processos ORDER BY data_solicitacao DESC";
+$sql = "SELECT * FROM historico_processos ORDER BY id ASC";
 $result = $conn->query($sql);
 
 $historico = [];
