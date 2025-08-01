@@ -203,7 +203,7 @@ function mascaraTelefone(input) {
 //************************************** Lista de Clientes Cadastrados *******************************/
 // Variáveis para controle de páginas
 let currentPage = 1;
-const itemsPerPage = 10; // Número de itens por página
+const itemsPerPage = 50; // Número de itens por página
 let clientesFiltrados = []; // Armazena os clientes após a busca
 
 // Função para mostrar a lista de clientes
@@ -339,46 +339,49 @@ function adicionarEventoBusca(clientes) {
 
 // Função para filtrar os clientes com base no termo de busca
 function filtrarClientes(clientes, termo) {
-    return clientes.filter(cliente =>
-        cliente.nomeCliente.toLowerCase().includes(termo.toLowerCase()) ||
-        cliente.cpf.includes(termo) ||
-        cliente.email.toLowerCase().includes(termo.toLowerCase())
-    );
+    termo = (termo || '').toLowerCase();
+
+    return clientes.filter(cliente => {
+        const nome = cliente.nomeCliente ? cliente.nomeCliente.toLowerCase() : '';
+        const cpf = cliente.cpf ? cliente.cpf : '';
+
+        return (
+            nome.includes(termo) ||
+            cpf.includes(termo)
+        );
+    });
 }
 
-// Função para renderizar a tabela com os clientes filtrados
 function renderizarTabela(clientesFiltrados) {
     const corpoTabela = document.getElementById('corpoTabela');
     if (corpoTabela) {
-        corpoTabela.innerHTML = ''; // Limpa a tabela antes de renderizar
+        const linhas = clientesFiltrados.map(cliente => `
+            <tr>
+                <td>${cliente.id}</td>
+                <td>${cliente.nomeCliente}</td>
+                <td>${cliente.cpf}</td>
+                <td>${cliente.senhaGovBr}</td>
+                <td>${cliente.procuracao}</td>
+                <td>${cliente.dataVencimento}</td>
+                <td>${cliente.telefone}</td>
+                <td>${cliente.email}</td>
+                <td>${cliente.prioridade}</td>
+                <td>${cliente.servico_solicitado}</td>
+                <td>${cliente.ano}</td>
+                <td>${cliente.status_servico}</td>
+                <td>
+                    <div class="d-flex">
+                        <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
+                        <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
+                    </div>
+                </td>
+            </tr>
+        `).join('');
 
-        clientesFiltrados.forEach(cliente => {
-            const linha = `
-                <tr>
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nomeCliente}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.senhaGovBr}</td>
-                    <td>${cliente.procuracao}</td>
-                    <td>${cliente.dataVencimento}</td>
-                    <td>${cliente.telefone}</td>
-                    <td>${cliente.email}</td>
-                    <td>${cliente.prioridade}</td>
-                    <td>${cliente.servico_solicitado}</td>
-                    <td>${cliente.ano}</td>
-                    <td>${cliente.status_servico}</td>
-                    <td>
-                        <div class="d-flex">
-                            <button class="btn btn-warning btn-sm me-2" onclick="editarCliente(${cliente.id})">Editar</button>
-                            <button class="btn btn-danger btn-sm" onclick="excluirCliente(${cliente.id})">Excluir</button>
-                        </div>
-                    </td>
-                </tr>
-            `;
-            corpoTabela.innerHTML += linha;
-        });
+        corpoTabela.innerHTML = linhas;
     }
 }
+
 
 // Chama a função para mostrar a lista de clientes ao carregar a página
 //mostrarListaClientes();

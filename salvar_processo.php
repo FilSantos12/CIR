@@ -122,7 +122,7 @@ foreach ($data as $item) {
     if ($row['count'] > 0) {
         // Bind para UPDATE
         $stmt->bind_param(
-            "ssssdsssdsssssssi",
+            "ssssdsssdsssdsssi",
             $data_solicitacao,
             $tipo,
             $documentos,
@@ -144,7 +144,7 @@ foreach ($data as $item) {
     } else {
         // Bind para INSERT
         $stmt->bind_param(
-            "issssdsssdsssdsss",
+            "issssdsssdsssdsss",  // Tipos: i=int, s=string, d=decimal
             $id_cliente,
             $data_solicitacao,
             $tipo,
